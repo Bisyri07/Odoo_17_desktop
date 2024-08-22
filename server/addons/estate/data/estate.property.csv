@@ -1,0 +1,11 @@
+"id","name","state","expected_price"
+"estate_property_1","Tipe Rumah 21/24","new",200000000
+"estate_property_2","Tipe Rumah 36","ready",300000000
+"estate_property_3","Rumah Type 45","sold",500000000
+"estate_property_4","Rumah Type 54","new",800000000
+"estate_property_5","Rumah Type 60","new",1000000000
+"estate_property_6","Rumah Type 70","new",2000000000
+"estate_property_7","Rumah Type 90","new",3000000000
+"estate_property_8","Rumah Type 120","new",4000000000
+"estate_property_9","Rumah Type 140-200","new",7000000000
+"estate_property_10","Rumah Mewah Tipe di Atas 200","new",20000000000

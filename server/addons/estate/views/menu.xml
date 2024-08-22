@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <!-- view list -->
+        <record id="estate_property_view_tree" model="ir.ui.view">
+            <field name="name">Estate Property List</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <tree string="Estate Property List">
+                    <field name="property_type_id" />
+                    <field name="name" />
+                    <field name="postcode" />
+                    <field name="date_availability" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+    </data>
+    <menuitem id="estate_menu_root" name="Estates" sequence="0">
+        <menuitem id="estate_master_data_menu" name="Master Data">
+            <menuitem 
+                id="estate_property_menu_action" 
+                action="estate_property_action"
+            />
+            <menuitem 
+                id="estate_property_type_menu_action" 
+                action="estate_property_type_action"
+            />
+            <menuitem 
+                id="estate_property_offer_menu_action" 
+                action="estate_property_offer_action"
+            />
+            <menuitem 
+                id="estate_property_tag_menu_action" 
+                action="estate_property_tag_action"
+            />
+        </menuitem>
+
+        <menuitem id="api_menu" name="API Configuration">
+            <menuitem 
+                id="api_user_token_menu_action" 
+                action="users_token_action"
+            />
+        </menuitem>
+
+    </menuitem>
+</odoo>

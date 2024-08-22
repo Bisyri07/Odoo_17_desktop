@@ -1,0 +1,16 @@
+.property-report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.property-report-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.property-report-table td:first-child {
+    font-weight: bold;
+    width: 30%;
+    background-color: #f9f9f9;
+}

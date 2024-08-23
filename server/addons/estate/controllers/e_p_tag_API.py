@@ -62,10 +62,13 @@ class EstatePropertyTagController(http.Controller):
                 return Response("Bad Request: name and color are required", status=400)
 
             tag_exist = request.env['estate.property.tag'].search([('name', '=', name)])
-            
             if tag_exist:
                 return Response(f"Tag with this name ({name}) is already exist!", status=400)
             
+            color_exist = request.env['estate.property.tag'].search([('color', '=', color)])
+            if color_exist:
+                return Response(f"Color_ID with ID ({color}) is already exixst!", status=400)
+
             tag = request.env['estate.property.tag'].create({
 				'name': name,
 				'color': color

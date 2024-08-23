@@ -1,16 +1,16 @@
 <odoo>
     <data>
         <record id="estate_property_tag_1" model="estate.property.tag">
-            <field name="name">White</field>
-            <field name="color">4</field>
+            <field name="name">Red</field>
+            <field name="color">1</field>
         </record>
         <record id="estate_property_tag_2" model="estate.property.tag">
-            <field name="name">Black</field>
-            <field name="color">5</field>
+            <field name="name">Green</field>
+            <field name="color">2</field>
         </record>
         <record id="estate_property_tag_3" model="estate.property.tag">
-            <field name="name">Cream</field>
-            <field name="color">6</field>
+            <field name="name">Blue</field>
+            <field name="color">3</field>
         </record>
     </data>
 </odoo>

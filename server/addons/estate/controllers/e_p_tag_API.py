@@ -28,7 +28,7 @@ class EstatePropertyTagController(http.Controller):
         return Response(json.dumps(property_tags), content_type="application/json")
 
 
-    # untuk mendapatkan (GET) 1 record berdasarkan tag id nya
+    # untuk mendapatkan / read (GET) 1 record berdasarkan tag id nya
     @http.route('/estate-property-tag/<int:tag_id>', auth='public', methods=['GET'])
     @authenticate
     def get_properti_tag_id(self, tag_id, **kwargs):
@@ -49,7 +49,7 @@ class EstatePropertyTagController(http.Controller):
             }), status=400)
         
         
-    # untuk update (POST) record 
+    # untuk create (POST) record 
     @http.route('/estate-property-tag', auth='public', methods=['post'], csrf=False)
     @authenticate
     def create_tag(self, **kwargs):
@@ -79,4 +79,35 @@ class EstatePropertyTagController(http.Controller):
 
         except Exception as e:
             return Response(f"There is error occured: {str(e)}", status=500)
+        
+
+    # untuk update (Put) record 
+    @http.route('/estate-property-tag/<int:tag_id>', auth='public', methods=['PUT'], csrf=False)
+    @authenticate
+    def update_tag(self, tag_id, **kwargs):
+        try:
+            tag = request.env['estate.property.tag'].browse(tag_id)  
+            updated_data = json.loads(request.httprequest.data.decode("utf-8"))
+            name = updated_data.get('name')
+            color_index = int(updated_data.get('color'))
+
+            name_exist = request.env['estate.property.tag'].search([('name', '=', name)])
+            if name_exist:
+                return Response(f"tag with this name '{name}' is already exist!", status=400)
+
+            tag.write({
+                'name':name,
+                'color': color_index
+            })
+
+            response = json.dumps({
+                'id':tag.id,
+                'name':name,
+                'color':color_index
+            }) 
+
+            return Response(response, content_type="application/json")
+        
+        except Exception as e:
+            return Response(f'There is an error occured: {str(e)}')
         

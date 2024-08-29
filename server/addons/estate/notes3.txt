@@ -1,0 +1,285 @@
+===============================================================================
+44. API REQUEST GET ONE DATA (with token)
+
+1. tambah function dgn decorator yg sama dengan /estate-property-tags
+2. tambahkan tag_id sebagai parameter didalam functionnya
+3. ganti request.env['].search() dengan request.env['].browse(tag_id)
+4. lihat contoh dibawah:
+   try:
+        tag = request.env['estate.property.tag'].browse(tag_id)  
+        response_data = {
+            'id': tag.id,
+            'name': tag.name,
+            'color': tag.color
+        }
+
+        return Response(json.dumps(response_data), content_type="application/json")
+        
+    except Exception as e:
+        return Response(json.dumps({
+            'error': 'something went wrong',
+            'error detail': str(e)
+        }), status=400) 
+
+5. lakukan API request dengan format yg sama dgn API request /estate-property-tags
+
+--FYI--
+Git fetch berbeda dengan git pull: 
+Git fetch hanya menyalin perubahan ke repo Git lokal Anda, 
+sedangkan git pull menyalin perubahan dari repositori 
+jarak jauh langsung ke direktori kerja Anda .
+
+Git pull memperbarui cabang lokal Anda saat ini dan semua
+cabang pelacakan jarak jauh, sebaiknya dijalankan secara 
+teratur pada cabang yang sedang Anda kerjakan secara lokal. 
+
+
+===============================================================================
+45. API REQUEST POST DATA (with token)
+
+1. buat function di dalam class estate property tag 
+   (disini namanya EstatePropertyTagController) 
+   dgn http route dan authentication decorator
+   seperti contoh di bawah:
+
+    @http.route('/estate-property-tag', auth='public', methods=['post'], csrf=False)
+    @authenticate
+    def create_tag(self, **kwargs):
+        try:
+            request_data = json.loads(request.httprequest.data.decode("utf-8"))
+            name = request_data.get('name')
+            color = int(request_data.get('color'))
+
+            if not all([name, color]):
+                return Response("Bad Request: name and color are required", status=400)
+
+            tag_exist = request.env['estate.property.tag'].search([('name', '=', name)])
+            
+            if tag_exist:
+                return Response(f"Tag with this name ({name}) is already exist!", status=400)
+            
+            tag = request.env['estate.property.tag'].create({
+                'name': name,
+                'color': color
+            })
+
+            response = json.dumps({'id': tag.id, 'name': name, 'color': color})
+            return Response(response, content_type="application/json")
+
+        except Exception as e:
+            return Response(f"There is error occured: {str(e)}", status=500)
+
+    penjelasannya ada di https://chatgpt.com/share/ca954437-b7a5-4d66-804a-eddca92d4b24
+
+2. lalu pada postman ganti method nya menjadi POST 
+   dengan url: http://localhost:8069/estate-property-tag
+3. isi pada bagian Headers
+   key: Authorization
+   value: f632312a-08f0-46d6-aef2-c22614579edf (ini adalah token yg tergenarate dr user)
+4. isi pada bagian Body ('name' dan 'color' setelah record estate_property_tag terakhir dibuat)
+   contoh:
+   {
+    "name":"white",
+    "color":4
+   }
+5. jika status: 200 OK maka sukses menjalankan API request (POST method)
+
+
+--FYI--
+*json.dumps(): Python object → JSON string (Serialization).
+*json.loads(): JSON string → Python object (Deserialization).
+
+===============================================================================
+46. API REQUEST PUT DATA (with token)
+
+--FYI--
+metode HTTP:   GET   POST   PUT   DELETE
+Operasi CRUD: Read  Create Update Delete
+
+1. buat function di dalam class (EstatePropertyTagController) 
+   dgn http route dan authentication decorator
+   seperti contoh di bawah:
+
+    @http.route('/estate-property-tag/<int:tag_id>', auth='public', methods=['PUT'], csrf=False)
+    @authenticate
+    def update_tag(self, tag_id, **kwargs):
+        try:
+            tag = request.env['estate.property.tag'].browse(tag_id)  
+            updated_data = json.loads(request.httprequest.data.decode("utf-8"))
+            name = updated_data.get('name')
+            color_index = int(updated_data.get('color'))
+
+            name_exist = request.env['estate.property.tag'].search([('name', '=', name)])
+            if name_exist:
+                return Response(f"tag with this name '{name}' is already exist!", status=400)
+
+            tag.write({
+                'name':name,
+                'color': color_index
+            })
+
+            response = json.dumps({
+                'id':tag.id,
+                'name':name,
+                'color':color_index
+            }) 
+
+            return Response(response, content_type="application/json")
+        
+        except Exception as e:
+            return Response(f'There is an error occured: {str(e)}') 
+
+    penjelasannya ada di https://chatgpt.com/share/ca954437-b7a5-4d66-804a-eddca92d4b24
+
+2. lalu pada postman ganti method nya menjadi PUT 
+   dengan url: http://localhost:8069/estate-property-tag/4
+3. isi pada bagian Headers
+   key: Authorization
+   value: f632312a-08f0-46d6-aef2-c22614579edf (ini adalah token yg tergenarate dr user)
+4. isi pada bagian Body ('name' dan 'color' setelah record estate_property_tag terakhir dibuat)
+   contoh:
+   {
+    "name":"Black",
+    "color":4
+   }
+5. jika status: 200 OK maka sukses menjalankan API request (PUT method)
+
+===============================================================================
+47. API REQUEST DELETE DATA (with token)
+
+1. buat function di dalam class (EstatePropertyTagController) 
+   dgn http route dan authentication decorator
+   seperti contoh di bawah:
+
+    @http.route('/estate-property-tag/<int:tag_id>', auth='public', methods=['DELETE'], csrf=False)
+    @authenticate
+    def delete_tag(self, tag_id, **kwargs):
+
+        tag = request.env['estate.property.tag'].browse(tag_id)
+
+        tag.unlink()    
+
+        response_data = {
+            'id': tag_id,
+            'message': f"Tag with id #{tag_id} has been deleted."
+        }
+
+        return Response(json.dumps(response_data), content_type="application/json")  
+
+   penjelasannya ada di https://chatgpt.com/share/ca954437-b7a5-4d66-804a-eddca92d4b24 
+
+2. lalu pada postman ganti method nya menjadi DELETE 
+   dengan url: http://localhost:8069/estate-property-tag/4
+3. isi pada bagian Headers
+   key: Authorization
+   value: f632312a-08f0-46d6-aef2-c22614579edf (ini adalah token yg tergenarate dr user)
+4. klik send
+5. jika status: 200 OK maka sukses menjalankan API request (DELETE method)
+
+
+===============================================================================
+48. MODEL TESTING CRUD SETUP
+
+1. buat folder baru di dalam estate module dgn nama model_testing
+2. buat 2 file python: 1. __init__.py 2. e_p_tag_testing.py
+3. di dalam e_p_tag_testing.py:
+
+from odoo.tests import TransactionCase
+
+class estatePropertyTagTest(TransactionCase):
+
+    def setup(self):
+        super(estatePropertyTagTest).setUp()
+        self.estate_property_tag_model = self.env['estate.property.tag']
+
+Penjelasan:
+
+from odoo.tests import TransactionCase
+
+1. Baris ini mengimpor kelas TransactionCase dari modul odoo.tests. 
+   Kelas ini adalah dasar untuk menulis kasus pengujian dalam Odoo. 
+   TransactionCase digunakan untuk menjalankan pengujian dalam konteks transaksi database, 
+   memastikan setiap pengujian dijalankan dalam isolasi dan dapat di-rollback setelah selesai.
+
+class estatePropertyTagTest(TransactionCase):
+
+2. Ini mendefinisikan sebuah kelas bernama estatePropertyTagTest yang 
+   mewarisi dari TransactionCase. Kelas ini akan digunakan untuk menulis 
+   pengujian terkait dengan model estate.property.tag.
+
+def setup(self):
+    super(estatePropertyTagTest).setUp()
+    self.estate_property_tag_model = self.env['estate.property.tag']
+
+super(estatePropertyTagTest).setUp(): Ini memanggil metode setUp dari kelas induk (TransactionCase). 
+Ini memastikan bahwa setup dasar dari pengujian dijalankan sebelum setup khusus dari kelas ini.
+self.estate_property_tag_model = self.env['estate.property.tag']: Baris ini menyimpan referensi 
+ke model Odoo estate.property.tag dalam variabel self.estate_property_tag_model. Dengan cara ini, 
+Anda dapat menggunakan self.estate_property_tag_model untuk berinteraksi dengan 
+model estate.property.tag dalam pengujian Anda.
+
+===============================================================================
+49. MODEL TESTING CRUD (create data)
+
+1. buat folder dengan nama tests (wajib sama)
+2. buat __init__.py dan test_estate_property_tag.py
+3. di dalam test_estate_property_tag.py:
+    from odoo.tests import TransactionCase
+
+    class TestEstatePropertyTag(TransactionCase):
+
+        def setUp(self):
+            super(TestEstatePropertyTag, self).setUp()
+            self.estate_property_tag_model = self.env['estate.property.tag']
+
+        def test_create_tag(self):
+            tag_data = {
+                'name': 'TAG 001',
+                'color': 99
+            }
+            tag = self.estate_property_tag_model.create(tag_data)
+            self.assertEqual(tag.name, 'TAG 001')
+            self.assertEqual(tag.color, 99)
+
+4. restart odoo service 
+
+1. jalankan command ini di dalam command line:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d
+   your_database_name -i module_name --test-enable
+
+   contoh: 
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

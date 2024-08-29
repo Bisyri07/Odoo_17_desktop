@@ -250,10 +250,51 @@ model estate.property.tag dalam pengujian Anda.
    contoh: 
    "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
 
+kalau di dalam odoo.log terdapat ini:
+2024-08-29 06:57:32,692 17040 INFO odoo_17 odoo.addons.estate.tests.test_estate_property_tag: 
+Starting TestEstatePropertyTag.test_create_tag ... 
+dan ada ini:
+2024-08-29 06:57:35,457 17040 INFO odoo_17 odoo.tests.stats: estate: 3 tests 0.17s 8 queries 
 
+maka create testing berhasil
 
+===============================================================================
+50. MODEL TESTING CRUD (read data)
 
+1. tambahkan function di dalam file test_estate_property_tag.py
 
+    def test_read_tag(self):
+        new_tag = self.estate_property_tag_model.create({
+            'name': 'TAG 002',
+            'color': 89
+        })
+        tag  = new_tag.read(['name', 'color'])
+        self.assertEqual(tag.name, 'TAG 002')
+        self.assertEqual(tag.color, 89)
+
+   penjelasan:
+   def test_read_tag(self):: Metode ini menguji fungsionalitas membaca data yang 
+   sudah ada pada model estate.property.tag.
+
+   new_tag = self.estate_property_tag_model.create({...}): Pertama, kita membuat 
+   record baru untuk digunakan dalam pengujian membaca.
+
+   tag = new_tag.read(['name', 'color']): Kemudian, kita membaca data dari record 
+   tersebut dengan hanya mengambil field name dan color.
+
+   self.assertEqual(tag.name, 'TAG 002'): Sama seperti pada metode test_create_tag, 
+   kita memverifikasi apakah data yang dibaca sesuai dengan yang diharapkan.
+
+2. restart odoo service
+3. lalu coba jalankan command line ini lagi:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+kalau di dalam odoo.log ada ini:
+2024-08-29 07:53:54,567 10496 INFO odoo_17 odoo.modules.loading: Module estate loaded in 0.73s (incl. 0.28s test), 348 queries (+13 test, +348 other) 
+tidak ada error dan ini:
+2024-08-29 07:53:57,231 10496 INFO odoo_17 odoo.tests.stats: estate: 4 tests 0.28s 13 queries 
+
+maka read test berhasil
 
 
 

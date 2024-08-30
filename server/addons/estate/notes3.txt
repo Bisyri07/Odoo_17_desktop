@@ -300,7 +300,7 @@ maka read test berhasil
 ===============================================================================
 51. MODEL TESTING CRUD (Update data)
 
-1. tambahkan function di test_estate_property_tag.py: 
+1. tambahkan function di dalam test_estate_property_tag.py: 
 
    def test_update_tag(self):
 		tag = self.estate_property_tag_model.create({
@@ -370,6 +370,46 @@ maka read test berhasil
    jika pesan di dalam odoo.log muncul maka berhasil
    2024-08-30 02:25:27,020 15448 INFO odoo_17 odoo.addons.estate.tests.test_estate_property_tag: 
    Starting TestEstatePropertyTag.test_update_with_invalid_value ... 
+
+===============================================================================
+53. MODEL TESTING CRUD (delete data)
+
+1. tambahkan function di dalam test_estate_property_tag.py: 
+   
+   def test_delete_tag(self):
+		tag = self.estate_property_tag_model.create({
+			'name': 'TAG 004',
+			'color': 69
+		})
+		# delete
+		tag.unlink()
+		check_tag = self.estate_property_tag_model.search([('name', '=', 'TAG 004')])
+		self.assertFalse(check_tag)
+
+   penjelasan:
+   tag = self.estate_property_tag_model.create({'name': 'TAG 004', 'color': 69}): 
+   Membuat sebuah tag baru dengan nama "TAG 004" dan warna 69. Hasil pembuatan 
+   ini disimpan dalam variabel tag. 
+
+   tag.unlink(): Menghapus tag yang telah dibuat sebelumnya. 
+   Metode unlink() digunakan untuk menghapus record dari database.
+
+   check_tag = self.estate_property_tag_model.search([('name', '=', 'TAG 004')]): 
+   Mencoba mencari tag dengan nama "TAG 004" menggunakan method search.
+
+   self.assertFalse(check_tag): Memeriksa apakah hasil pencarian (check_tag) bernilai False. 
+   Jika False, maka test case akan dianggap berhasil, artinya tag tersebut telah berhasil dihapus.
+
+2. restart odoo service 
+3. lalu jalankan command line ini:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+4. jika pesan di dalam odoo.log muncul maka berhasil:
+   2024-08-30 02:55:21,828 26312 INFO odoo_17 odoo.addons.estate.tests.test_estate_property_tag: 
+   Starting TestEstatePropertyTag.test_delete_tag ... 
+   2024-08-30 02:55:21,960 26312 INFO odoo_17 odoo.addons.base.models.ir_attachment: 
+   filestore gc 0 checked, 0 removed 
+   2024-08-30 02:55:24,570 26312 INFO odoo_17 odoo.tests.stats: estate: 7 tests 0.29s 38 queries 
 
 
 

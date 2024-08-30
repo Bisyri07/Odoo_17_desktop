@@ -51,3 +51,14 @@ class TestEstatePropertyTag(TransactionCase):
 			tag.write({'color': 150})
 		
 		self.assertEqual(str(context.exception), "color index must be less than 100")
+
+
+	def test_delete_tag(self):
+		tag = self.estate_property_tag_model.create({
+			'name': 'TAG 004',
+			'color': 69
+		})
+		# delete
+		tag.unlink()
+		check_tag = self.estate_property_tag_model.search([('name', '=', 'TAG 004')])
+		self.assertFalse(check_tag)

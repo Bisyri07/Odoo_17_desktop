@@ -180,7 +180,8 @@ Operasi CRUD: Read  Create Update Delete
 ===============================================================================
 48. MODEL TESTING CRUD SETUP
 
-1. buat folder baru di dalam estate module dgn nama model_testing
+1. buat folder baru di dalam estate module dgn nama tests 
+   (wajib karena odoo akan mengenali tests folder sebagai bagian yang mengetest API nya)
 2. buat 2 file python: 1. __init__.py 2. e_p_tag_testing.py
 3. di dalam e_p_tag_testing.py:
 
@@ -221,9 +222,8 @@ model estate.property.tag dalam pengujian Anda.
 ===============================================================================
 49. MODEL TESTING CRUD (create data)
 
-1. buat folder dengan nama tests (wajib sama)
-2. buat __init__.py dan test_estate_property_tag.py
-3. di dalam test_estate_property_tag.py:
+1. buat __init__.py dan test_estate_property_tag.py
+2. di dalam test_estate_property_tag.py:
     from odoo.tests import TransactionCase
 
     class TestEstatePropertyTag(TransactionCase):
@@ -241,9 +241,9 @@ model estate.property.tag dalam pengujian Anda.
             self.assertEqual(tag.name, 'TAG 001')
             self.assertEqual(tag.color, 99)
 
-4. restart odoo service 
+3. restart odoo service 
 
-1. jalankan command ini di dalam command line:
+4. jalankan command ini di dalam command line:
    "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d
    your_database_name -i module_name --test-enable
 
@@ -290,11 +290,47 @@ maka create testing berhasil
    "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
 
 kalau di dalam odoo.log ada ini:
-2024-08-29 07:53:54,567 10496 INFO odoo_17 odoo.modules.loading: Module estate loaded in 0.73s (incl. 0.28s test), 348 queries (+13 test, +348 other) 
+2024-08-29 07:53:54,567 10496 INFO odoo_17 odoo.modules.loading: Module estate loaded in 0.73s 
+(incl. 0.28s test), 348 queries (+13 test, +348 other) 
 tidak ada error dan ini:
 2024-08-29 07:53:57,231 10496 INFO odoo_17 odoo.tests.stats: estate: 4 tests 0.28s 13 queries 
 
 maka read test berhasil
+
+===============================================================================
+51. MODEL TESTING CRUD (Update data)
+
+1. tambahkan function di test_estate_property_tag.py: 
+
+   def test_update_tag(self):
+		tag = self.estate_property_tag_model.create({
+			'name': 'TAG 003',
+			'color': 79
+		})
+
+		tag.write({'color': 70})
+		self.assertEqual(tag.color, 70)
+
+   penjelasan:
+   tag = self.estate_property_tag_model.create({'name': 'TAG 003', 'color': 79}): 
+   Membuat sebuah tag baru dengan nama "TAG 003" dan warna 79. Hasil pembuatan ini 
+   disimpan dalam variabel tag.
+
+   tag.write({'color': 70}): Memperbarui nilai atribut color dari tag yang telah 
+   dibuat sebelumnya menjadi 70. Metode write() digunakan untuk mengubah nilai-nilai 
+   pada sebuah record. 
+
+   self.assertEqual(tag.color, 70): Memeriksa apakah nilai atribut color dari tag 
+   telah berhasil diubah menjadi 70. Jika benar, maka test case akan dianggap berhasil
+
+2. restart odoo service
+3. jalankan command line ini lagi:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+   kalau di dalam odoo.log ada ini maka berhasil:
+   2024-08-30 01:08:40,865 31996 INFO odoo_17 odoo.addons.estate.tests.test_estate_property_tag: 
+   Starting TestEstatePropertyTag.test_update_tag ... 
+   2024-08-30 01:08:43,818 31996 INFO odoo_17 odoo.tests.stats: estate: 5 tests 0.18s 18 queries 
 
 
 

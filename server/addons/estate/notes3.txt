@@ -332,6 +332,45 @@ maka read test berhasil
    Starting TestEstatePropertyTag.test_update_tag ... 
    2024-08-30 01:08:43,818 31996 INFO odoo_17 odoo.tests.stats: estate: 5 tests 0.18s 18 queries 
 
+===============================================================================
+52. MODEL TESTING CRUD (update data with invalid value)
+
+1. tambahkan condition di dalam model estate property tag
+
+    @api.constrains('color')
+    def check_color(self):
+        for record in self:
+            if record.color > 100:
+                raise ValidationError("color index must be less than 100")
+
+2. restart odoo service
+3. update estate property module 
+4. pergi ke estate property tag model tes dgn data baru 
+   apakah saat color index lebih dari 100 akan terjadi error 
+
+5. tambahkan function di test_estate_property_tag:
+   
+   def test_update_with_invalid_value(self):
+		with self.assertRaises(ValidationError) as context:
+			tag = self.estate_property_tag_model.create({
+				'name': 'TAG 003',
+				'color': 79
+			})
+            # update 
+			tag.write({'color': 150})
+		
+		self.assertEqual(str(context.exception), "color index must be less than 100")
+
+    syarat: string yg terdapat pada check_color dan di test_update_with_invalid_value
+            harus sama yaitu `color index must be less than 100`
+
+6. lalu jalankan command line ini:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+   jika pesan di dalam odoo.log muncul maka berhasil
+   2024-08-30 02:25:27,020 15448 INFO odoo_17 odoo.addons.estate.tests.test_estate_property_tag: 
+   Starting TestEstatePropertyTag.test_update_with_invalid_value ... 
+
 
 
 

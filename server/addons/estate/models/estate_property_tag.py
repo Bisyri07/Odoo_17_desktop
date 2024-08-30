@@ -1,4 +1,6 @@
-from odoo import fields, models
+from odoo import fields, models, api
+from odoo.exceptions import ValidationError
+
 
 class EstatePropertyTag(models.Model):
     
@@ -12,4 +14,8 @@ class EstatePropertyTag(models.Model):
     name = fields.Char("Name", required=True)
     color = fields.Integer("Color Index")
 
-
+    @api.constrains('color')
+    def check_color(self):
+        for record in self:
+            if record.color > 100:
+                raise ValidationError("color index must be less than 100")

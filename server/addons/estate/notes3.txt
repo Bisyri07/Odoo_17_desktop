@@ -411,8 +411,44 @@ maka read test berhasil
    filestore gc 0 checked, 0 removed 
    2024-08-30 02:55:24,570 26312 INFO odoo_17 odoo.tests.stats: estate: 7 tests 0.29s 38 queries 
 
+===============================================================================
+54. API TESTING - (setup and & test endpoint) GET DATA
+
+1. buat python file baru di dalam tests folder
+   beri nama apa saja asalkan untuk mengetes API disini contohnya: API_testing.py
+
+2. buat class baru disini contohnya TestEstatePropertyTagAPI dan inherit dari 
+   class HttpCase
+
+   lihat contoh di bawah:
+
+   class TestEstatePropertyTagAPI(HttpCase):
+
+    def setUp(self):
+        super(TestEstatePropertyTagAPI, self).setUp()
+   
+   penjelasan:
+   setUp milik HttpCase akan tereksekusi terlebih dahulu lalu
+   setUp milik TestEstatePropertyTagAPI tereksekusi
+
+3. ikuti lanjutan penulisan python nya
+4. restart odoo service
+5. jalankan command prompt ini di cmd:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
+
+jika pesan ini ada di dalam odoo.log maka berhasil:
+2024-09-02 05:33:12,434 24140 INFO odoo_17 werkzeug: 127.0.0.1 - - 
+[02/Sep/2024 05:33:12] "POST /web/session/authenticate_ HTTP/1.1" 200 - 94 0.175 4.203
+
+2024-09-02 05:33:14,546 24140 INFO odoo_17 werkzeug: 127.0.0.1 - - 
+[02/Sep/2024 05:33:14] "GET /estate-property-tags HTTP/1.1" 200 - 9 0.015 0.052
+
+2024-09-02 05:33:17,394 18916 INFO odoo_17 odoo.tests.stats: estate: 10 tests 8.80s 44 queries 
 
 
+--FYI-- 
+yang paling terpenting dalam pengujian API ini adalah 
+awalan nama file python harus test contoh: test_API.py
 
 
 

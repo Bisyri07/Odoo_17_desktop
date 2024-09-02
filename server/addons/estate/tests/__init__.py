@@ -1,1 +1,1 @@
-from . import test_estate_property_tag
+from . import test_API, test_estate_property_tag

@@ -415,7 +415,7 @@ maka read test berhasil
 54. API TESTING - (setup and & test endpoint) GET DATA
 
 1. buat python file baru di dalam tests folder
-   beri nama apa saja asalkan untuk mengetes API disini contohnya: API_testing.py
+   beri nama apa saja asalkan untuk mengetes API disini contohnya: test_API.py
 
 2. buat class baru disini contohnya TestEstatePropertyTagAPI dan inherit dari 
    class HttpCase
@@ -451,8 +451,31 @@ yang paling terpenting dalam pengujian API ini adalah
 awalan nama file python harus test contoh: test_API.py
 
 
+===============================================================================
+55. API TESTING - (test endpoint) GET DATA BY ID
 
+1. buat function baru di dalam TestEstatePropertyTagAPI class
+2. def test_get_data_by_id(self):
+        tag_id = 1
+        url = f'{self.base_url}/estate-property-tag/{tag_id}'
 
+        headers = {
+            'Authorization': self.auth_token,
+            'Cookie': f'session_id={self.session_id}'
+        }
+
+        response = requests.get(url, headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+        expected_response = {
+            "id":1,
+            "name":"Red",
+            "color":1
+        }
+
+        self.assertEqual(response.json(), expected_response)
+3. jalankan command line ini:
+   "C:\Odoo\python\python.exe" "C:\Odoo\server\odoo-bin" -d odoo_17 -i estate --test-enable
 
 
 

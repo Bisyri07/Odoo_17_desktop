@@ -9,6 +9,7 @@
                         This is module is used to learn basic technical Odoo 17
                     """,
     'application': True,
+    'license': 'LGPL-3',
     'data': [
         # SECURITY
         'security/ir.model.access.csv',  

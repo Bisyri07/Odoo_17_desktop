@@ -8,7 +8,7 @@ class PurchaseOrder(models.Model):
     item_code = fields.Char(string="Item Code")
     item = fields.Char(string="Item")
     qty = fields.Integer(string="Quantity")
-    po_no = fields.Char(string='PO Number', required=True)
+    po_no = fields.Char(string='PO Number', readonly=True, copy=False, default='New')
     po_date = fields.Datetime(string='PO Date', required=True, default=fields.Datetime.now)
     supplier_code = fields.Char(string='Supplier Code')
     supplier = fields.Char(string='Supplier')
@@ -27,9 +27,11 @@ class PurchaseOrder(models.Model):
     pph = fields.Monetary(string='PPH', currency_field='currency')
     unit_price = fields.Monetary(string='Unit Price', currency_field='currency')
     input_by = fields.Char(string='Input By')
+    confirm_by = fields.Char(string='Confirm By')
     date_input = fields.Datetime(string='Date Input', default=fields.Datetime.now)
     posted_by = fields.Char(string='Posted By')
     date_posted = fields.Datetime(string='Date Posted')
+    unit_weight = fields.Float(string='Amount of unit')
     uom = fields.Selection(
         [
             ('kg', 'Kilogram'),
@@ -76,5 +78,11 @@ class PurchaseOrder(models.Model):
             a.total = a.unit_price + a.subtotal
 
 
-
-
+    # Override the create method to generate a PO number
+    @api.model
+    def create(self, vals):
+        if vals.get('po_no', 'New') == 'New':
+            # Generate PO number from sequence
+            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or 'New'
+        
+        return super(PurchaseOrder, self).create(vals) 

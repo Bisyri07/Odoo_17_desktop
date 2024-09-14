@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- view tree & kanban -->
+  <record id='purchase_order_action' model='ir.actions.act_window'>
+    <field name='name'>Purchase Order</field>
+    <field name='res_model'>purchase.order</field>
+    <field name='view_mode'>tree,form,kanban</field>
+  </record>
+
+  <!-- Form -->
+  <record id='purchase_order_form' model='ir.ui.view'>
+    <field name='name'>Purchase Order Form</field>
+    <field name='model'>purchase.order</field>
+    <field name='arch' type='xml'>
+      <form>
+        <sheet>
+          <group>
+
+            <group>
+              <field name="po_no"/>
+              <field name="po_date"/>
+              <field name="item"/>
+              <field name="item_code"/>
+              <field name="qty"/>
+              <field name="supplier"/>
+            </group>
+            <group>
+              <field name="currency"/>
+              <field name="term_of_payment"/>
+              <field name="supplier"/>
+              <field name="supplier_code"/>
+              <field name="status"/>
+              <field name="input_by"/>  
+            </group>  
+
+            <notebook>
+              <page string='Detail'>
+                <group>
+                  <field name='item_code' string='Item Code' />
+                  <field name='item' string='Item' />
+                  <field name='description' string='Description' />
+                  <field name='qty' string='Qty' />
+                  <field name='uom' string='UoM' />
+                  <field name='unit_price' string='Unit Price' />
+                  <field name='subtotal' string='Subtotal' />
+                </group>
+              </page>
+            </notebook>     
+
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+</odoo>

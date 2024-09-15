@@ -65,14 +65,16 @@
                   <group>
                     <field name='item' string='Item' />
                     <field name='unit_price' string='Unit Price' />
-                    <field name='uom' string='UoM' />
+                    <field name='ppn_pct' string='PPN Percentage %' />
                     <field name='subtotal' string='Subtotal' />
+                    <field name='uom' string='UoM' />
                   </group>
                   
                   <group>
                     <field name='item_code' string='Item Code' />
-                    <field name='ppn_pct' string='PPN Percentage %' />
                     <field name='unit_weight' string='Unit Weight' />
+                    <field name='ppn' string='PPN' />
+                    <field name='total' />
                     <field name='description' string='Description' />
                   </group>
                   

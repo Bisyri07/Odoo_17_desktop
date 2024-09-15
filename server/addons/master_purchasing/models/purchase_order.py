@@ -23,7 +23,6 @@ class PurchaseOrder(models.Model):
     discount_pct = fields.Float(string='Discount (%)')
     discount = fields.Monetary(string='Discount', currency_field='currency')  # Correct reference to currency
     ppn_pct = fields.Float(string='PPN (%)')
-    ppn = fields.Monetary(string='PPN', currency_field='currency')
     pph_pct = fields.Float(string='PPH (%)')
     pph = fields.Monetary(string='PPH', currency_field='currency')
     unit_price = fields.Monetary(string='Unit Price', currency_field='currency')
@@ -72,28 +71,42 @@ class PurchaseOrder(models.Model):
         ('check_unit_price_positive', 'CHECK(unit_price > 0)', 'The price must be greater than zero!')
     ]
     
-    # Field untuk menyimpan subtotal dan total
+
+    # Field untuk menyimpan subtotal, ppn dan total
     subtotal = fields.Monetary(string='Subtotal', 
                                currency_field='currency', 
                                compute='_compute_subtotal_biaya', store=True)
     total = fields.Monetary(string='Total', 
                             currency_field='currency', 
                             compute='_compute_total_biaya', store=True)
+    ppn = fields.Monetary(string='PPN',
+                          currency_field='currency',
+                          compute='_compute_ppn', store=True)
 
-    # computed field subtotal (unit_price * ppn_pct / 100)
-    @api.depends('unit_price', 'ppn_pct')
+
+    # Computed field subtotal (unit_price * ppn_pct / 100)
+    @api.depends('unit_price', 'qty')
     def _compute_subtotal_biaya(self):
         for a in self:
-            if a.ppn_pct:
-                a.subtotal = a.unit_price * (a.ppn_pct / 100)
+            if a.qty:
+                a.subtotal = a.unit_price * a.qty 
             else:
                 a.subtotal = 0.0
 
-    # computed field total (unit_price + subtotal)
-    @api.depends('unit_price', 'subtotal')
+    # Computed field PPN (subtotal * ppn_pct)
+    @api.depends('ppn_pct', 'subtotal', 'ppn')
+    def _compute_ppn(self):
+        for a in self:
+            if a.ppn_pct:
+                a.ppn = a.subtotal * (a.ppn_pct/100)
+            else:
+                a.ppn = 0.0
+
+    # Computed field total (unit_price + subtotal)
+    @api.depends('unit_price', 'ppn')
     def _compute_total_biaya(self):
         for a in self:
-            a.total = a.unit_price + a.subtotal
+            a.total = a.subtotal + a.ppn
 
 
     # Override the create method to generate a PO number
@@ -101,8 +114,13 @@ class PurchaseOrder(models.Model):
     def create(self, vals):
         if vals.get('po_no', 'New') == 'New':
             # Generate PO number from sequence
-            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or 'New'
+            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence')
         
         return super(PurchaseOrder, self).create(vals) 
     
-
+    # Override the delete method
+    def unlink(self):
+        if not set(self.mapped('status')) <= {'canceled', 'input'}:
+            raise UserError('Only input and canceled Purchase order status can be deleted')
+    
+        return super().unlink()

@@ -13,6 +13,31 @@
     <field name='model'>purchase.order</field>
     <field name='arch' type='xml'>
       <form>
+
+        <header>
+          <button 
+          name="action_confirmed"
+          type="object"
+          string="Confirm"
+          invisible="status=='confirmed'"
+          />
+
+          <button 
+          name="action_canceled"
+          type="object"
+          string="Cancel"
+          invisible="status=='canceled'"
+          />
+
+          <!-- status bar -->
+          <field 
+          name="status"
+          widget="statusbar"
+          statusbar_visible="input,confirmed"
+          />
+
+        </header>
+
         <sheet>
           <group>
 
@@ -30,7 +55,7 @@
               <field name="date_input"/>
               <field name="supplier_code"/>
               <field name="input_by"/>  
-              <field name="status"/>
+              <field name="discount"/>
             </group>  
 
             <notebook>

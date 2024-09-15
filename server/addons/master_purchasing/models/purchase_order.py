@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError, UserError
 
 class PurchaseOrder(models.Model):
     _name = 'purchase.order'
@@ -44,9 +45,26 @@ class PurchaseOrder(models.Model):
     )
 
     status = fields.Selection(
-        [('draft', 'Draft'), ('posted', 'Posted'), ('cancelled', 'Cancelled')], 
-        string='Status', default='draft'
+        selection=[
+            ('input', 'Input'), 
+            ('confirmed', 'Confirm'), 
+            ('canceled', 'Canceled')
+        ], 
+        required=True,
+        string='Status', 
+        default='input'
     )
+
+    # function for action button
+    def action_confirmed(self):
+        if 'canceled' in self.mapped('status'):
+            raise UserError('Confirmed Purchase Order cannot be canceled')
+        return self.write({'status':'confirmed'})
+    
+    def action_canceled(self):
+        if 'confirmed' in self.mapped('status'):
+            raise UserError('Canceled Purchase Order cannot be confirm')
+        return self.write({'status':'canceled'})
 
     # SQL Constraints
     _sql_constraints = [
@@ -86,3 +104,5 @@ class PurchaseOrder(models.Model):
             vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or 'New'
         
         return super(PurchaseOrder, self).create(vals) 
+    
+

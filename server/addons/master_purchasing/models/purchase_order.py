@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 
 class PurchaseOrder(models.Model):
@@ -112,12 +112,12 @@ class PurchaseOrder(models.Model):
     # Override the create method to generate a PO number
     @api.model
     def create(self, vals):
-        if vals.get('po_no', 'New') == 'New':
-            # Generate PO number from sequence
-            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence')
+        if not vals.get('po_no') or vals['po_no'] == _('New'):
+            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or _('New')
         
         return super(PurchaseOrder, self).create(vals) 
     
+
     # Override the delete method
     def unlink(self):
         if not set(self.mapped('status')) <= {'canceled', 'input'}:

@@ -56,12 +56,12 @@ class PurchaseOrder(models.Model):
     # function for action button
     def action_confirmed(self):
         if 'canceled' in self.mapped('status'):
-            raise UserError('Confirmed Purchase Order cannot be canceled')
+            raise UserError('Canceled Purchase Order cannot be confirmed')
         return self.write({'status':'confirmed'})
     
     def action_canceled(self):
         if 'confirmed' in self.mapped('status'):
-            raise UserError('Canceled Purchase Order cannot be confirm')
+            raise UserError('Confirmed Purchase Order cannot be canceled')
         return self.write({'status':'canceled'})
 
     # SQL Constraints

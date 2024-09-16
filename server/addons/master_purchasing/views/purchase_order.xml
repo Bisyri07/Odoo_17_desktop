@@ -47,6 +47,7 @@
               <field name="qty"/>
               <field name="supplier"/>
               <field name="confirm_by"/>
+              <field name="discount_pct"/>
               <field name="term_of_payment"/>
             </group>
             <group>
@@ -56,6 +57,7 @@
               <field name="supplier_code"/>
               <field name="input_by"/>  
               <field name="discount"/>
+              <field name="contact_person"/>
             </group>  
 
             <notebook>

@@ -20,8 +20,7 @@ class PurchaseOrder(models.Model):
     currency_rate = fields.Float(string='Currency Rate')
     description = fields.Text(string='Description')
     company_name = fields.Char(string='Company Name')
-    discount_pct = fields.Float(string='Discount (%)')
-    discount = fields.Monetary(string='Discount', currency_field='currency')  # Correct reference to currency
+    discount_pct = fields.Float(string='Discount (%)', readonly=True)
     ppn_pct = fields.Float(string='PPN (%)')
     pph_pct = fields.Float(string='PPH (%)')
     pph = fields.Monetary(string='PPH', currency_field='currency')
@@ -82,6 +81,9 @@ class PurchaseOrder(models.Model):
     ppn = fields.Monetary(string='PPN',
                           currency_field='currency',
                           compute='_compute_ppn', store=True)
+    discount = fields.Monetary(string='Discount', 
+                               currency_field='currency',
+                               compute='_compute_discount', store=True) 
 
 
     # Computed field subtotal (unit_price * ppn_pct / 100)
@@ -93,6 +95,19 @@ class PurchaseOrder(models.Model):
             else:
                 a.subtotal = 0.0
 
+    # Computed field discount
+    @api.depends('subtotal', 'discount', 'discount_pct')
+    def _compute_discount(self):
+        for a in self:
+            if a.subtotal >= 200000000:
+                a.discount_pct = 15
+                a.discount = a.subtotal * (a.discount_pct/100)
+                a.subtotal = a.subtotal - a.discount
+            else:
+                a.discount = 0.0
+                a.discount_pct = 0.0
+
+
     # Computed field PPN (subtotal * ppn_pct)
     @api.depends('ppn_pct', 'subtotal', 'ppn')
     def _compute_ppn(self):
@@ -101,6 +116,7 @@ class PurchaseOrder(models.Model):
                 a.ppn = a.subtotal * (a.ppn_pct/100)
             else:
                 a.ppn = 0.0
+
 
     # Computed field total (unit_price + subtotal)
     @api.depends('unit_price', 'ppn')

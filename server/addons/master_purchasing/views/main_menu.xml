@@ -26,6 +26,13 @@
       />
     </menuitem>
 
+    <menuitem id='purchase_order_relationship' name='Additional Information'>
+      <menuitem 
+        id= 'uom_relationship_menu_action'
+        action='uom_relationship_action'
+      />
+    </menuitem>
+
   </menuitem>
 
 </odoo>

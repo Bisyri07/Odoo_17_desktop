@@ -31,16 +31,7 @@ class PurchaseOrder(models.Model):
     posted_by = fields.Char(string='Posted By')
     date_posted = fields.Datetime(string='Date Posted')
     unit_weight = fields.Float(string='Amount of unit')
-    uom = fields.Selection(
-        [
-            ('kg', 'Kilogram'),
-            ('g', 'gram'),
-            ('liter', 'Liter'),
-            ('ml', 'Mililiter'),
-        ], 
-        string='Unit of Measurement',
-        default='kg'
-    )
+    uom = fields.Many2one('unit.of.measurement', string='UoM')
 
     status = fields.Selection(
         selection=[

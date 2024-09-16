@@ -28,6 +28,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/sequences/po_sequence.xml',
+        'views/relationships/uom.xml',
         'views/purchase_order.xml',
         'views/main_menu.xml',
     ],

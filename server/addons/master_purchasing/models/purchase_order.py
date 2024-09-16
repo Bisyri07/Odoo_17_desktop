@@ -121,6 +121,6 @@ class PurchaseOrder(models.Model):
     # Override the delete method
     def unlink(self):
         if not set(self.mapped('status')) <= {'canceled', 'input'}:
-            raise UserError('Only input and canceled Purchase order status can be deleted')
+            raise UserError('Only input and canceled purchase order status can be deleted')
     
         return super().unlink()

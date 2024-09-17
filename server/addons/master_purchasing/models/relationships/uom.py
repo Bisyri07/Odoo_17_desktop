@@ -3,7 +3,7 @@ from odoo import fields, models, api
 class UnitOfMeasurement(models.Model):
     _name = 'unit.of.measurement'
     _description = 'Unit of Measurement for Master Purchasing'
-
+    _rec_name = 'symbol'
     _sql_constraints = [
         (
             'check_name',
@@ -16,19 +16,16 @@ class UnitOfMeasurement(models.Model):
     category = fields.Char(string='Category')
     reference_unit = fields.Char(string='Reference Unit', required=True)
     r_t_r_unit = fields.Float(
-        string='Ratio to Reference Unit', default=1 
+        string='Ratio to Reference Unit', 
+        default=1,
+        digits=(12, 6) 
     )
     symbol = fields.Char(string='Symbol')
     active = fields.Boolean(
         string='Active (being used)',
         default=True
-    )
-    # bagian yang menghubungkan ke model purchase order
-    # purchase_order_ids = fields.One2many(
-    #     'purchase.order',
-    #     'uom',
-    #     string='Properties'
-    # )
+        )
+
 
     @api.constrains
     def _check_ratio(self):
@@ -39,12 +36,13 @@ class UnitOfMeasurement(models.Model):
             if record.r_t_r_unit <= 0:
                 raise ValueError('The ratio to reference unit must be a positive value.')
             
-    # display symbol instead of name of measurement 
-    # overriding name_get() method
+    # overriding name_get() method, display symbol instead of name of measurement 
     def name_get(self):
         result = []
         for record in self:
-            name = record.symbol if record.symbol else record.name
+            uom_symbol = record.uom.symbol if record.uom else ''
+            # format sesuai kebutuhan
+            name = f'{record.po_no} - {uom_symbol}'
             result.append((record.id,name))
             
         return result

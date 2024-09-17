@@ -131,3 +131,18 @@ class PurchaseOrder(models.Model):
             raise UserError('Only input and canceled purchase order status can be deleted')
     
         return super().unlink()
+    
+
+    # Scheduler
+    def po_scheduler(self):
+        today = fields.Date.today()
+
+        # menghitung po_date dikurang hari ini
+        expired_po = self.search([
+            ('po_date', '<', today),
+            ('status', '!=', 'canceled')
+        ])
+
+        # ubah status po menjadi cenceled karena expired
+        for po in expired_po:
+            po.write({'status':'canceled'})

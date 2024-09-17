@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id='ir_cron_purchase_order' model='ir.cron'>
+        <field name='name'>Scheduler for Purchase order</field>
+        <field name='model_id' ref='master_purchasing.model_purchase_order' />
+        <field name='type'>ir.action.server</field>
+        <field name='state'>code</field>
+        <field name='code'>model.po_scheduler()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>days</field>
+        <field name='numbercall'>-1</field>
+        <field name='nextcall' eval="(DateTime.now()).strftime('%Y-%m-%d 17:00:00')"/>
+        <field name='priority'>5</field>
+        <field name='active' eval='True' />
+        <field name='user_id' ref="base.user_root" />
+        <field name='doall'>1</field>
+    </record>
+</odoo>

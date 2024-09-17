@@ -31,6 +31,9 @@
         'views/relationships/uom.xml',
         'views/purchase_order.xml',
         'views/main_menu.xml',
+
+        # scheduler
+        'views/schedulers/purchase_order_scheduler.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

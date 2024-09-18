@@ -22,11 +22,12 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','mail'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/templates/po_email_template.xml',  # email template for purchase order
         'views/sequences/po_sequence.xml',
         'views/relationships/uom.xml',
         'views/purchase_order.xml',

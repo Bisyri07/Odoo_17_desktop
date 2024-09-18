@@ -15,6 +15,7 @@
       <form>
 
         <header>
+          <!-- button -->
           <button 
           name="action_confirmed"
           type="object"
@@ -28,6 +29,14 @@
           string="Cancel"
           invisible="status=='canceled'"
           />
+
+          <!-- send an email button -->
+           <button 
+           name="action_send_email"
+           type="object"
+           string="Send by Email"
+           invisible="status=='canceled'"
+           />
 
           <!-- status bar -->
           <field 
@@ -57,7 +66,7 @@
               <field name="supplier_code"/>
               <field name="input_by"/>  
               <field name="discount"/>
-              <field name="contact_person"/>
+              <field name="email_po"/>
             </group>  
 
             <notebook>
@@ -80,6 +89,13 @@
                     <field name='description' string='Description' />
                   </group>
                   
+                </group>
+              </page>
+
+              <page string='Additional Information'>
+                <group>
+                  <field name='contact_person' />
+                  <field name='expired_date' />
                 </group>
               </page>
             </notebook>     

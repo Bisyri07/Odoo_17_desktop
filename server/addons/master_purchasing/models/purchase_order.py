@@ -32,6 +32,7 @@ class PurchaseOrder(models.Model):
     date_posted = fields.Datetime(string='Date Posted')
     unit_weight = fields.Float(string='Amount of unit')
     uom = fields.Many2one('unit.of.measurement', string='UoM')
+    email_po = fields.Char(string='PO E-mail', default='youremail@gmail.com')
 
     status = fields.Selection(
         selection=[
@@ -137,12 +138,27 @@ class PurchaseOrder(models.Model):
     def po_scheduler(self):
         today = fields.Date.today()
 
-        # menghitung po_date dikurang hari ini
+        # calculate po_date minus today
         expired_po = self.search([
-            ('po_date', '<', today),
+            ('expired_date', '<', today),
             ('status', '!=', 'canceled')
         ])
 
-        # ubah status po menjadi cenceled karena expired
+        # change po status to canceled because expired
         for po in expired_po:
             po.write({'status':'canceled'})
+
+
+    # Send an email
+    def action_send_email(self):
+        # make sure the email field is not empty
+        if not self.email_po:
+            raise UserError('Please set en email address for the purchase order')
+
+        # prepare email template
+        template_id = self.env.ref('master_purchasing.mail_template_purchase_order').id
+        email_template = self.env['mail.template'].browse(template_id)
+
+        # send an email
+        email_template.send_mail(self.id, force_send=True) 
+

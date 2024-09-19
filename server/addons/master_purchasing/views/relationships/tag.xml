@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+      <!--  -->
+      <record id='tag_relationship_action' model='ir.actions.act_window'>
+        <field name='name'>Purchasing Tag</field>
+        <field name='res_model'>purchasing.tag</field>
+        <field name='view_mode'>tree,form</field>
+      </record>
+
+      <record id='view_tag_tree' model='ir.ui.view'>
+        <field name='name'>Purchasing Tag</field>
+        <field name='model'>purchasing.tag</field>
+        <field name='arch' type='xml'>
+          <tree string='Purchasing Tag Form'>
+            <field name='name' />
+            <field name='tag_type' />
+          </tree>
+        </field>
+      </record>
+    </data>
+</odoo>

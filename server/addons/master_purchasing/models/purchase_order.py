@@ -45,6 +45,8 @@ class PurchaseOrder(models.Model):
         default='input'
     )
 
+    tag_ids = fields.Many2many('purchasing.tag', string='Tags')
+
     # function for action button
     def action_confirmed(self):
         if 'canceled' in self.mapped('status'):

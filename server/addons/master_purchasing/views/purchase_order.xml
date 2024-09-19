@@ -94,8 +94,16 @@
 
               <page string='Additional Information'>
                 <group>
-                  <field name='contact_person' />
-                  <field name='expired_date' />
+                  <group>
+                    <field name='contact_person' />
+                    <field name='date_posted' />
+                  </group>
+                  <group>
+                    <field name='tag_ids' 
+                           widget="many2many_tags" 
+                           options="{'color_field': 'color'}"/>
+                    <field name='expired_date' />
+                  </group>
                 </group>
               </page>
             </notebook>     

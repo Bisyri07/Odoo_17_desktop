@@ -15,7 +15,7 @@
             </field>
         </record>
     </data>
-    <menuitem id="estate_menu_root" name="Estates" sequence="1">
+    <menuitem id="estate_menu_root" name="Estates" sequence="2">
         <menuitem id="estate_master_data_menu" name="Master Data">
             <menuitem 
                 id="estate_property_menu_action" 

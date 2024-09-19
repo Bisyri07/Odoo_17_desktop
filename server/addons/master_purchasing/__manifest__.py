@@ -6,7 +6,7 @@
 
     'description': """
     This module contains all the common menus related to purchasing like:
-    1. purchase order, purchase receiving, sales and delivery order
+    purchase order, purchase receiving, sales and delivery order
     """,
 
     'author': "Bisyri",

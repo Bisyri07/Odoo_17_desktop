@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id='master_item_action' model='ir.actions.act_window'>
+      <field name='name'>Master Item</field>
+      <field name='res_model'>master.item</field>
+      <field name='view_mode'>tree,form,kanban</field>
+    </record>       
+  </data>
+</odoo>

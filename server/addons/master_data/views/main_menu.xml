@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- master item view tree -->
+  <record id='master_item_tree' model='ir.ui.view'>
+    <field name='name'>Master Item Tree</field>
+    <field name='model'>master.item</field>
+    <field name='arch' type='xml'>
+      <tree string='Master Item Tree'>
+        <field name='item' />
+        <field name='item_code' />
+      </tree>
+    </field>
+  </record>
+
+  <!-- Menu navbar -->
+  <menuitem id='master_data_root' name='Master Data' sequence='1'>
+    <menuitem id='master_data_menu' name='Master Data Menu'>
+      <menuitem 
+        id='master_item_menu_action'
+        action='master_item_action'
+      />
+    </menuitem>
+  </menuitem>
+
+</odoo>

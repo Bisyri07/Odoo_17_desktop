@@ -1,10 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data>
-    <record id='master_item_action' model='ir.actions.act_window'>
-      <field name='name'>Master Item</field>
-      <field name='res_model'>master.item</field>
-      <field name='view_mode'>tree,form,kanban</field>
-    </record>       
-  </data>
+  <!-- view tree, form and kanban -->
+  <record id='master_item_action' model='ir.actions.act_window'>
+    <field name='name'>Master Item</field>
+    <field name='res_model'>master.item</field>
+    <field name='view_mode'>tree,form,kanban</field>
+  </record>
+
+  <!-- form -->
+  <record id='master_item_form' model='ir.ui.view'>
+    <field name='name'>Master Item</field>
+    <field name='model'>master.item</field>
+    <field name='arch' type='xml'>
+      <form>
+        
+        <header>
+          <!-- action button -->
+          <button 
+            name="action_confirmed"
+            type="object"
+            string="Confirm"
+            invisible="status=='confirmed'"
+            />
+            <button 
+            name="action_canceled"
+            type="object"
+            string='Cancel'
+            invisible="status=='canceled'"
+          />
+
+          <!-- status bar -->
+          <field 
+          name="status"
+          widget="statusbar"
+          statusbar_visible="input,confirmed"
+          />
+        </header>
+
+        <sheet>
+          <group>
+            <group>
+              <field name='item' />
+              <field name='company' />
+              <field name='unit_price' />
+              <field name='location' />
+              <field name='item_type' />
+              <field name='quantity' />
+              <field name='acq_date' />
+              <field name='acq_cost' />
+              <field name='year_of_useful' />
+              <field name='salvage_value' />
+              <field name='monthly_dep' />
+              <field name='monthly_dep_pct' />
+            </group>
+            <group>
+              <field name='item_code' />
+              <field name='company_code' />
+              <field name='sales_amount' />
+              <field name='location_code' />
+              <field name='item_type_code' />
+              <field name='currency' />
+              <field name='acq_period' />
+              <field name='order_id' />
+              <field name='month_of_useful' />
+              <field name='opening_accum_dep' />
+              <field name='annual_dep' />
+              <field name='annual_dep_pct' />
+            </group>
+          </group>
+        </sheet>
+
+      </form>
+
+    </field>
+  </record>
 </odoo>

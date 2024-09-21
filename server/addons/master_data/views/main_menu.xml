@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- master item view tree -->
+  <!-- Tampilan awal saat module Master Data dibuka -->
   <record id='master_item_tree' model='ir.ui.view'>
     <field name='name'>Master Item Tree</field>
     <field name='model'>master.item</field>
@@ -8,6 +8,12 @@
       <tree string='Master Item Tree'>
         <field name='item' />
         <field name='item_code' />
+        <field name='quantity' />
+        <field name='unit_price' />
+        <field name='acq_date' />
+        <field name='monthly_dep' />
+        <field name='annual_dep' />
+        <field name='annual_dep_pct' />
       </tree>
     </field>
   </record>

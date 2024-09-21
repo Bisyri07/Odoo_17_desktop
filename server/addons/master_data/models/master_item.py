@@ -1,9 +1,110 @@
-from odoo import fields, models
+from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 class MasterItem(models.Model):
     _name='master.item'
     _description='Master Item'
 
     item = fields.Char(string='Item Name')
-    item_code = fields.Char(string="Item Code")
+    item_code = fields.Char(string="Item Code", size=50)
+    company = fields.Char(string='Company', size=100)
+    company_code = fields.Char(string='Company code', size=50)
+    location = fields.Char(string='Location')
+    location_code = fields.Char(string='Location Code', size=50)
+    item_type = fields.Char(string='Item Type')
+    item_type_code = fields.Char(string='Item Type Code')
+    quantity = fields.Float(string='Qty')
+    currency = fields.Many2one(comodel_name='res.currency', string='Currency')
+    acq_date = fields.Date(string='Acquisition Date / Tanggal Pembelian', default=fields.Datetime.now)
+    acq_period = fields.Char(string='Acquisition Period', size=6)
+    acq_cost = fields.Monetary(string='Acquisition Cost / Nilai Pembelian', currency_field='currency')
+    year_of_useful = fields.Integer(string='Year of Useful Life')
+    month_of_useful = fields.Integer(string='Month of Useful Life')
+    salvage_value = fields.Monetary(string='End of Useful Value (Salvage Value)', currency_field='currency')
+    order_id = fields.Integer(string='Order Id')
+    opening_accum_dep = fields.Monetary(string='Opening Accumulated Depreciation', currency_field='currency')
+    sales_amount = fields.Monetary(string='Sales Amount', currency_field='currency')
+    unit_price = fields.Monetary(string='Item Cost / Harga per Barang', currency_field='currency')
+
+    monthly_dep = fields.Monetary(string='Monthly Depreciation', 
+                                  currency_field='currency',
+                                  compute='_compute_monthly_dep',
+                                  store=True)
+    monthly_dep_pct = fields.Float(string='Monthly Depreciation Percentage (%)',
+                                      currency_field='currency',
+                                      compute='_compute_monthly_dep_pct',
+                                      store=True)
+    annual_dep = fields.Monetary(string='Annual Depreciation', 
+                                 currency_field='currency',
+                                 compute='_compute_annual_dep',
+                                 store=True)
+    annual_dep_pct = fields.Float(string='Annual Depreciation Percentage (%)',
+                                  compute='_compute_annual_dep_pct',
+                                  store=True)
+    
+
+    """computed field"""
+    # annual depreciation
+    @api.depends('acq_cost', 'salvage_value', 'year_of_useful')
+    def _compute_annual_dep(self):
+        for record in self:
+            if record.year_of_useful and record.year_of_useful > 0:
+                record.annual_dep = (record.acq_cost - record.salvage_value) / record.year_of_useful
+            else:
+                record.annual_dep = 0    
+
+    # annual depreciation percentage
+    @api.depends('acq_cost', 'annual_dep')
+    def _compute_annual_dep_pct(self):
+        for record in self:
+            if record.acq_cost and record.acq_cost > 0:
+                record.annual_dep_pct = (record.annual_dep / record.acq_cost) * 100
+            else:
+                record.annual_dep_pct = 0
+
+    # monthly depreciation
+    @api.depends('annual_dep')
+    def _compute_monthly_dep(self):
+        for record in self:
+            if record.annual_dep and record.annual_dep > 0:
+                record.monthly_dep = record.annual_dep / 12 
+            else:
+                record.monthly_dep = 0
+
+    # monthly depreciation percentage
+    @api.depends('acq_cost', 'monthly_dep')
+    def _compute_monthly_dep_pct(self):
+        for record in self:
+            if record.acq_cost and record.acq_cost > 0:
+                record.monthly_dep_pct = (record.monthly_dep / record.acq_cost) * 100 
+            else:
+                record.monthly_dep_pct = 0
+
+
+    status = fields.Selection(
+        selection=[
+            ('input','Input'),
+            ('confirmed','Confirmed'),
+            ('canceled','Canceled'),
+    ],
+    required=True,
+    string = 'Status',
+    default='input'
+    )
+
+
+    """action button"""
+    # confirm button
+    def action_confirmed(self):
+        if 'canceled' in self.mapped('status'):
+            raise UserError('Canceled Item cannot be confirmed')
+        
+        self.write({'status':'confirmed'})
+    
+    # cancel button
+    def action_canceled(self):
+        if 'confirmed' in self.mapped('status'):
+            raise UserError('Confirmed Item cannot be canceled')
+        
+        self.write({'status':'canceled'})
     

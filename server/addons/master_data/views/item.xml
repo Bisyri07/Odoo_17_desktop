@@ -21,12 +21,14 @@
             type="object"
             string="Confirm"
             invisible="status=='confirmed'"
+            class="btn-primary"
             />
             <button 
             name="action_canceled"
             type="object"
             string='Cancel'
             invisible="status=='canceled'"
+            class="btn-secondary"
           />
 
           <!-- status bar -->

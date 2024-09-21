@@ -21,6 +21,7 @@
           type="object"
           string="Confirm"
           invisible="status=='confirmed'"
+          class="btn-primary"
           />
 
           <button 
@@ -28,6 +29,7 @@
           type="object"
           string="Cancel"
           invisible="status=='canceled'"
+          class="btn-secondary"
           />
 
           <!-- send an email button -->

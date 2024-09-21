@@ -6,8 +6,8 @@ class PurchaseOrder(models.Model):
     _description = 'Purchase Order'
 
 
+    item = fields.Char(string="Item Name")
     item_code = fields.Char(string="Item Code")
-    item = fields.Char(string="Item")
     qty = fields.Integer(string="Quantity")
     po_no = fields.Char(string='PO Number', readonly=True, copy=False, default='New')
     po_date = fields.Datetime(string='PO Date', required=True, default=fields.Datetime.now)

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- Tampilan awal saat module Master Data dibuka -->
-  <record id='master_item_tree' model='ir.ui.view'>
-    <field name='name'>Master Item Tree</field>
-    <field name='model'>master.item</field>
-    <field name='arch' type='xml'>
-      <tree string='Master Item Tree'>
-        <field name='item' />
-        <field name='item_code' />
-        <field name='quantity' />
-        <field name='unit_price' />
-        <field name='acq_date' />
-        <field name='monthly_dep' />
-        <field name='annual_dep' />
-        <field name='annual_dep_pct' />
-      </tree>
-    </field>
-  </record>
-
+  <data>
+    <!-- Tampilan awal saat module Master Data dibuka -->
+    <record id='master_item_tree' model='ir.ui.view'>
+      <field name='name'>Master Item Tree</field>
+      <field name='model'>master.item</field>
+      <field name='arch' type='xml'>
+        <tree string='Master Item Tree'>
+          <field name='item' />
+          <field name='item_code' />
+          <field name='quantity' />
+          <field name='unit_price' />
+          <field name='acq_date' />
+          <field name='monthly_dep' />
+          <field name='annual_dep' />
+          <field name='annual_dep_pct' />
+        </tree>
+      </field>
+    </record>
+  </data>
   <!-- Menu navbar -->
   <menuitem id='master_data_root' name='Master Data' sequence='1'>
     <menuitem id='master_data_menu' name='Master Data Menu'>

@@ -136,25 +136,31 @@
                 <div class='o_kanban_record_top mb16'>
                   <div class='o_kanban_record_headings mt4'>
                     <strong class='o_kanban_record_title'>
-                      <span>Item: <field name='item' /></span>
+                      <span><field name='item' /></span>
                     </strong>
                   </div>
                   <div>
                     <strong>
-                      <span>Total: Rp.<field name="total"/></span>
+                      <span>Rp. <field name="total"/></span>
                     </strong>
                   </div>
                 </div>
 
                 <div class='o_kanban_record_bottom'>
-                  <div class='oe_kanban_bottom_left text-muted'>
+                  <div class='oe_kanban_bottom_left'>
                     <small>
-                        <span>PO No: <field name="po_no"/></span>
+                        <span><field name="po_no"/></span>
                     </small>
                     <!-- <field name="activity_ids" widget="kanban_activity"/> -->
                   </div>
                   <div class='oe_kanban_bottom_right'>
-                    <span>Status: <field name="state"/></span>
+                    <span><field name="state"
+                                 statusbar_visible="input,confirmed,canceled" 
+                                 decoration-info="state == 'input'" 
+                                 decoration-success="state == 'confirmed'"
+                                 decoration-danger="state == 'canceled'"
+                                 widget="badge" />
+                    </span>
                   </div>
                 </div>
 

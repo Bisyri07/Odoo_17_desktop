@@ -31,9 +31,8 @@ class MasterItem(models.Model):
                                   compute='_compute_monthly_dep',
                                   store=True)
     monthly_dep_pct = fields.Float(string='Monthly Depreciation Percentage (%)',
-                                      currency_field='currency',
-                                      compute='_compute_monthly_dep_pct',
-                                      store=True)
+                                   compute='_compute_monthly_dep_pct',
+                                   store=True)
     annual_dep = fields.Monetary(string='Annual Depreciation', 
                                  currency_field='currency',
                                  compute='_compute_annual_dep',

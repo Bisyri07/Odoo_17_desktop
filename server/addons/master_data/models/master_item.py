@@ -5,6 +5,7 @@ class MasterItem(models.Model):
     _name='master.item'
     _description='Master Item'
 
+
     item = fields.Char(string='Item Name')
     item_code = fields.Char(string="Item Code", size=50)
     company = fields.Char(string='Company', size=100)
@@ -41,6 +42,36 @@ class MasterItem(models.Model):
                                   compute='_compute_annual_dep_pct',
                                   store=True)
     
+
+    # SQL constraints
+    _sql_constraints = [
+        (
+            'check_price',
+            'CHECK(unit_price > 0)',
+            'Item Cost / Harga per Barang must be greater than zero!'
+        ),
+        (
+            'check_quantity', 
+            'CHECK(quantity > 0)', 
+            'Quantity must be greater than zero!'
+        ),
+        (
+            'check_acq_cost',
+            'CHECK(acq_cost > 0)',
+            'Acquisition cost must be greater than zero!'
+        ),
+        (
+            'check_year_of_useful',
+            'CHECK(year_of_useful > 0)',
+            'Year of Useful Life must be greater than zero!'
+        ),
+        (
+            'check_month_of_useful',
+            'CHECK(month_of_useful > 0)',
+            'Month of Useful Life must be greater than zero!'
+        ),
+    ]
+
 
     """computed field"""
     # annual depreciation

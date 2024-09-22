@@ -23,7 +23,7 @@
   </record>
 
   <!-- Menu di navbar odoo -->
-  <menuitem id='master_purchasing_root' name='Master Purchasing' sequence='0'>
+  <menuitem id='master_purchasing_root' name='Master Purchasing' sequence='1'>
     
     <menuitem id='master_purchasing_data_menu' name='Purchasing Menu'>
       <menuitem 

@@ -11,7 +11,13 @@
         <field name='po_date' />
         <field name='supplier' />
         <field name='total' />
-        <field name='status' />
+        <field name='state' 
+               statusbar_visible="input,confirmed,canceled" 
+               decoration-info="state == 'input'" 
+               decoration-success="state == 'confirmed'"
+               decoration-danger="state == 'canceled'"
+               widget="badge"
+               />
       </tree>
     </field>
   </record>

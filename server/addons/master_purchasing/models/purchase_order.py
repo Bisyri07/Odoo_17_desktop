@@ -34,7 +34,7 @@ class PurchaseOrder(models.Model):
     uom = fields.Many2one('unit.of.measurement', string='UoM')
     email_po = fields.Char(string='PO E-mail', default='youremail@gmail.com')
 
-    status = fields.Selection(
+    state = fields.Selection(
         selection=[
             ('input', 'Input'), 
             ('confirmed', 'Confirm'), 
@@ -49,14 +49,14 @@ class PurchaseOrder(models.Model):
 
     # function for action button
     def action_confirmed(self):
-        if 'canceled' in self.mapped('status'):
+        if 'canceled' in self.mapped('state'):
             raise UserError('Canceled Purchase Order cannot be confirmed')
-        return self.write({'status':'confirmed'})
+        return self.write({'state':'confirmed'})
     
     def action_canceled(self):
-        if 'confirmed' in self.mapped('status'):
+        if 'confirmed' in self.mapped('state'):
             raise UserError('Confirmed Purchase Order cannot be canceled')
-        return self.write({'status':'canceled'})
+        return self.write({'state':'canceled'})
 
     # SQL Constraints
     _sql_constraints = [
@@ -130,7 +130,7 @@ class PurchaseOrder(models.Model):
 
     # Override the delete method
     def unlink(self):
-        if not set(self.mapped('status')) <= {'canceled', 'input'}:
+        if not set(self.mapped('state')) <= {'canceled', 'input'}:
             raise UserError('Only input and canceled purchase order status can be deleted')
     
         return super().unlink()
@@ -143,12 +143,12 @@ class PurchaseOrder(models.Model):
         # calculate po_date minus today
         expired_po = self.search([
             ('expired_date', '<', today),
-            ('status', '!=', 'canceled')
+            ('state', '!=', 'canceled')
         ])
 
         # change po status to canceled because expired
         for po in expired_po:
-            po.write({'status':'canceled'})
+            po.write({'state':'canceled'})
 
 
     # Send an email

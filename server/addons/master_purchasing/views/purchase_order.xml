@@ -20,7 +20,7 @@
           name="action_confirmed"
           type="object"
           string="Confirm"
-          invisible="status=='confirmed'"
+          invisible="state=='confirmed'"
           class="btn-primary"
           />
 
@@ -28,7 +28,7 @@
           name="action_canceled"
           type="object"
           string="Cancel"
-          invisible="status=='canceled'"
+          invisible="state=='canceled'"
           class="btn-secondary"
           />
 
@@ -37,12 +37,12 @@
            name="action_send_email"
            type="object"
            string="Send by Email"
-           invisible="status=='canceled'"
+           invisible="state=='canceled'"
            />
 
           <!-- status bar -->
           <field 
-          name="status"
+          name="state"
           widget="statusbar"
           statusbar_visible="input,confirmed"
           />
@@ -125,7 +125,7 @@
         <field name='item' />
         <field name='po_no' />
         <field name='total' />
-        <field name='status' />
+        <field name='state' />
 
         <templates>
           <!-- kanban card design -->
@@ -154,7 +154,7 @@
                     <!-- <field name="activity_ids" widget="kanban_activity"/> -->
                   </div>
                   <div class='oe_kanban_bottom_right'>
-                    <span>Status: <field name="status"/></span>
+                    <span>Status: <field name="state"/></span>
                   </div>
                 </div>
 

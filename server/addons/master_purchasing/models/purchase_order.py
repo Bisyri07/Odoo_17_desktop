@@ -51,12 +51,23 @@ class PurchaseOrder(models.Model):
     def action_confirmed(self):
         if 'canceled' in self.mapped('state'):
             raise UserError('Canceled Purchase Order cannot be confirmed')
-        return self.write({'state':'confirmed'})
+        
+        self.write({'state':'confirmed'})
+
+        # Trigger the rainbow man animation
+        return {
+                'effect': 
+                    {
+                        'fadeout': 'slow',
+                        'message': 'your purchase order has been confirmed!',
+                        'type': 'rainbow_man',
+                    }
+               }
     
     def action_canceled(self):
         if 'confirmed' in self.mapped('state'):
             raise UserError('Confirmed Purchase Order cannot be canceled')
-        return self.write({'state':'canceled'})
+        self.write({'state':'canceled'})
 
     # SQL Constraints
     _sql_constraints = [

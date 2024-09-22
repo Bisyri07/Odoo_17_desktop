@@ -33,7 +33,6 @@ class PurchaseOrder(models.Model):
     unit_weight = fields.Float(string='Amount of unit')
     uom = fields.Many2one('unit.of.measurement', string='UoM')
     email_po = fields.Char(string='PO E-mail', default='youremail@gmail.com')
-
     state = fields.Selection(
         selection=[
             ('input', 'Input'), 
@@ -44,8 +43,8 @@ class PurchaseOrder(models.Model):
         string='Status', 
         default='input'
     )
-
     tag_ids = fields.Many2many('purchasing.tag', string='Tags')
+    
 
     # function for action button
     def action_confirmed(self):

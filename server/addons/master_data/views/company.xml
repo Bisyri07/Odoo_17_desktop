@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- view tree -->
+        <record id='view_master_company_tree' model='ir.ui.view'>
+            <field name='name'>Master Company</field>
+            <field name='model'>master.company</field>
+            <field name='arch' type='xml'>
+                <tree>
+                    <field name='company_code' />
+                    <field name='company_name' />
+                    <field name='company_level' />
+                    <field name='parent_code_company' invisible="company_level==1" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- action for the company menu -->
+        <record id='master_company_action' model='ir.actions.act_window'>
+            <field name='name'>Master Company</field>
+            <field name='res_model'>master.company</field>
+            <field name='view_mode'>tree,form</field>
+        </record> 
+
+        <!-- form for company -->
+        <record id='master_company_form' model='ir.ui.view'>
+            <field name='name'>Master Data Company Form</field>
+            <field name='model'>master.company</field>
+            <field name='arch' type='xml'>
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name='company_code' />
+                                <field name='company_level' />
+                            </group>
+                            <group>
+                                <field name='company_name' />
+                                <!-- Dropdown for selecting the Parent Company -->
+                                <field name='parent_company_id' readonly='company_level==1 or company_level==0' />
+                                <!-- Computed Parent Code (read-only) -->
+                                <field name='parent_code_company' />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record> 
+
+    </data>
+</odoo>

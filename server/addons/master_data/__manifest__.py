@@ -29,6 +29,7 @@
 
         # 'views/templates/po_email_template.xml',  
         
+        'views/company.xml',
         'views/item_type.xml',
         'views/item.xml',    
         'views/main_menu.xml',

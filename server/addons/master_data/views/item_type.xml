@@ -13,7 +13,7 @@
       </field>
     </record>
 
-    <!-- action for tree, form, kanban -->
+    <!-- action for item type menu -->
     <record id='master_item_type_action' model='ir.actions.act_window'>
       <field name='name'>Master Item Type</field>
       <field name='res_model'>master.item.type</field>

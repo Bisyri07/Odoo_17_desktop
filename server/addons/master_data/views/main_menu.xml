@@ -27,6 +27,10 @@
         id='master_item_menu_action'
         action='master_item_action'
       />
+      <menuitem 
+        id='master_item_type_menu_action'
+        action='master_item_type_action'
+      />
     </menuitem>
   </menuitem>
 

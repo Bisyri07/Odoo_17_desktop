@@ -62,7 +62,7 @@
                 <field name='sales_amount' />
                 <field name='location_code' />
                 <field name='item_type_code' />
-                <field name='currency' />
+                <field name='currency_id' />
                 <field name='acq_period' />
                 <field name='order_id' />
                 <field name='month_of_useful' />

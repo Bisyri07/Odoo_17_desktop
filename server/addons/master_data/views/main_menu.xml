@@ -35,6 +35,17 @@
         id='master_company_menu_action'
         action='master_company_action'
       />
+      <menuitem 
+        id='master_customer_menu_action'
+        action='master_customer_action'
+      />
+    </menuitem>
+
+    <menuitem id='additional_data_menu' name='Additional Data'>
+      <menuitem 
+      id='city_relationship_menu_action'
+      action='city_relationship_action'
+      />
     </menuitem>
   </menuitem>
 

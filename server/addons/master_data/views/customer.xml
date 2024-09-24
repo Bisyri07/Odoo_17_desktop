@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='master_customer_tree' model='ir.ui.view'>
+      <field name='name'>Master Customer</field>
+      <field name='model'>master.customer</field>
+      <field name='arch' type='xml'>
+        <tree>
+            <field name='customer_id'/>
+            <field name='customer'/>
+            <field name='phone_num'/>
+            <field name='city_id'/>
+            <field name='contact'/>
+            <field name='term'/>
+            <field name='payment'/>
+            <field name='npwp'/>
+            <field name='address'/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- action for customer menu -->
+    <record id='master_customer_action' model='ir.actions.act_window'>
+      <field name='name'>Master Customer</field>
+      <field name='res_model'>master.customer</field>
+      <field name='view_mode'>tree,form</field>
+    </record> 
+
+    <!-- form customer -->
+    <record id='master_company_form' model='ir.ui.view'>
+      <field name='name'>Master Data Customer Formn</field>
+      <field name='model'>master.customer</field>
+      <field name='arch' type='xml'>
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name='customer'/>
+                <field name='contact'/>
+                <field name='city_id'/>
+                <field name='address'/>
+                <field name='billing_address'/>
+                <field name='currency'/>
+                <field name='term'/>
+                <field name='acc_code'/>
+              </group>
+              <group>
+                <field name='customer_id' readonly='1'/>
+                <field name='phone_num'/>
+                <field name='fax'/>
+                <field name='city_id'/>
+                <field name='shipping_address'/>
+                <field name='credit_limit'/>
+                <field name='payment'/>
+                <field name='npwp'/>
+                <field name='status'/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record> 
+  </data>
+</odoo>

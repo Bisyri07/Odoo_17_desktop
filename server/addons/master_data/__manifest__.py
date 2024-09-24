@@ -29,6 +29,14 @@
 
         # 'views/templates/po_email_template.xml',  
         
+        # sequences
+        'views/sequences/customer_id.xml',
+
+        # relationships
+        'views/relationships/city.xml',
+
+        # views
+        'views/customer.xml',
         'views/company.xml',
         'views/item_type.xml',
         'views/item.xml',    

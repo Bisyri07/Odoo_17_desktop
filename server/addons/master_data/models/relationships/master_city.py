@@ -11,4 +11,4 @@ class MasterCity(models.Model):
                        required=True)
     country_id = fields.Many2one('res.country', 
                                  string='Country', 
-                                 required=True)
+                                 )

@@ -42,8 +42,11 @@
         'views/item.xml',    
         'views/main_menu.xml',
 
-        # scheduler
-        # 'views/schedulers/purchase_order_scheduler.xml'
+        # scheduler       
+
+        # data seeding
+        'data/master.city.csv',
+
     ],
     # only loaded in demonstration mode
     'demo': [

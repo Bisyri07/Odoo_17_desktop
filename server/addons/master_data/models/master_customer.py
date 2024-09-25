@@ -29,7 +29,7 @@ class MasterCustomer(models.Model):
         required=True
     )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals['customer_id'] = self.env['ir.sequence'].next_by_code('customer.id.sequence')
         return super(MasterCustomer, self).create(vals)

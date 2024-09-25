@@ -130,7 +130,7 @@ class PurchaseOrder(models.Model):
 
 
     # Override the create method to generate a PO number
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if not vals.get('po_no') or vals['po_no'] == _('New'):
             vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or _('New')

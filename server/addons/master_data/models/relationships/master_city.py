@@ -1,4 +1,5 @@
 from odoo import fields, models
+# from odoo.exceptions import ValidationError
 
 
 class MasterCity(models.Model):
@@ -12,3 +13,11 @@ class MasterCity(models.Model):
     country_id = fields.Many2one('res.country', 
                                  string='Country', 
                                  )
+    
+    _sql_constraints = [
+        (
+            'unique_city_name',
+            'UNIQUE(name)',
+            'The city name must be unique'
+        )
+    ]

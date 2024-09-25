@@ -114,7 +114,7 @@ class EstateProperty(models.Model):
 
 
     # Overriding existing odoo CRUD method
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if vals.get("selling_price") and vals.get("date_availability"):
             vals["state"] = "ready"

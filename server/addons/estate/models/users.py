@@ -6,7 +6,7 @@ class resUsers(models.Model):
 
     auth_token = fields.Char(string="Authentication token", copy=False)
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals['auth_token'] = self.auth_token_generator()
         return super(resUsers, self).create(vals)

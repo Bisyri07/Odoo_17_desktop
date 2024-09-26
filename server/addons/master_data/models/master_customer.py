@@ -5,7 +5,7 @@ class MasterCustomer(models.Model):
     _name = 'master.customer'
     _description = 'Master Customer'
 
-    customer = fields.Char(string='Customer Name')
+    customer = fields.Char(string='Customer Name', required=True)
     customer_id = fields.Char(string='Customer Id', readonly=True)
     phone_num = fields.Char(string='Phone No.')
     city_id = fields.Many2one(comodel_name='master.city', string='City')
@@ -28,6 +28,7 @@ class MasterCustomer(models.Model):
         string='Status',
         required=True
     )
+        
 
     @api.model_create_multi
     def create(self, vals):

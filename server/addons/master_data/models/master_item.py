@@ -66,11 +66,6 @@ class MasterItem(models.Model):
             'CHECK(acq_cost > 0)',
             'Acquisition cost must be greater than zero!'
         ),
-        (
-            'check_year_of_useful',
-            'CHECK(year_of_useful > 0)',
-            'Year of Useful Life must be greater than zero!'
-        ),
     ]
 
     # Python constraints

@@ -5,7 +5,7 @@
 
     'description': """
     This module contains all the common menus related to Master data like:
-    Item, Item Category, Vendor, Customer, User etc.
+    Item, Item Category, Supplier, Customer, User etc.
     """,
 
     'author': "Bisyri",
@@ -31,6 +31,7 @@
         
         # sequences
         'views/sequences/customer_id.xml',
+        'views/sequences/supplier_id.xml',
 
         # relationships
         'views/relationships/city.xml',
@@ -39,7 +40,8 @@
         'views/customer.xml',
         'views/company.xml',
         'views/item_type.xml',
-        'views/item.xml',    
+        'views/item.xml',
+        'views/supplier.xml',    
         'views/main_menu.xml',
 
         # scheduler       

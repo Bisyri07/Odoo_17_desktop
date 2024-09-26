@@ -4,3 +4,4 @@ access_master_item_type,name_master_item_type,model_master_item_type,base.group_
 access_master_city,name_master_city,model_master_city,base.group_user,1,1,1,1
 access_master_company,name_master_company,model_master_company,base.group_user,1,1,1,1
 access_master_customer,name_master_customer,model_master_customer,base.group_user,1,1,1,1
+access_master_supplier,name_master_supplier,model_master_supplier,base.group_user,1,1,1,1

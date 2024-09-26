@@ -49,6 +49,7 @@
         # data seeding
         'data/master.city.csv',
         'data/master.item.type.csv',
+        'data/master.company.csv',
 
     ],
     # only loaded in demonstration mode

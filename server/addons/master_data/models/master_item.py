@@ -32,6 +32,7 @@ class MasterItem(models.Model):
     sales_amount = fields.Monetary(string='Sales Amount', currency_field='currency_id')
     unit_price = fields.Monetary(string='Item Cost / Harga per Barang', currency_field='currency_id')
 
+
     monthly_dep = fields.Monetary(string='Monthly Depreciation', 
                                   currency_field='currency_id',
                                   compute='_compute_monthly_dep',

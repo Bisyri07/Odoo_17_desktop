@@ -10,10 +10,9 @@
           <field name='item' />
           <field name='item_code' />
           <field name='quantity' />
-          <field name="currency_id" invisible="1"/>
+          <field name="currency_id" invisible="0"/>
           <field name='unit_price' />
           <field name='acq_date' />
-          <field name='monthly_dep' />
           <field name='annual_dep' />
           <field name='annual_dep_pct' />
         </tree>

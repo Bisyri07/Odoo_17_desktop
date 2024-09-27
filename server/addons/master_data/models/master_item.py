@@ -8,16 +8,19 @@ class MasterItem(models.Model):
 
     item = fields.Char(string='Item Name')
     item_code = fields.Char(string="Item Code", size=50)
-    company = fields.Char(string='Company', size=100)
-    company_code = fields.Char(string='Company code', size=50)
-    location = fields.Char(string='Location')
+    # relation to the master company
+    company_id = fields.Many2one(comodel_name='master.company', string='Company')
+    company_code = fields.Char(related='company_id.company_code', 
+                               string='Company code',
+                               store=True)
+    location_id = fields.Char(string='Item Location')
     location_code = fields.Char(string='Location Code', size=50)
     item_type = fields.Char(string='Item Type')
     item_type_code = fields.Char(string='Item Type Code')
     quantity = fields.Float(string='Qty')
-    company_id = fields.Many2one(comodel_name='res.company', 
-                                 string='Company', 
-                                 default=lambda self: self.env.company)
+    # company_id = fields.Many2one(comodel_name='res.company', 
+    #                              string='Company', 
+    #                              default=lambda self: self.env.company)
     currency_id = fields.Many2one(comodel_name='res.currency', 
                                   string='Currency',
                                   default=lambda self: self.env.company.currency_id) # change currency to currency_id

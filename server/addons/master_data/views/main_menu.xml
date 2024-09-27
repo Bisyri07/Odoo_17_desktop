@@ -7,14 +7,14 @@
       <field name='model'>master.item</field>
       <field name='arch' type='xml'>
         <tree string='Master Item Tree'>
-          <field name='item' />
-          <field name='item_code' />
-          <field name='quantity' />
-          <field name="currency_id" invisible="0"/>
-          <field name='unit_price' />
-          <field name='acq_date' />
-          <field name='annual_dep' />
-          <field name='annual_dep_pct' />
+          <field name='item' optional="show"/>
+          <field name='item_code' optional="show"/>
+          <field name='quantity' optional="show"/>
+          <field name="currency_id" optional="hide"/>
+          <field name='unit_price' optional="show"/>
+          <field name='acq_date' optional="show"/>
+          <field name='annual_dep' optional="show"/>
+          <field name='annual_dep_pct' optional="hide"/>
         </tree>
       </field>
     </record>

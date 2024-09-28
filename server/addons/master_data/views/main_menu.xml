@@ -42,6 +42,10 @@
         id='master_supplier_menu_action'
         action='master_supplier_action'
       />
+      <menuitem 
+        id='master_location_menu_action'
+        action='master_location_action'
+      />
     </menuitem>
 
     <menuitem id='additional_data_menu' name='Additional Data'>

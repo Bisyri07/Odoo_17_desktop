@@ -37,11 +37,12 @@
         'views/relationships/city.xml',
 
         # views
-        'views/customer.xml',
-        'views/company.xml',
-        'views/item_type.xml',
         'views/item.xml',
+        'views/item_type.xml',
+        'views/company.xml',
+        'views/customer.xml',
         'views/supplier.xml',    
+        'views/location.xml',    
         'views/main_menu.xml',
 
         # scheduler       
@@ -50,6 +51,7 @@
         'data/master.city.csv',
         'data/master.item.type.csv',
         'data/master.company.csv',
+        'data/master.location.csv',
 
     ],
     # only loaded in demonstration mode

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='master_location_tree' model='ir.ui.view'>
+      <field name='name'>Master Location</field>
+      <field name='model'>master.location</field>
+      <field name='arch' type='xml'>
+        <tree>
+          <field name='loc_code' optional='show'/>
+          <field name='loc_name' optional='show'/>
+          <field name='description' optional='show'/>
+          <field name='warehouse' optional='hide'/>
+          <field name='building' optional='hide'/>
+          <field name='floor' optional='hide'/>
+          <field name='section' optional='hide'/>
+          <field name='aisle' optional='hide'/>
+          <field name='rack' optional='hide'/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- action -->
+    <record id='master_location_action' model='ir.actions.act_window'>
+      <field name='name'>Master Location</field>
+      <field name='res_model'>master.location</field>
+      <field name='view_mode'>tree,form</field>
+    </record>
+    
+    <!-- form -->
+    <record id='master_location_form' model='ir.ui.view'>
+      <field name='name'>Master Location</field>
+      <field name='model'>master.location</field>
+      <field name='arch' type='xml'>
+        <form>
+          <group>
+            <field name='loc_code'/>
+            <field name='warehouse'/>
+            <field name='floor'/>
+            <field name='aisle'/>
+          </group>
+          <group>
+            <field name='loc_name'/>
+            <field name='building'/>
+            <field name='section'/>
+            <field name='rack'/>
+            <field name='description'/>
+          </group>
+        </form>
+      </field>
+    </record> 
+  </data>    
+</odoo>

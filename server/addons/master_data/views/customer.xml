@@ -7,15 +7,19 @@
       <field name='model'>master.customer</field>
       <field name='arch' type='xml'>
         <tree>
-            <field name='customer_id'/>
-            <field name='customer'/>
-            <field name='phone_num'/>
-            <field name='city_id'/>
-            <field name='contact'/>
-            <field name='term'/>
-            <field name='payment'/>
-            <field name='npwp'/>
-            <field name='address'/>
+            <field name='customer_id' optional='show'/>
+            <field name='customer' optional='show'/>
+            <field name='phone_num' optional='show'/>
+            <field name='city_id' optional='show'/>
+            <field name='contact' optional='show'/>
+            <field name='term' optional='show'/>
+            <field name='payment' optional='show'/>
+            <field name='npwp' optional='show'/>
+            <field name='status' optional='hide'/>
+            <field name='address' optional='hide'/>
+            <field name='billing_address' optional='hide'/>
+            <field name='currency' optional='hide'/>
+            <field name='acc_code' optional='hide'/>
         </tree>
       </field>
     </record>

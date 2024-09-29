@@ -13,10 +13,14 @@ class MasterItem(models.Model):
     company_code = fields.Char(related='company_id.company_code', 
                                string='Company code',
                                store=True)
-    location_id = fields.Char(string='Item Location')
-    location_code = fields.Char(string='Location Code', size=50)
-    item_type = fields.Char(string='Item Type')
-    item_type_code = fields.Char(string='Item Type Code')
+    location_id = fields.Many2one(comodel_name='master.location', string='Item Location')
+    location_code = fields.Char(related='location_id.loc_code', 
+                                string='Location Code',
+                                store=True)
+    item_type = fields.Many2one(comodel_name='master.item.type', string='Item Type')
+    item_type_code = fields.Char(related='item_type.item_type_code', 
+                                 string='Item Type Code',
+                                 store=True)
     quantity = fields.Float(string='Qty')
     # company_id = fields.Many2one(comodel_name='res.company', 
     #                              string='Company', 

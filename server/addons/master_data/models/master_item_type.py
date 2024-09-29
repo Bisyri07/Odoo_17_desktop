@@ -4,6 +4,8 @@ from odoo.exceptions import ValidationError
 class MasterItemType(models.Model):
     _name='master.item.type'
     _description='Master Item Type'
+    # Specify the field that will be displayed in Many2one relations
+    _rec_name='item_type'
 
     item_type = fields.Char(string='Item Type', size=50)
     item_type_code = fields.Char(string='Item Type Code', size=10)

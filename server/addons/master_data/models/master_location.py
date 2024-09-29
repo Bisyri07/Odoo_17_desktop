@@ -3,6 +3,8 @@ from odoo import fields, models
 class MasterLocation(models.Model):
     _name = 'master.location'
     _description = 'Master customer'
+    # Specify the field that will be displayed in Many2one relations
+    _rec_name = 'loc_name'
 
     loc_name = fields.Char(string='Location Name', 
                            size=50,

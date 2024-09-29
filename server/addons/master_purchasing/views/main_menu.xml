@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- Tampilan awal saat module Master Purchasing dibuka -->
-  <record id='purchase_order_tree' model='ir.ui.view'>
-    <field name='name'>Purchase Order Tree</field>
-    <field name='model'>purchase.order</field>
-    <field name='arch' type='xml'>
-      <tree string = 'Purchase Order Tree'>
-        <field name='po_no' />
-        <field name='item' />
-        <field name='po_date' />
-        <field name='supplier' />
-        <field name='total' />
-        <field name='state' 
-               statusbar_visible="input,confirmed,canceled" 
-               decoration-info="state == 'input'" 
-               decoration-success="state == 'confirmed'"
-               decoration-danger="state == 'canceled'"
-               widget="badge"
-               />
-      </tree>
-    </field>
-  </record>
-
+  
   <!-- Menu di navbar odoo -->
   <menuitem id='master_purchasing_root' name='Master Purchasing' sequence='1'>
     

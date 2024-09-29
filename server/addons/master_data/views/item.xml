@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
+
+    <!-- Tampilan awal saat module Master Data dibuka -->
+    <record id='master_item_tree' model='ir.ui.view'>
+      <field name='name'>Master Item Tree</field>
+      <field name='model'>master.item</field>
+      <field name='arch' type='xml'>
+        <tree string='Master Item Tree'>
+          <field name='item' optional="show"/>
+          <field name='item_code' optional="show"/>
+          <field name='quantity' optional="show"/>
+          <field name="currency_id" optional="hide"/>
+          <field name='unit_price' optional="show"/>
+          <field name='acq_date' optional="show"/>
+          <field name='annual_dep' optional="show"/>
+          <field name='annual_dep_pct' optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
     <!-- action for tree, form and kanban -->
     <record id='master_item_action' model='ir.actions.act_window'>
       <field name='name'>Item</field>

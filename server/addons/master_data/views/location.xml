@@ -3,7 +3,7 @@
   <data>
     <!-- view tree -->
     <record id='master_location_tree' model='ir.ui.view'>
-      <field name='name'>Master Location</field>
+      <field name='name'>Location</field>
       <field name='model'>master.location</field>
       <field name='arch' type='xml'>
         <tree>
@@ -22,14 +22,14 @@
 
     <!-- action -->
     <record id='master_location_action' model='ir.actions.act_window'>
-      <field name='name'>Master Location</field>
+      <field name='name'>Location</field>
       <field name='res_model'>master.location</field>
       <field name='view_mode'>tree,form</field>
     </record>
     
     <!-- form -->
     <record id='master_location_form' model='ir.ui.view'>
-      <field name='name'>Master Location</field>
+      <field name='name'>Location</field>
       <field name='model'>master.location</field>
       <field name='arch' type='xml'>
         <form>

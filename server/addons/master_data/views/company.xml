@@ -3,7 +3,7 @@
     <data>
         <!-- view tree -->
         <record id='view_master_company_tree' model='ir.ui.view'>
-            <field name='name'>Master Company</field>
+            <field name='name'>Company</field>
             <field name='model'>master.company</field>
             <field name='arch' type='xml'>
                 <tree>
@@ -17,14 +17,14 @@
 
         <!-- action for the company menu -->
         <record id='master_company_action' model='ir.actions.act_window'>
-            <field name='name'>Master Company</field>
+            <field name='name'>Company</field>
             <field name='res_model'>master.company</field>
             <field name='view_mode'>tree,form</field>
         </record> 
 
         <!-- form for company -->
         <record id='master_company_form' model='ir.ui.view'>
-            <field name='name'>Master Data Company Form</field>
+            <field name='name'>Data Company Form</field>
             <field name='model'>master.company</field>
             <field name='arch' type='xml'>
                 <form>

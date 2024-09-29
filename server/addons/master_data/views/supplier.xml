@@ -3,7 +3,7 @@
   <data>
     <!-- view tree -->
     <record id='master_supplier_tree' model='ir.ui.view'>
-      <field name='name'>Master Supplier</field>
+      <field name='name'>Supplier</field>
       <field name='model'>master.supplier</field>
       <field name='arch' type='xml'>
         <tree>
@@ -19,14 +19,14 @@
 
     <!-- action -->
     <record id='master_supplier_action' model='ir.actions.act_window'>
-      <field name='name'>Master Supplier</field>
+      <field name='name'>Supplier</field>
       <field name='res_model'>master.supplier</field>
       <field name='view_mode'>tree,form</field>
     </record>
 
     <!-- form -->
     <record id='master_supplier_form' model='ir.ui.view'>
-      <field name='name'>Master Supplier</field>
+      <field name='name'>Supplier</field>
       <field name='model'>master.supplier</field>
       <field name='arch' type='xml'>
         <form>

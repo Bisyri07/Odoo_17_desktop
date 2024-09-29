@@ -2,13 +2,13 @@
 <odoo>
   <data>
     <record id='city_relationship_action' model='ir.actions.act_window'>
-      <field name='name'>Master city</field>
+      <field name='name'>city</field>
       <field name='res_model'>master.city</field>
       <field name='view_mode'>tree,form</field>
     </record>
 
     <record id='master_city_tree' model='ir.ui.view'>
-      <field name='name'>Master city</field>
+      <field name='name'>city</field>
       <field name='model'>master.city</field>
       <field name='arch' type='xml'>
         <tree>

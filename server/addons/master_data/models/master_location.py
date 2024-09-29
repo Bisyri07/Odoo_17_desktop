@@ -7,7 +7,7 @@ class MasterLocation(models.Model):
     loc_name = fields.Char(string='Location Name', 
                            size=50,
                            required=True)
-    loc_code = fields.Char(string='Locatio Code', 
+    loc_code = fields.Char(string='Location Code', 
                            size=20,
                            required=True)
     description = fields.Text(string='Description')

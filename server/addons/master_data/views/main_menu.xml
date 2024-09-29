@@ -22,38 +22,43 @@
   <!-- Menu navbar -->
   <menuitem id='master_data_root' name='Master Data' sequence='0'>
     <menuitem id='master_data_menu' name='Master Data Menu'>
-      <menuitem 
+
+      <menuitem id='master_menu' name='Master' sequence='0'>
+        <menuitem 
         id='master_item_menu_action'
         action='master_item_action'
-      />
-      <menuitem 
-        id='master_item_type_menu_action'
-        action='master_item_type_action'
-      />
-      <menuitem 
-        id='master_company_menu_action'
-        action='master_company_action'
-      />
-      <menuitem 
-        id='master_customer_menu_action'
-        action='master_customer_action'
-      />
-      <menuitem 
-        id='master_supplier_menu_action'
-        action='master_supplier_action'
-      />
-      <menuitem 
-        id='master_location_menu_action'
-        action='master_location_action'
-      />
+        />
+        <menuitem 
+          id='master_item_type_menu_action'
+          action='master_item_type_action'
+        />
+        <menuitem 
+          id='master_company_menu_action'
+          action='master_company_action'
+        />
+        <menuitem 
+          id='master_customer_menu_action'
+          action='master_customer_action'
+        />
+        <menuitem 
+          id='master_supplier_menu_action'
+          action='master_supplier_action'
+        />
+        <menuitem 
+          id='master_location_menu_action'
+          action='master_location_action'
+        />
+      </menuitem>
+
+      <menuitem id='additional_data_menu' name='Additional Data' sequence='1'>
+        <menuitem 
+        id='city_relationship_menu_action'
+        action='city_relationship_action'
+        />
+      </menuitem>
+      
     </menuitem>
 
-    <menuitem id='additional_data_menu' name='Additional Data'>
-      <menuitem 
-      id='city_relationship_menu_action'
-      action='city_relationship_action'
-      />
-    </menuitem>
   </menuitem>
 
 </odoo>

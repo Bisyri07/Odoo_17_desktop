@@ -3,10 +3,10 @@
   <data>
     <!-- view tree -->
     <record id='view_master_item_type_tree' model='ir.ui.view'>
-      <field name='name'>Master Item Type</field>
+      <field name='name'>Item Type</field>
       <field name='model'>master.item.type</field>
       <field name='arch' type='xml'>
-        <tree string='Master Item Type'>
+        <tree>
           <field name='item_type' />
           <field name='item_type_code' />
         </tree>
@@ -15,14 +15,14 @@
 
     <!-- action for item type menu -->
     <record id='master_item_type_action' model='ir.actions.act_window'>
-      <field name='name'>Master Item Type</field>
+      <field name='name'>Item Type</field>
       <field name='res_model'>master.item.type</field>
       <field name='view_mode'>tree,form</field>
     </record>
 
     <!-- form -->
     <record id='master_item_type_form' model='ir.ui.view'>
-      <field name='name'>Master Item Type</field>
+      <field name='name'>Item Type</field>
       <field name='model'>master.item.type</field>
       <field name='arch' type='xml'>
         <form>

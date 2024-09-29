@@ -3,7 +3,7 @@
   <data>
     <!-- view tree -->
     <record id='master_customer_tree' model='ir.ui.view'>
-      <field name='name'>Master Customer</field>
+      <field name='name'>Customer</field>
       <field name='model'>master.customer</field>
       <field name='arch' type='xml'>
         <tree>
@@ -26,14 +26,14 @@
 
     <!-- action for customer menu -->
     <record id='master_customer_action' model='ir.actions.act_window'>
-      <field name='name'>Master Customer</field>
+      <field name='name'>Customer</field>
       <field name='res_model'>master.customer</field>
       <field name='view_mode'>tree,form</field>
     </record> 
 
     <!-- form customer -->
     <record id='master_company_form' model='ir.ui.view'>
-      <field name='name'>Master Data Customer Formn</field>
+      <field name='name'>Data Customer Formn</field>
       <field name='model'>master.customer</field>
       <field name='arch' type='xml'>
         <form>

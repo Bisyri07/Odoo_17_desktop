@@ -6,3 +6,4 @@ access_master_company,name_master_company,model_master_company,base.group_user,1
 access_master_customer,name_master_customer,model_master_customer,base.group_user,1,1,1,1
 access_master_supplier,name_master_supplier,model_master_supplier,base.group_user,1,1,1,1
 access_master_location,name_master_location,model_master_location,base.group_user,1,1,1,1
+access_master_uom,name_master_uom,model_master_uom,base.group_user,1,1,1,1

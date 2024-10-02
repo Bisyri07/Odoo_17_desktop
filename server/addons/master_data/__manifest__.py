@@ -42,7 +42,8 @@
         'views/company.xml',
         'views/customer.xml',
         'views/supplier.xml',    
-        'views/location.xml',    
+        'views/location.xml',
+        'views/uom.xml',    
         'views/main_menu.xml',
 
         # scheduler       
@@ -52,6 +53,7 @@
         'data/master.item.type.csv',
         'data/master.company.csv',
         'data/master.location.csv',
+        'data/master.uom.csv',
 
     ],
     # only loaded in demonstration mode

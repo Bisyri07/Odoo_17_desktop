@@ -1,0 +1,17 @@
+id,name,category,reference_unit,r_t_r_unit,symbol,active_condition
+uom_1,Kilogram,Weight,Gram,1000,kg,active
+uom_2,Gram,Weight,Gram,1,g,active
+uom_3,Ton,Weight,Gram,1000000,ton,active
+uom_4,Meter,Length,Meter,1,m,active
+uom_5,Centimeter,Length,Meter,0.01,cm,active
+uom_6,Milimeter,Length,Meter,0.001,mm,active
+uom_7,Liter,Volume,Liter,1,L,active
+uom_8,Mililiter,Volume,Liter,0.001,mL,active
+uom_9,Gallon,Volume,Liter,3.78541,gal,active
+uom_10,Dozen,Count,Unit,12,unit,active
+uom_11,Unit,Count,Unit,1,unit,active
+uom_12,Box,Count,Unit,24,box,active
+uom_13,Hour,Time,Second,3600,hr,active
+uom_14,Minute,Time,Second,60,min,active
+uom_15,Square Meter,Area,Square Meter,1,mÂ²,active
+uom_16,Acre,Area,Square Meter,4046.86,acre,active

@@ -30,6 +30,10 @@
           id='master_location_menu_action'
           action='master_location_action'
         />
+        <menuitem 
+          id='master_uom_menu_action'
+          action='master_uom_action'
+        />
       </menuitem>
 
       <menuitem id='additional_data_menu' name='Additional Data' sequence='1'>

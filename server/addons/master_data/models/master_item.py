@@ -14,7 +14,7 @@ class MasterItem(models.Model):
                                string='Company code',
                                store=True)
     location_id = fields.Many2many(comodel_name='master.location', string='Item Location')
-    location_code = fields.Char(related='location_id.loc_code', 
+    location_code = fields.Char(compute='_compute_location_code', 
                                 string='Location Code',
                                 store=True)
     item_type = fields.Many2one(comodel_name='master.item.type', string='Item Type')
@@ -121,6 +121,20 @@ class MasterItem(models.Model):
                 record.monthly_dep_pct = 0
 
 
+    @api.depends('location_id')
+    def _compute_location_code(self):
+        for record in self:
+            if record.location_id:
+                if len(record.location_id) == 1:
+                    # only one location so the location_id should have one location_code
+                    record.location_code = record.location_id.loc_code                   
+                else:
+                    location_codes = [loc.loc_code for loc in record.location_id]
+                    record.location_code = "_".join(location_codes)
+            else:
+                record.location_code = ''
+
+
     status = fields.Selection(
         selection=[
             ('input','Input'),
@@ -131,7 +145,6 @@ class MasterItem(models.Model):
     string = 'Status',
     default='input'
     )
-
 
     """action button"""
     # confirm button

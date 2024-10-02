@@ -9,13 +9,13 @@
         <tree>
           <field name='loc_code' optional='show'/>
           <field name='loc_name' optional='show'/>
-          <field name='description' optional='show'/>
-          <field name='warehouse' optional='hide'/>
+          <field name='warehouse' optional='show'/>
           <field name='building' optional='hide'/>
           <field name='floor' optional='hide'/>
           <field name='section' optional='hide'/>
           <field name='aisle' optional='hide'/>
           <field name='rack' optional='hide'/>
+          <field name='description' optional='show'/>
         </tree>
       </field>
     </record>
@@ -28,7 +28,7 @@
     </record>
     
     <!-- form -->
-    <record id='master_location_form' model='ir.ui.view'>
+    <!-- <record id='master_location_form' model='ir.ui.view'>
       <field name='name'>Location</field>
       <field name='model'>master.location</field>
       <field name='arch' type='xml'>
@@ -38,6 +38,7 @@
             <field name='warehouse'/>
             <field name='floor'/>
             <field name='aisle'/>
+            <field name='color'/>
           </group>
           <group>
             <field name='loc_name'/>
@@ -48,6 +49,6 @@
           </group>
         </form>
       </field>
-    </record> 
+    </record>  -->
   </data>    
 </odoo>

@@ -16,6 +16,14 @@
           <field name='acq_date' optional="show"/>
           <field name='annual_dep' optional="show"/>
           <field name='annual_dep_pct' optional="hide"/>
+          <field name='status' optional="show"
+                statusbar_visible="input,confirmed,canceled" 
+                decoration-info="status == 'input'" 
+                decoration-success="status == 'confirmed'"
+                decoration-danger="status == 'canceled'"
+                widget="badge"
+          />
+          
         </tree>
       </field>
     </record>
@@ -64,7 +72,9 @@
               <group>
                 <field name='item' />
                 <field name='company_id' />
-                <field name='location_id' />
+                <field name='location_id' 
+                       widget="many2many_tags" 
+                       options="{'color_field': 'color'}"/>
                 <field name='item_type' />
                 <field name='quantity' />
                 <field name='unit_price' />

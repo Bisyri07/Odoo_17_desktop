@@ -13,7 +13,7 @@ class MasterItem(models.Model):
     company_code = fields.Char(related='company_id.company_code', 
                                string='Company code',
                                store=True)
-    location_id = fields.Many2one(comodel_name='master.location', string='Item Location')
+    location_id = fields.Many2many(comodel_name='master.location', string='Item Location')
     location_code = fields.Char(related='location_id.loc_code', 
                                 string='Location Code',
                                 store=True)

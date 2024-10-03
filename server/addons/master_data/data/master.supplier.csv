@@ -1,0 +1,11 @@
+id,supplier,contact,phone,email,address,active_condition
+supplier_1,PT Maju Jaya,Bapak Budi,81234567890,budi@majujaya.com,"Jl. Raya Kenangan No. 12, Jakarta",yes
+supplier_2,CV Berkah Abadi,Ibu Ani,85678901234,ani@berkahabadi.com,"Jl. Mawar No. 5, Bandung",yes
+supplier_3,UD Sumber Rezeki,Bapak Chandra,82112344321,chandra@sumberrezeki.com,"Jl. Melati No. 8, Surabaya",yes
+supplier_4,Toko Makmur,Ibu Dewi,87887654321,dewi@tokomakmur.com,"Jl. Anggrek No. 10, Medan",yes
+supplier_5,Warung Sederhana,Bapak Eko,81331313131,eko@warungsederhana.com,"Jl. Dahlia No. 2, Yogyakarta",no
+supplier_6,PT Sukses Bersama,Ibu Fani,89876543210,fani@suksesbersama.com,"Jl. Kamboja No. 7, Semarang",yes
+supplier_7,CV Jaya Abadi,Bapak Galih,81122334455,galih@jayaabadi.com,"Jl. Teratai No. 9, Palembang",yes
+supplier_8,UD Sejahtera,Ibu Hani,85776655443,hani@sejahtera.com,"Jl. Kenanga No. 4, Makassar",no
+supplier_9,Toko Laris Manis,Bapak Indra,82233445566,indra@tokolarismanis.com,"Jl. Melati No. 11, Denpasar",yes
+supplier_10,Warung Rame,Ibu Jeni,88990011223,jeni@warungrame.com,"Jl. Anggrek No. 6, Banjarmasin",yes

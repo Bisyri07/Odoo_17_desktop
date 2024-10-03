@@ -6,13 +6,13 @@ class MasterSupplier(models.Model):
     _name = 'master.supplier'
     _description = 'Master Supplier'
 
-    supplier = fields.Char(string='Vendor/Supplier')
+    supplier = fields.Char(string='Supplier')
     supplier_id = fields.Char(string='Supplier Id', readonly=True, default='New')
     contact = fields.Char(string='Contact Person')
     phone = fields.Char(string='Phone number', size=25)
     email = fields.Char(string='Email')
     address = fields.Text(string='Address')
-    activity = fields.Selection(
+    active_condition = fields.Selection(
         selection=[
             ('yes', 'Yes'),
             ('no', 'No')
@@ -31,9 +31,10 @@ class MasterSupplier(models.Model):
     
     # create sequence for supplier_id
     @api.model_create_multi
-    def create(self, vals):        
-        if not vals.get('supplier_id') or vals['supplier_id'] == _('New'):
-            vals['supplier_id'] = self.env['ir.sequence'].next_by_code('supplier.id.sequence') or _('New')
+    def create(self, vals_list):
+        for record in vals_list:       
+            if not record.get('supplier_id') or record['supplier_id'] == _('New'):
+                record['supplier_id'] = self.env['ir.sequence'].next_by_code('supplier.id.sequence') or _('New')
 
-        return super(MasterSupplier, self).create(vals)
+        return super(MasterSupplier, self).create(vals_list)
     

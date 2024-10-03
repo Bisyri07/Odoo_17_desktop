@@ -12,7 +12,7 @@
           <field name='contact' />
           <field name='phone' />
           <field name='email' />
-          <field name='activity' />
+          <field name='active_condition' />
         </tree>
       </field>
     </record>
@@ -40,7 +40,7 @@
               <group>
                 <field name='supplier_id' />
                 <field name='phone' />
-                <field name='activity' />
+                <field name='active_condition' />
                 <field name='address' />
               </group>
             </group>

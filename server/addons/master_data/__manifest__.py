@@ -57,6 +57,7 @@
         'data/master.location.csv',
         'data/master.uom.csv',
         'data/master.supplier.csv',
+        'data/master.customer.csv',
 
     ],
     # only loaded in demonstration mode

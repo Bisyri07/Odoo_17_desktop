@@ -18,7 +18,7 @@
             <field name='status' optional='hide'/>
             <field name='address' optional='hide'/>
             <field name='billing_address' optional='hide'/>
-            <field name='currency' optional='hide'/>
+            <field name='currency_id' optional='hide'/>
             <field name='acc_code' optional='hide'/>
         </tree>
       </field>
@@ -45,7 +45,7 @@
                 <field name='city_id'/>
                 <field name='address'/>
                 <field name='billing_address'/>
-                <field name='currency'/>
+                <field name='currency_id'/>
                 <field name='term'/>
                 <field name='acc_code'/>
               </group>
@@ -53,7 +53,6 @@
                 <field name='customer_id' readonly='1'/>
                 <field name='phone_num'/>
                 <field name='fax'/>
-                <field name='city_id'/>
                 <field name='shipping_address'/>
                 <field name='credit_limit'/>
                 <field name='payment'/>

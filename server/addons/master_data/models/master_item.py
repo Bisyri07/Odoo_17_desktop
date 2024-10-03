@@ -120,13 +120,13 @@ class MasterItem(models.Model):
             else:
                 record.monthly_dep_pct = 0
 
-
+    # item code 
     @api.depends('location_id')
     def _compute_location_code(self):
         for record in self:
             if record.location_id:
                 if len(record.location_id) == 1:
-                    # only one location so the location_id should have one location_code
+                    # location_id should have one location_code
                     record.location_code = record.location_id.loc_code                   
                 else:
                     location_codes = [loc.loc_code for loc in record.location_id]

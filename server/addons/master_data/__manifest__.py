@@ -27,7 +27,9 @@
     'data': [
         'security/ir.model.access.csv',
 
-        # 'views/templates/po_email_template.xml',  
+        # template
+        # 'views/templates/po_email_template.xml',
+        # 'views/templates/custom_button.xml',  
         
         # sequences
         'views/sequences/customer_id.xml',
@@ -60,4 +62,10 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'assets':{
+        'web.assets_backend':[
+            'master_data/static/src/css/master_data.css',
+        ],
+    },
+
 }

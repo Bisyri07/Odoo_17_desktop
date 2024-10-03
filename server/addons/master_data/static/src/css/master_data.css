@@ -1,0 +1,9 @@
+.o_form_button_save::before {
+    content: url('/master_data/static/src/img/save_gray_24px.png');
+    margin-right: 5px; /* Untuk memberikan jarak antara ikon dan teks */
+}
+
+.o_form_button_cancel::before {
+    content: url('/master_data/static/src/img/cancel24px.png');
+    margin-right: 5px;
+}

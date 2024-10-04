@@ -55,12 +55,12 @@
           />
 
           <!-- send an email button -->
-           <button 
-           name="action_send_email"
-           type="object"
-           string="Send by Email"
-           invisible="state=='canceled'"
-           />
+          <button 
+          name="action_send_email"
+          type="object"
+          string="Send by Email"
+          invisible="state=='canceled'"
+          />
 
           <!-- status bar -->
           <field 
@@ -76,7 +76,7 @@
 
             <group>
               <field name="po_no" readonly='1' />
-              <field name="currency"/>
+              <field name='item'/>
               <field name="qty"/>
               <field name="supplier"/>
               <field name="confirm_by"/>
@@ -85,7 +85,7 @@
             </group>
             <group>
               <field name="po_date"/>
-              <field name="currency_rate"/>
+              <field name='item_code'/>
               <field name="date_input"/>
               <field name="supplier_code"/>
               <field name="input_by"/>  
@@ -98,19 +98,18 @@
                 <group>
 
                   <group>
-                    <field name='item' string='Item' />
-                    <field name='unit_price' string='Unit Price' />
-                    <field name='ppn_pct' string='PPN Percentage %' />
-                    <field name='subtotal' string='Subtotal' />
-                    <field name='uom' string='UoM' />
-                  </group>
-                  
+                    <field name="currency"/>                   
+                    <field name='unit_price'/>
+                    <field name='ppn_pct'/>
+                    <field name='subtotal'/>
+                    <field name='uom'/>
+                  </group>                 
                   <group>
-                    <field name='item_code' string='Item Code' />
-                    <field name='unit_weight' string='Unit Weight' />
-                    <field name='ppn' string='PPN' />
-                    <field name='total' />
-                    <field name='description' string='Description' />
+                    <field name="currency_rate"/>                   
+                    <field name='unit_weight'/>
+                    <field name='ppn'/>
+                    <field name='total'/>
+                    <field name='description'/>
                   </group>
                   
                 </group>

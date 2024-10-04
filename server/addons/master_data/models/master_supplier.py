@@ -5,9 +5,10 @@ from odoo.exceptions import ValidationError
 class MasterSupplier(models.Model):
     _name = 'master.supplier'
     _description = 'Master Supplier'
+    _rec_name = 'supplier'
 
     supplier = fields.Char(string='Supplier')
-    supplier_id = fields.Char(string='Supplier Id', readonly=True, default='New')
+    supplier_code = fields.Char(string='Supplier Code', readonly=True, default='New')
     contact = fields.Char(string='Contact Person')
     phone = fields.Char(string='Phone number', size=25)
     email = fields.Char(string='Email')

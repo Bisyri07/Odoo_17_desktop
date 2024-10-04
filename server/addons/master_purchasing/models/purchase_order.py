@@ -6,20 +6,20 @@ class PurchaseOrder(models.Model):
     _description = 'Purchase Order'
 
 
-    item = fields.Char(string="Item Name")
-    item_code = fields.Char(string="Item Code")
+    item = fields.Many2one(comodel_name='master.item', string="Item Name")
+    item_code = fields.Char(related='item.item_code', string="Item Code", store=True)
     qty = fields.Integer(string="Quantity")
     po_no = fields.Char(string='PO Number', readonly=True, copy=False, default='New')
     po_date = fields.Datetime(string='PO Date', required=True, default=fields.Datetime.now)
-    supplier_code = fields.Char(string='Supplier Code')
-    supplier = fields.Char(string='Supplier')
+    supplier = fields.Many2one(comodel_name='master.supplier',string='Supplier')
+    supplier_code = fields.Char(related='supplier.supplier_code', string='Supplier Code')
     contact_person = fields.Char(string='Contact Person')
     term_of_payment = fields.Char(string='Term of Payment (days)')
     expired_date = fields.Date(string='Expired Date')
     currency = fields.Many2one('res.currency', string='Currency')  # Currency field
     currency_rate = fields.Float(string='Currency Rate')
     description = fields.Text(string='Description')
-    company_name = fields.Char(string='Company Name')
+    company_name = fields.Many2one(comodel_name='master.company', string='Company Name')
     discount_pct = fields.Float(string='Discount (%)', readonly=True)
     ppn_pct = fields.Float(string='PPN (%)')
     pph_pct = fields.Float(string='PPH (%)')
@@ -30,8 +30,8 @@ class PurchaseOrder(models.Model):
     date_input = fields.Datetime(string='Date Input', default=fields.Datetime.now)
     posted_by = fields.Char(string='Posted By')
     date_posted = fields.Datetime(string='Date Posted')
-    unit_weight = fields.Float(string='Amount of unit')
-    uom = fields.Many2one('unit.of.measurement', string='UoM')
+    unit_weight = fields.Float(string='Unit Weight')
+    uom = fields.Many2one(comodel_name='master.uom', string='UoM')
     email_po = fields.Char(string='PO E-mail', default='youremail@gmail.com')
     state = fields.Selection(
         selection=[

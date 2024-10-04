@@ -1,9 +1,18 @@
 .o_form_button_save::before {
     content: url('/master_data/static/src/img/save_gray_24px.png');
-    margin-right: 5px; /* Untuk memberikan jarak antara ikon dan teks */
+    /* Untuk memberikan jarak antara ikon dan teks */
+    margin-right: 5px; 
 }
 
-.o_form_button_cancel::before {
+/* .o_form_button_cancel::before {
     content: url('/master_data/static/src/img/cancel24px.png');
     margin-right: 5px;
+} */
+
+.o_form_button_cancel {
+    /* ubah ketebalan font */
+    font-weight: bold;
+    /* ubah ukuran tombol */
+    font-size: 24px;
+    padding-bottom: 5px;
 }

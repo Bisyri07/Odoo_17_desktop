@@ -4,6 +4,7 @@ from odoo.exceptions import UserError, ValidationError
 class MasterItem(models.Model):
     _name='master.item'
     _description='Master Item'
+    _rec_name='item'
 
 
     item = fields.Char(string='Item Name')

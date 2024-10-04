@@ -7,7 +7,7 @@
       <field name='model'>master.supplier</field>
       <field name='arch' type='xml'>
         <tree>
-          <field name='supplier_id' />
+          <field name='supplier_code' />
           <field name='supplier' />
           <field name='contact' />
           <field name='phone' />
@@ -38,7 +38,7 @@
                 <field name='email' />
               </group>
               <group>
-                <field name='supplier_id' />
+                <field name='supplier_code' />
                 <field name='phone' />
                 <field name='active_condition' />
                 <field name='address' />

@@ -24,8 +24,8 @@ class PurchaseOrder(models.Model):
     ppn_pct = fields.Float(string='PPN (%)')
     pph_pct = fields.Float(string='PPH (%)')
     pph = fields.Monetary(string='PPH', currency_field='currency')
-    unit_price = fields.Monetary(string='Unit Price', currency_field='currency')
-    input_by = fields.Char(string='Input By')
+    unit_price = fields.Monetary(related='item.unit_price', string='Unit Price', currency_field='currency')
+    input_by = fields.Many2one(comodel_name='res.users', string='Input By')
     confirm_by = fields.Char(string='Confirm By')
     date_input = fields.Datetime(string='Date Input', default=fields.Datetime.now)
     posted_by = fields.Char(string='Posted By')
@@ -131,11 +131,12 @@ class PurchaseOrder(models.Model):
 
     # Override the create method to generate a PO number
     @api.model_create_multi
-    def create(self, vals):
-        if not vals.get('po_no') or vals['po_no'] == _('New'):
-            vals['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or _('New')
+    def create(self, vals_list):
+        for record in vals_list:
+            if not record.get('po_no') or record['po_no'] == _('New'):
+                record['po_no'] = self.env['ir.sequence'].next_by_code('purchase.order.sequence') or _('New')
         
-        return super(PurchaseOrder, self).create(vals) 
+        return super(PurchaseOrder, self).create(vals_list) 
     
 
     # Override the delete method

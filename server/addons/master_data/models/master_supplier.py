@@ -34,8 +34,8 @@ class MasterSupplier(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for record in vals_list:       
-            if not record.get('supplier_id') or record['supplier_id'] == _('New'):
-                record['supplier_id'] = self.env['ir.sequence'].next_by_code('supplier.id.sequence') or _('New')
+            if not record.get('supplier_code') or record['supplier_code'] == _('New'):
+                record['supplier_code'] = self.env['ir.sequence'].next_by_code('supplier.code.sequence') or _('New')
 
         return super(MasterSupplier, self).create(vals_list)
     

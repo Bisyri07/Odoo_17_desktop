@@ -2,8 +2,8 @@
 <odoo>
   <data>
     <record id='seq_master_supplier' model='ir.sequence'>
-      <field name='name'>Supplier Id</field>
-      <field name='code'>supplier.id.sequence</field>
+      <field name='name'>Supplier Code</field>
+      <field name='code'>supplier.code.sequence</field>
       <field name='prefix'>SP/</field>
       <field name='padding'>5</field>
       <field name='company_id' eval='False'/>

@@ -9,7 +9,6 @@ class MasterItem(models.Model):
 
     item = fields.Char(string='Item Name')
     item_code = fields.Char(string="Item Code", size=50)
-    # relation to the master company
     company_id = fields.Many2one(comodel_name='master.company', string='Company')
     company_code = fields.Char(related='company_id.company_code', 
                                string='Company code',
@@ -23,24 +22,23 @@ class MasterItem(models.Model):
                                  string='Item Type Code',
                                  store=True)
     quantity = fields.Float(string='Qty')
-    # company_id = fields.Many2one(comodel_name='res.company', 
-    #                              string='Company', 
-    #                              default=lambda self: self.env.company)
+    # company_id = fields.Many2one(comodel_name='res.company', string='Company', default=lambda self: self.env.company)
+    
+    # change currency to currency_id
     currency_id = fields.Many2one(comodel_name='res.currency', 
                                   string='Currency',
-                                  default=lambda self: self.env.company.currency_id) # change currency to currency_id
+                                  default=lambda self: self.env.company.currency_id) 
     acq_date = fields.Date(string='Acquisition Date / Tanggal Pembelian', default=fields.Datetime.now)
     acq_period = fields.Char(string='Acquisition Period', size=6)
     acq_cost = fields.Monetary(string='Acquisition Cost / Nilai Pembelian', currency_field='currency_id')
     year_of_useful = fields.Integer(string='Year of Useful Life')
     month_of_useful = fields.Integer(string='Month of Useful Life')
     salvage_value = fields.Monetary(string='End of Useful Value (Salvage Value)', currency_field='currency_id')
-    order_id = fields.Integer(string='Order Id')
+    order_id = fields.Integer(string='Order Id', readonly=True)
     opening_accum_dep = fields.Monetary(string='Opening Accumulated Depreciation', currency_field='currency_id')
     sales_amount = fields.Monetary(string='Sales Amount', currency_field='currency_id')
     unit_price = fields.Monetary(string='Item Cost / Harga per Barang', currency_field='currency_id')
-
-
+    # computed fields
     monthly_dep = fields.Monetary(string='Monthly Depreciation', 
                                   currency_field='currency_id',
                                   compute='_compute_monthly_dep',
@@ -76,7 +74,7 @@ class MasterItem(models.Model):
         ),
     ]
 
-    # Python constraints
+    """Python constraints"""
     @api.constrains('currency_id')
     def _checking_currency_id(self):
         for record in self:
@@ -134,6 +132,15 @@ class MasterItem(models.Model):
                     record.location_code = "_".join(location_codes)
             else:
                 record.location_code = ''
+
+    """order_id sequence"""
+    @api.model_create_multi
+    def create(self, vals_list):
+        for record in vals_list:
+            if not record.get('order_id'):
+                record['order_id'] = self.env['ir.sequence'].next_by_code('order.id.sequence')
+        
+        return super(MasterItem, self).create(vals_list)        
 
 
     status = fields.Selection(

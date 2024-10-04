@@ -34,6 +34,7 @@
         # sequences
         'views/sequences/customer_id.xml',
         'views/sequences/supplier_id.xml',
+        'views/sequences/order_id.xml',
 
         # relationships
         'views/relationships/city.xml',
@@ -58,6 +59,7 @@
         'data/master.uom.csv',
         'data/master.supplier.csv',
         'data/master.customer.csv',
+        'data/master.item.csv',
 
     ],
     # only loaded in demonstration mode

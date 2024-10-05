@@ -21,11 +21,14 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail'],
+    'depends': ['base','mail', 'web'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+
+        # statics
+        # 'views/static/font_awesome.xml',
 
         # template
         # 'views/templates/po_email_template.xml',

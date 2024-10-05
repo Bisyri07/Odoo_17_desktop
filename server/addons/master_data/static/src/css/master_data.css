@@ -1,18 +1,18 @@
-.o_form_button_save::before {
-    content: url('/master_data/static/src/img/save_gray_24px.png');
-    /* Untuk memberikan jarak antara ikon dan teks */
-    margin-right: 5px; 
+.o_form_button_save {
+    /* content: url('/master_data/static/src/img/save_gray_16px.png'); */
+    /* margin-right: 5px;  */
+    font-size: 20px;
 }
-
-/* .o_form_button_cancel::before {
-    content: url('/master_data/static/src/img/cancel24px.png');
-    margin-right: 5px;
-} */
 
 .o_form_button_cancel {
-    /* ubah ketebalan font */
-    font-weight: bold;
-    /* ubah ukuran tombol */
-    font-size: 24px;
-    padding-bottom: 5px;
+    /* content: url('/master_data/static/src/img/cancel24px.png');
+    margin-right: 5px; */
+    font-size: 20px;
 }
+
+
+/* Hide default Odoo icon for Save button */
+/* .o_form_button_save .fa
+{
+    display: none;
+} */

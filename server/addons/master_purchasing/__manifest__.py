@@ -26,16 +26,21 @@
 
     # always loaded
     'data': [
+        # access
         'security/ir.model.access.csv',
 
-        'views/templates/po_email_template.xml',  # email template for purchase order
+        # email template for purchase order
+        'views/templates/po_email_template.xml',  
         
+        # sequence
         'views/sequences/po_sequence.xml',
         
-        'views/relationships/uom.xml',
+        # relations
         'views/relationships/tag.xml',
         
+        # menus
         'views/purchase_order.xml',
+        # 'views/delivery_order.xml',
         
         'views/main_menu.xml',
 

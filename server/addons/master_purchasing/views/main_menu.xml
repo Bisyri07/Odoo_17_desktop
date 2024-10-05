@@ -13,10 +13,6 @@
 
     <menuitem id='purchase_order_relationship' name='Additional Information'>
       <menuitem 
-        id= 'uom_relationship_menu_action'
-        action='uom_relationship_action'
-      />
-      <menuitem 
         id='tag_relationship_menu_action'
         action='tag_relationship_action'
       />

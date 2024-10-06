@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 class MasterCustomer(models.Model):
     _name = 'master.customer'
     _description = 'Master Customer'
+    _rec_name = 'customer'
 
     customer = fields.Char(string='Customer Name', required=True)
     customer_id = fields.Char(string='Customer Id', readonly=True, default='New')

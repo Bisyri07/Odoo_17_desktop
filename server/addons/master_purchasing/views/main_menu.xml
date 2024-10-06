@@ -9,6 +9,10 @@
         id = 'purchase_order_menu_action'
         action = 'purchase_order_action'
       />
+      <menuitem 
+        id = 'sales_order_menu_action'
+        action = 'sales_order_action'
+      />
     </menuitem>
 
     <menuitem id='purchase_order_relationship' name='Additional Information'>

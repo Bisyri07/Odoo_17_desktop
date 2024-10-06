@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='sales_order_tree' model='ir.ui.view'>
+      <field name='name'>Sales Order</field>
+      <field name='model'>sales.order</field>
+      <field name='arch' type='xml'>
+        <tree>
+          <field name='item' optional='show'/>
+          <field name='item_code' optional='hide'/>
+          <field name='so_no' optional='show'/>
+          <field name='so_date' optional='show'/>
+          <field name='qty' optional='show'/>
+          <field name='customer' optional='show'/>
+          <field name='currency' optional='hide'/>
+          <field name='so_email' optional='hide'/>
+          <field name='total' optional='show'/>
+          <field name='status' 
+                 statusbar_visible="input,confirmed,canceled" 
+                 decoration-info="status == 'input'" 
+                 decoration-success="status == 'confirmed'"
+                 decoration-danger="status == 'canceled'"
+                 widget="badge"
+                 />
+        </tree>
+      </field>
+    </record>
+
+    <!-- action -->
+    <record id='sales_order_action' model='ir.actions.act_window'>
+      <field name='name'>Sales Order</field>
+      <field name='res_model'>sales.order</field>
+      <field name='view_mode'>tree,form,kanban</field>
+    </record>
+
+    <!-- form -->
+    <record id='sales_order_form' model='ir.ui.view'>
+      <field name='name'>Sales Order Form</field>
+      <field name='model'>sales.order</field>
+      <field name='arch' type='xml'>
+        <form>
+  
+          <header>
+            <!-- button -->
+            <button 
+            name="action_confirmed"
+            type="object"
+            string="Confirm"
+            invisible="status=='confirmed'"
+            class="btn-primary"
+            />
+  
+            <button 
+            name="action_canceled"
+            type="object"
+            string="Cancel"
+            invisible="status=='canceled'"
+            class="btn-secondary"
+            />  
+  
+            <!-- status bar -->
+            <field 
+            name="status"
+            widget="statusbar"
+            statusbar_visible="draft,confirmed"
+            />
+          </header>
+  
+          <sheet>
+            <group>
+  
+              <group>
+                <field name="so_no" readonly='1' />
+                <field name='item'/>
+                <field name="customer"/>
+                <field name="qty"/>
+                <field name="input_by"/>
+                <field name="term_of_payment"/>
+                <field name="discount"/>
+              </group>
+              <group>
+                <field name="so_date"/>
+                <field name='item_code'/>
+                <field name="customer_code"/>
+                <field name="input_date"/>
+                <field name="confirm_by"/>  
+                <field name="so_email"/>
+                <field name="discount_pct"/>
+              </group>  
+  
+              <notebook>
+                <page string='Detail'>
+                  <group>
+  
+                    <group>
+                      <field name="currency"/>                   
+                      <field name='unit_price'/>
+                      <field name='ppn_pct'/>
+                      <field name='subtotal'/>
+                      <field name='uom'/>
+                    </group>                 
+                    <group>
+                      <field name="currency_rate"/>                   
+                      <field name='unit_weight'/>
+                      <field name='ppn'/>
+                      <field name='total'/>
+                      <field name='description'/>
+                    </group>
+                    
+                  </group>
+                </page>
+  
+                <page string='Additional Information'>
+                  <group>
+                    <group>
+                      <field name='contact_person' />
+                      <field name='company_name' />
+                    </group>
+                    <group>
+                      <field name='tag_id' 
+                             widget="many2many_tags" 
+                             options="{'color_field': 'color'}"/>
+                    </group>
+                  </group>
+                </page>
+              </notebook>     
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- kanban -->
+    <record id='sales_order_kanban_view' model='ir.ui.view'>
+      <field name='name'>Kanban</field>
+      <field name='model'>sales.order</field>
+      <field name='arch' type='xml'>
+        <kanban class='o_kanban_small_column'>
+          <field name='item' />
+          <field name='so_no' />
+          <field name='total' />
+          <field name='status' />
+  
+          <templates>
+            <!-- kanban card design -->
+            <t t-name='kanban-box'>
+              <div t-attf-class='oe_kanban_global_click'>
+                <div class='oe_kanban_content'>
+  
+                  <div class='o_kanban_record_top mb16'>
+                    <div class='o_kanban_record_headings mt4'>
+                      <strong class='o_kanban_record_title'>
+                        <span><field name='item' /></span>
+                      </strong>
+                    </div>
+                    <div>
+                      <strong>
+                        <span>Rp. <field name="total"/></span>
+                      </strong>
+                    </div>
+                  </div>
+  
+                  <div class='o_kanban_record_bottom'>
+                    <div class='oe_kanban_bottom_left'>
+                      <small>
+                          <span><field name="so_no"/></span>
+                      </small>
+                      <!-- <field name="activity_ids" widget="kanban_activity"/> -->
+                    </div>
+                    <div class='oe_kanban_bottom_right'>
+                      <span><field name="status"
+                                   statusbar_visible="input,confirmed,canceled" 
+                                   decoration-info="status == 'input'" 
+                                   decoration-success="status == 'confirmed'"
+                                   decoration-danger="status == 'canceled'"
+                                   widget="badge" />
+                      </span>
+                    </div>
+                  </div>
+  
+                </div>  
+              </div>
+            </t>
+          </templates> 
+        </kanban>
+      </field>
+    </record> 
+  </data>    
+</odoo>

@@ -10,7 +10,7 @@ class PurchaseOrder(models.Model):
     item_code = fields.Char(related='item.item_code', string="Item Code", store=True)
     qty = fields.Integer(string="Quantity")
     po_no = fields.Char(string='PO Number', readonly=True, copy=False, default='New')
-    po_date = fields.Datetime(string='PO Date', required=True, default=fields.Datetime.now)
+    po_date = fields.Date(string='PO Date', required=True, default=fields.Datetime.now)
     supplier = fields.Many2one(comodel_name='master.supplier',string='Supplier')
     supplier_code = fields.Char(related='supplier.supplier_code', string='Supplier Code')
     contact_person = fields.Char(string='Contact Person')
@@ -27,9 +27,9 @@ class PurchaseOrder(models.Model):
     unit_price = fields.Monetary(related='item.unit_price', string='Unit Price', currency_field='currency')
     input_by = fields.Many2one(comodel_name='res.users', string='Input By')
     confirm_by = fields.Char(string='Confirm By')
-    date_input = fields.Datetime(string='Date Input', default=fields.Datetime.now)
+    date_input = fields.Date(string='Date Input', default=fields.Datetime.now)
     posted_by = fields.Char(string='Posted By')
-    date_posted = fields.Datetime(string='Date Posted')
+    date_posted = fields.Date(string='Date Posted')
     unit_weight = fields.Float(string='Unit Weight')
     uom = fields.Many2one(comodel_name='master.uom', string='UoM')
     email_po = fields.Char(string='PO E-mail', default='youremail@gmail.com')
@@ -103,7 +103,7 @@ class PurchaseOrder(models.Model):
     @api.depends('subtotal', 'discount', 'discount_pct')
     def _compute_discount(self):
         for a in self:
-            if a.subtotal >= 200000000:
+            if a.subtotal >= 100000000:
                 a.discount_pct = 15
                 a.discount = a.subtotal * (a.discount_pct/100)
                 a.subtotal = a.subtotal - a.discount
@@ -123,7 +123,7 @@ class PurchaseOrder(models.Model):
 
 
     # Computed field total (unit_price + subtotal)
-    @api.depends('unit_price', 'ppn')
+    @api.depends('subtotal', 'ppn')
     def _compute_total_biaya(self):
         for a in self:
             a.total = a.subtotal + a.ppn

@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_purchasing_tag,name_purchasing_tag,model_purchasing_tag,base.group_user,1,1,1,1
 access_purchase_order,name_purchase_order,model_purchase_order,base.group_user,1,1,1,1
+access_sales_order,name_sales_order,model_sales_order,base.group_user,1,1,1,1

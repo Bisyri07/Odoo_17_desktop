@@ -1,5 +1,5 @@
-id,company_code,company_name,company_level
-company_1,ION-ID,PT Industri Ion Mobilitas,1
-company_2,ION-CDM,PT Citarasa Dapur Majusindoraya,2
-company_3,ION-IIE,PT Industri Ion Mobilitas / IIE,2
-company_4,ION-DIM,PT Distribusi Ion Mobilitas,2
+"id","company_code","company_name","company_level","address"
+"company_1","ION-ID","PT Industri Ion Mobilitas","1","Jl. Jenderal Sudirman No. 123, Jakarta Pusat"
+"company_2","ION-CDM","PT Citarasa Dapur Majusindoraya","2","Jl. Kebon Kacang Raya No. 45, Jakarta Pusat"
+"company_3","ION-IIE","PT Industri Ion Mobilitas / IIE","2","Jl. MH Thamrin No. 67, Jakarta Pusat"
+"company_4","ION-DIM","PT Distribusi Ion Mobilitas","2","Jl. Gatot Subroto No. 89, Jakarta Selatan"

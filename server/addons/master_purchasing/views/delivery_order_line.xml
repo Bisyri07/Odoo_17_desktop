@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id='delivery_order_line_tree' model='ir.ui.view'>
+      <field name='name'>Delivery Order Line</field>
+      <field name='model'>delivery.order.line</field>
+      <field name='arch' type='xml'>
+        <tree>
+          <field name='item_sales'/>
+          <field name='uom'/>
+          <field name='qty_req'/>
+          <field name='qty_reserved'/>
+          <field name='qty_done'/>
+          <field name='description'/>
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>

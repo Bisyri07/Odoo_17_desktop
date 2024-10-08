@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='delivery_order_tree' model='ir.ui.view'>
+      <field name='name'>Delivery Order</field>
+      <field name='model'>delivery.order</field>
+      <field name='arch' type='xml'>
+        <tree>
+          <field name='do_no' optional='show'/>
+          <field name='operating_type' optional='show'/>
+          <field name='company' optional='show'/>
+          <field name='create_date' optional='show'/>
+          <field name='doc_date' optional='hide'/>
+          <field name='from_' optional='show'/>
+          <field name='to_' optional='show'/>
+          <field name='status' optional='show'/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- action -->
+    <record id='delivery_order_action' model='ir.actions.act_window'>
+      <field name='name'>Delivery Order</field>
+      <field name='res_model'>delivery.order</field>
+      <field name='view_mode'>tree,form,kanban</field>
+    </record>
+
+    <!-- form -->
+    <record id='delivery_order_form' model='ir.ui.view'>
+      <field name='name'>Delivery Order Form</field>
+      <field name='model'>delivery.order</field>
+      <field name='arch' type='xml'>
+        <form>
+          <header>
+            <button
+            name="action_ready"
+            type="object"
+            string="Ready"
+            class='btn-secondary'
+            />
+            <button
+            name="action_done"
+            type="object"
+            string="Done"
+            class='btn-secondary'
+            />
+            <!-- status bar -->
+            <field 
+            name="status"
+            widget="statusbar"
+            statusbar_visible='waiting,ready,done'
+            />
+          </header>
+          <sheet>
+            <group>
+
+              <field name='do_no' string='Delivery Number'/>
+              <group>
+                <field name='operating_type' />
+                <field name='create_date' />
+                <field name='from_' />
+                <field name='company' />
+              </group>
+              <group>
+                <field name='so_number' />
+                <field name='doc_date' />
+                <field name='to_' />
+                <field name='company_code' />
+                <field name='address' />
+              </group>
+
+              <notebook>
+                <page string='Operations'>
+                  <group>
+                    <!-- line -->
+                    <field name='delivery_order_lines'>
+                      <tree editable='bottom'>
+                        <field name='item_sales' domain="[('id', '=', item_master)]" string='Product' optional='show'/>
+                        <field name='item_master' domain="[('id', '=', item_sales)]" string='Item stock' optional='show'/>
+                        <field name='qty_req' string='Quantity (Request)' optional='show'/>
+                        <field name='qty_reserved' string='Quantity (Reserved)' optional='show'/>
+                        <field name='qty_done' string='Quantity (Done)' optional='show'/>
+                        <field name='uom' string='UoM' optional='show'/>
+                        <field name='description' string='Description' optional='hide'/>
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+              </notebook>
+              
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+  </data>    
+</odoo>

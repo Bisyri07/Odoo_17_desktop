@@ -11,6 +11,7 @@ class MasterCompany(models.Model):
     company_code = fields.Char(string='Company Code', size=150)
     company_name = fields.Char(string='Company Name', size=50)
     company_level = fields.Integer(string='Company Level')
+    address = fields.Text(string='Address')
 
     parent_code_company = fields.Char(
         string='Parent Code',

@@ -13,6 +13,10 @@
         id = 'sales_order_menu_action'
         action = 'sales_order_action'
       />
+      <menuitem 
+        id = 'delivery_order_menu_action'
+        action = 'delivery_order_action'
+      />
     </menuitem>
 
     <menuitem id='purchase_order_relationship' name='Additional Information'>

@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class PurchasingTag(models.Model):
     _name='purchasing.tag'
-    _description='This is tag for every model in Master Purchasing'
+    _description='Purchasing Tag Data'
     _order='color'
 
     _sql_constraints = [

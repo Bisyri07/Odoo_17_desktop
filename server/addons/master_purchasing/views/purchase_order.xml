@@ -100,7 +100,7 @@
 
                   <group>
                     <field name="currency"/>                   
-                    <field name='unit_price'/>
+                    <field name='item_cost'/>
                     <field name='ppn_pct'/>
                     <field name='subtotal'/>
                     <field name='uom'/>

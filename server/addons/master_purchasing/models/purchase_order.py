@@ -24,7 +24,7 @@ class PurchaseOrder(models.Model):
     ppn_pct = fields.Float(string='PPN (%)')
     pph_pct = fields.Float(string='PPH (%)')
     pph = fields.Monetary(string='PPH', currency_field='currency')
-    unit_price = fields.Monetary(related='item.unit_price', string='Unit Price', currency_field='currency')
+    item_cost = fields.Monetary(related='item.item_cost', string='Unit Price', currency_field='currency', store=True)
     input_by = fields.Many2one(comodel_name='res.users', string='Input By')
     confirm_by = fields.Char(string='Confirm By')
     date_input = fields.Date(string='Date Input', default=fields.Datetime.now)
@@ -71,7 +71,7 @@ class PurchaseOrder(models.Model):
     # SQL Constraints
     _sql_constraints = [
         ('check_qty_positive', 'CHECK(qty >= 0)', 'The quantity must be positive!'),
-        ('check_unit_price_positive', 'CHECK(unit_price > 0)', 'The price must be greater than zero!')
+        ('check_item_cost_positive', 'CHECK(item_cost > 0)', 'The price must be greater than zero!')
     ]
     
 
@@ -90,12 +90,12 @@ class PurchaseOrder(models.Model):
                                compute='_compute_discount', store=True) 
 
 
-    # Computed field subtotal (unit_price * ppn_pct / 100)
-    @api.depends('unit_price', 'qty')
+    # Computed field subtotal (item_cost * ppn_pct / 100)
+    @api.depends('item_cost', 'qty')
     def _compute_subtotal_biaya(self):
         for a in self:
             if a.qty:
-                a.subtotal = a.unit_price * a.qty 
+                a.subtotal = a.item_cost * a.qty 
             else:
                 a.subtotal = 0.0
 
@@ -122,7 +122,7 @@ class PurchaseOrder(models.Model):
                 a.ppn = 0.0
 
 
-    # Computed field total (unit_price + subtotal)
+    # Computed field total (ppn + subtotal)
     @api.depends('subtotal', 'ppn')
     def _compute_total_biaya(self):
         for a in self:

@@ -21,7 +21,7 @@ class MasterItem(models.Model):
     item_type_code = fields.Char(related='item_type.item_type_code', 
                                  string='Item Type Code',
                                  store=True)
-    quantity = fields.Float(string='Qty')
+    quantity = fields.Integer(string='Qty')
     # company_id = fields.Many2one(comodel_name='res.company', string='Company', default=lambda self: self.env.company)
     
     # change currency to currency_id
@@ -37,7 +37,8 @@ class MasterItem(models.Model):
     order_id = fields.Integer(string='Order Id', readonly=True)
     opening_accum_dep = fields.Monetary(string='Opening Accumulated Depreciation', currency_field='currency_id')
     sales_amount = fields.Monetary(string='Sales Amount', currency_field='currency_id')
-    unit_price = fields.Monetary(string='Item Cost / Harga per Barang', currency_field='currency_id')
+    item_cost = fields.Monetary(string='Item Cost / Harga per Barang', currency_field='currency_id')
+    
     # computed fields
     monthly_dep = fields.Monetary(string='Monthly Depreciation', 
                                   currency_field='currency_id',
@@ -59,7 +60,7 @@ class MasterItem(models.Model):
     _sql_constraints = [
         (
             'check_price',
-            'CHECK(unit_price > 0)',
+            'CHECK(item_cost > 0)',
             'Item Cost / Harga per Barang must be greater than zero!'
         ),
         (
@@ -83,6 +84,16 @@ class MasterItem(models.Model):
 
 
     """computed field"""
+    # acquisition cost
+    @api.depends('quantity', 'item_cost')
+    def _compute_acq_cost(self):
+        for record in self:
+            if record.quantity and record.item_cost:
+                record.acq_cost = record.quantity * record.item_cost
+            else:
+                record.acq_cost = 0
+
+
     # annual depreciation
     @api.depends('acq_cost', 'salvage_value', 'year_of_useful')
     def _compute_annual_dep(self):

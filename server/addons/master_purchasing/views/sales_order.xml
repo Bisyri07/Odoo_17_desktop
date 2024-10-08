@@ -71,7 +71,7 @@
             <group>
   
               <group>
-                <field name="so_no" readonly='1' />
+                <field name="so_no" />
                 <field name='item'/>
                 <field name="customer"/>
                 <field name="qty"/>
@@ -95,16 +95,19 @@
   
                     <group>
                       <field name="currency"/>                   
-                      <field name='unit_price'/>
+                      <field name='item_cost'/>
                       <field name='ppn_pct'/>
                       <field name='subtotal'/>
                       <field name='uom'/>
+                      <field name='to_'/>
+                      <field name='address'/>
                     </group>                 
                     <group>
                       <field name="currency_rate"/>                   
                       <field name='unit_weight'/>
                       <field name='ppn'/>
                       <field name='total'/>
+                      <field name='company' />
                       <field name='description'/>
                     </group>
                     
@@ -115,7 +118,6 @@
                   <group>
                     <group>
                       <field name='contact_person' />
-                      <field name='company_name' />
                     </group>
                     <group>
                       <field name='tag_id' 

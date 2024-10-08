@@ -35,6 +35,7 @@
         # sequence
         'views/sequences/po_sequence.xml',
         'views/sequences/so_sequence.xml',
+        'views/sequences/do_sequence.xml',
         
         # relations
         'views/relationships/tag.xml',
@@ -42,12 +43,13 @@
         # menus
         'views/purchase_order.xml',
         'views/sales_order.xml',
-        # 'views/delivery_order.xml',
-        
+        'views/delivery_order.xml',
+        'views/delivery_order_line.xml',    
         'views/main_menu.xml',
 
         # scheduler
-        'views/schedulers/purchase_order_scheduler.xml'
+        'views/schedulers/purchase_order_scheduler.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [

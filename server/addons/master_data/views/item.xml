@@ -12,7 +12,7 @@
           <field name='item_code' optional="show"/>
           <field name='quantity' optional="show"/>
           <field name="currency_id" optional="hide"/>
-          <field name='unit_price' optional="show"/>
+          <field name='item_cost' optional="show"/>
           <field name='acq_date' optional="show"/>
           <field name='annual_dep' optional="show"/>
           <field name='annual_dep_pct' optional="hide"/>
@@ -77,7 +77,7 @@
                        options="{'color_field': 'color'}"/>
                 <field name='item_type' />
                 <field name='quantity' />
-                <field name='unit_price' />
+                <field name='item_cost' />
                 <field name='acq_date' />
                 <field name='acq_cost' />
                 <field name='year_of_useful' />

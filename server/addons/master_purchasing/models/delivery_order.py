@@ -75,14 +75,7 @@ class DeliveryOrder(models.Model):
                     'title': "SO Number Required",
                     'message': "Please fill in the SO number for 'Penjualan' operating type."
                 }         
-            }
-        
-    # raise validation error while SO number is not filled
-    @api.constrains('operating_type', 'so_number')
-    def _check_so_number(self):
-        for a in self:
-            if a.operating_type == 'penjualan' and not a.so_number:
-                raise ValidationError("SO Number is required for 'Penjualan' operating type.")
+            }       
             
     # check item
     @api.onchange('so_number')
@@ -95,6 +88,22 @@ class DeliveryOrder(models.Model):
             self.item_master = self.item_sales
             if self.item_master and self.qty_req > self.qty_reserved:
                 raise ValidationError('The requested quantity exceeds the reserved quantity for this item.')
+
+    
+    """constraints"""
+    # raise validation error while SO number is not filled
+    @api.constrains('operating_type', 'so_number')
+    def _check_so_number(self):
+        for a in self:
+            if a.operating_type == 'penjualan' and not a.so_number:
+                raise ValidationError("SO Number is required for 'Penjualan' operating type.")
+
+    # add constraint to prevent user use expired/canceled
+    @api.constrains
+    def _check_sales_order_status(self):
+        for order in self:
+            if order.so_number.status == 'canceled':
+                raise ValidationError("The selected Sales Order is expired or canceled and cannot be used.")
 
 
     """Action button"""

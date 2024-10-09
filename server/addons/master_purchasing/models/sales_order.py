@@ -14,6 +14,7 @@ class SalesOrder(models.Model):
     so_no = fields.Char(string='SO No', readonly=True, copy=False, default='New')
     so_date = fields.Date(string='SO Date', required=True, default=fields.Datetime.now)
     input_date = fields.Date(string='Input Date', default=fields.Datetime.now)
+    expired_date = fields.Date(string='Expired Date', default=fields.Datetime.now)
     customer = fields.Many2one(comodel_name='master.customer', string='Customer')
     customer_code = fields.Char(related='customer.customer_id', string='Customer Id', store=True)
     contact_person = fields.Char(string='Contact Person')
@@ -105,6 +106,16 @@ class SalesOrder(models.Model):
         for a in self:
             a.total = a.subtotal + a.ppn
 
+    # expired date
+    @api.model
+    def check_expiration(self):
+        today = datetime.now().date()
+        for order in self.search([('status', '!=','canceled')]):
+            if today > order.expired_date and order.expired_date:
+                order.write({'status':'canceled'})    
+
+
+    """sequence"""
     # sequence for Sales Order
     @api.model_create_multi
     def create(self, vals_list):

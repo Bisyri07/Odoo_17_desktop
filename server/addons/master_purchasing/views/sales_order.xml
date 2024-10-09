@@ -7,10 +7,11 @@
       <field name='model'>sales.order</field>
       <field name='arch' type='xml'>
         <tree>
+          <field name='so_no' optional='show'/>
           <field name='item' optional='show'/>
           <field name='item_code' optional='hide'/>
-          <field name='so_no' optional='show'/>
           <field name='so_date' optional='show'/>
+          <field name='expired_date' optional='show'/>
           <field name='qty' optional='show'/>
           <field name='customer' optional='show'/>
           <field name='currency' optional='hide'/>
@@ -108,6 +109,7 @@
                       <field name='ppn'/>
                       <field name='total'/>
                       <field name='company' />
+                      <field name='expired_date' />
                       <field name='description'/>
                     </group>
                     

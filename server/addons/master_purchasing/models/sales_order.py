@@ -14,8 +14,8 @@ class SalesOrder(models.Model):
     so_no = fields.Char(string='SO No', readonly=True, copy=False, default='New')
     so_date = fields.Date(string='SO Date', required=True, default=fields.Datetime.now)
     input_date = fields.Date(string='Input Date', default=fields.Datetime.now)
-    expired_date = fields.Date(string='Expired Date', default=fields.Datetime.now)
-    customer = fields.Many2one(comodel_name='master.customer', string='Customer')
+    expired_date = fields.Date(string='Expired Date', default=fields.Datetime.now, required=True)
+    customer = fields.Many2one(comodel_name='master.customer', string='Customer', required=True)
     customer_code = fields.Char(related='customer.customer_id', string='Customer Id', store=True)
     contact_person = fields.Char(string='Contact Person')
     term_of_payment = fields.Char(string='Term of Payment (days)')
@@ -154,4 +154,11 @@ class SalesOrder(models.Model):
         if 'confirmed' in self.mapped('status'):
             raise ValidationError('confirmed sales order cannot be canceled')
         
-        self.write({'status','canceled'})
+        return {
+        'name': _('Cancel Sales Order'),
+        'type': 'ir.actions.act_window',
+        'res_model': 'cancel.sales.order.wizard',
+        'view_mode': 'form',
+        'target': 'new',
+        'context': {'default_responsible_user': self.env.user.id, 'active_id': self.id},
+        }

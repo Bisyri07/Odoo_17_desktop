@@ -4,3 +4,4 @@ access_purchase_order,name_purchase_order,model_purchase_order,base.group_user,1
 access_sales_order,name_sales_order,model_sales_order,base.group_user,1,1,1,1
 access_delivery_order,name_delivery_order,model_delivery_order,base.group_user,1,1,1,1
 access_delivery_order_line,name_delivery_order_line,model_delivery_order_line,base.group_user,1,1,1,1
+access_cancel_sales_order_wizard,name_cancel_sales_order_wizard,model_cancel_sales_order_wizard,base.group_user,1,1,1,1

@@ -4,3 +4,4 @@ from . import sales_order
 from . import delivery_order
 
 from .relationships import tag
+from .wizards import canceled_SO

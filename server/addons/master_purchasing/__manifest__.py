@@ -31,6 +31,9 @@
 
         # email template for purchase order
         'views/templates/po_email_template.xml',  
+
+        # wizard
+        'views/wizards/canceled_SO.xml',
         
         # sequence
         'views/sequences/po_sequence.xml',

@@ -101,5 +101,63 @@
       </field>
     </record>
 
+    <!-- costumize kanban view -->
+  <record id='delivery_order_kanban_view' model='ir.ui.view'>
+    <field name='name'>Kanban</field>
+    <field name='model'>delivery.order</field>
+    <field name='arch' type='xml'>
+      <kanban class='o_kanban_small_column'>
+        <field name='do_no' />
+        <field name='item_sales' />
+        <field name='qty_req' />
+        <field name='status' />
+
+        <templates>
+          <!-- kanban card design -->
+          <t t-name='kanban-box'>
+            <div t-attf-class='oe_kanban_global_click'>
+              <div class='oe_kanban_content'>
+
+                <div class='o_kanban_record_top mb16'>
+                  <div class='o_kanban_record_headings mt4'>
+                    <strong class='o_kanban_record_title'>
+                      <span>Item: <field name='item_sales' /></span>
+                    </strong>
+                  </div>
+                  <div>
+                    <strong>
+                      <span>Qty: <field name="qty_req"/></span>
+                    </strong>
+                  </div>
+                </div>
+
+                <div class='o_kanban_record_bottom'>
+                  <div class='oe_kanban_bottom_left'>
+                    <small>
+                        <span>DO No: <field name="do_no"/></span>
+                    </small>
+                  </div>
+                  <div class='oe_kanban_bottom_right'>
+                    <span>
+                      <field name="status"
+                            statusbar_visible="waiting,ready,done" 
+                            decoration-info="status == 'waiting'" 
+                            decoration-bf="status == 'ready'"
+                            decoration-success="status == 'done'"
+                            widget="badge"
+                            />
+                    </span>
+                  </div>
+                </div>
+
+              </div>  
+            </div>
+          </t>
+        </templates>
+
+      </kanban>
+    </field>
+  </record>
+
   </data>    
 </odoo>

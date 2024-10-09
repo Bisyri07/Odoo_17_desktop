@@ -14,7 +14,13 @@
           <field name='doc_date' optional='hide'/>
           <field name='from_' optional='show'/>
           <field name='to_' optional='show'/>
-          <field name='status' optional='show'/>
+          <field name='status' 
+                 statusbar_visible="waiting,ready,done" 
+                 decoration-info="status == 'waiting'" 
+                 decoration-bf="status == 'ready'"
+                 decoration-success="status == 'done'"
+                 widget="badge"
+          optional='show'/>
         </tree>
       </field>
     </record>

@@ -42,7 +42,10 @@ class DeliveryOrder(models.Model):
             ('waiting','Waiting'),
             ('ready','Ready'),
             ('done','Done'),
-        ]
+        ],
+        string='Status',
+        default='waiting',
+        required=True
     )
 
 
@@ -96,14 +99,25 @@ class DeliveryOrder(models.Model):
 
     """Action button"""
     def action_ready(self):
-        for a in self:
-            a.status = 'ready'
+        self.write({'status':'ready'})
+
 
     def action_done(self):
         for a in self:
             if a.qty_done < a.qty_req:
                 raise ValidationError('Cannot set status to Done. Quantity done is less than requested.')
-            a.status = 'done'
+            
+            self.write({'status':'done'})
+
+        # rainbowman
+        return {
+            'effect': 
+                    {
+                        'fadeout': 'slow',
+                        'message': 'your delivery order has been done!',
+                        'type': 'rainbow_man',
+                    }
+        }
 
 
     """line model"""
@@ -112,7 +126,7 @@ class DeliveryOrder(models.Model):
         comodel_name='delivery.order.line',
         # Field in the line model that links back to delivery.order
         inverse_name='delivery_order_id',
-        string=''
+        string='Delivery Order Lines'
     )
 
 # model for delivery order lines

@@ -47,6 +47,7 @@
                 <field name='billing_address'/>
                 <field name='currency_id'/>
                 <field name='term'/>
+                <field name='lang'/>
                 <field name='acc_code'/>
               </group>
               <group>

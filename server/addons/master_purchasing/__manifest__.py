@@ -50,6 +50,9 @@
         'views/delivery_order_line.xml',    
         'views/main_menu.xml',
 
+        # report
+        'views/reports/sales_order_report.xml',
+
         # scheduler
         'views/schedulers/purchase_order_scheduler.xml',
 

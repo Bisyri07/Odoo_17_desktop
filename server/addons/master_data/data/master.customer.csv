@@ -1,11 +1,11 @@
-id,customer,phone_num,address,billing_address,shipping_address,contact,credit_limit,term,payment,fax,acc_code,npwp,status
-customer_1,Toko Jaya,81234567890,Jl. Merdeka No. 1,Jl. Merdeka No. 1,Jl. Anggrek No. 6,Bapak Budi,10000000,30,Transfer,2112345678,ACC001,1.23457E+14,active
-customer_2,UD Sejahtera,85678901234,Jl. Mawar No. 5,Jl. Mawar No. 5,Jl. Melati No. 11,Ibu Ani,5000000,14,Cash,2212345678,ACC002,9.87654E+14,active
-customer_3,CV Makmur,82112344321,Jl. Melati No. 8,Jl. Melati No. 8,Jl. Kenanga No. 4,Bapak Chandra,20000000,60,Transfer,3112345678,ACC003,5.43211E+14,inactive
-customer_4,PT Sukses,87887654321,Jl. Anggrek No. 10,Jl. Anggrek No. 10,Jl. Teratai No. 9,Ibu Dewi,15000000,45,Giro,6112345678,ACC004,1.23457E+14,active
-customer_5,Warung Sederhana,81331313131,Jl. Dahlia No. 2,Jl. Dahlia No. 2,Jl. Kamboja No. 7,Bapak Eko,5000000,7,Cash,27412345678,ACC005,9.87654E+14,active
-customer_6,PT Maju Jaya,89876543210,Jl. Kamboja No. 7,Jl. Kamboja No. 7,Jl. Dahlia No. 2,Ibu Fani,30000000,90,Transfer,2412345678,ACC006,5.43211E+14,active
-customer_7,CV Berkah Abadi,81122334455,Jl. Teratai No. 9,Jl. Teratai No. 9,Jl. Anggrek No. 10,Bapak Galih,10000000,30,Giro,71112345678,ACC007,1.23457E+14,inactive
-customer_8,UD Sumber Rezeki,85776655443,Jl. Kenanga No. 4,Jl. Kenanga No. 4,Jl. Melati No. 8,Ibu Hani,7000000,21,Cash,41112345678,ACC008,9.87654E+14,active
-customer_9,Toko Makmur,82233445566,Jl. Melati No. 11,Jl. Melati No. 11,Jl. Mawar No. 5,Bapak Indra,12000000,60,Transfer,36112345678,ACC009,5.43211E+14,active
-customer_10,Warung Rame,88990011223,Jl. Anggrek No. 6,Jl. Anggrek No. 6,Jl. Merdeka No. 1,Ibu Jeni,8000000,14,Giro,51112345678,ACC010,1.23457E+14,active
+id,customer,phone_num,address,billing_address,shipping_address,contact,credit_limit,term,payment,fax,acc_code,npwp,status,lang,currency_id
+customer_1,Toko Jaya,81234567890,Jl. Merdeka No. 1,Jl. Merdeka No. 1,Jl. Anggrek No. 6,Bapak Budi,10000000,30,Transfer,2112345678,ACC001,1.23457E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_2,UD Sejahtera,85678901234,Jl. Mawar No. 5,Jl. Mawar No. 5,Jl. Melati No. 11,Ibu Ani,5000000,14,Cash,2212345678,ACC002,9.87654E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_3,CV Makmur,82112344321,Jl. Melati No. 8,Jl. Melati No. 8,Jl. Kenanga No. 4,Bapak Chandra,20000000,60,Transfer,3112345678,ACC003,5.43211E+14,inactive,Indonesian / Bahasa Indonesia,IDR
+customer_4,PT Sukses,87887654321,Jl. Anggrek No. 10,Jl. Anggrek No. 10,Jl. Teratai No. 9,Ibu Dewi,15000000,45,Giro,6112345678,ACC004,1.23457E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_5,Warung Sederhana,81331313131,Jl. Dahlia No. 2,Jl. Dahlia No. 2,Jl. Kamboja No. 7,Bapak Eko,5000000,7,Cash,27412345678,ACC005,9.87654E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_6,PT Maju Jaya,89876543210,Jl. Kamboja No. 7,Jl. Kamboja No. 7,Jl. Dahlia No. 2,Ibu Fani,30000000,90,Transfer,2412345678,ACC006,5.43211E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_7,CV Berkah Abadi,81122334455,Jl. Teratai No. 9,Jl. Teratai No. 9,Jl. Anggrek No. 10,Bapak Galih,10000000,30,Giro,71112345678,ACC007,1.23457E+14,inactive,Indonesian / Bahasa Indonesia,IDR
+customer_8,UD Sumber Rezeki,85776655443,Jl. Kenanga No. 4,Jl. Kenanga No. 4,Jl. Melati No. 8,Ibu Hani,7000000,21,Cash,41112345678,ACC008,9.87654E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_9,Toko Makmur,82233445566,Jl. Melati No. 11,Jl. Melati No. 11,Jl. Mawar No. 5,Bapak Indra,12000000,60,Transfer,36112345678,ACC009,5.43211E+14,active,Indonesian / Bahasa Indonesia,IDR
+customer_10,Warung Rame,88990011223,Jl. Anggrek No. 6,Jl. Anggrek No. 6,Jl. Merdeka No. 1,Ibu Jeni,8000000,14,Giro,51112345678,ACC010,1.23457E+14,active,Indonesian / Bahasa Indonesia,IDR

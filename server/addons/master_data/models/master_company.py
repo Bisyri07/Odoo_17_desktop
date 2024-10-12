@@ -11,7 +11,7 @@ class MasterCompany(models.Model):
     company_code = fields.Char(string='Company Code', size=150)
     company_name = fields.Char(string='Company Name', size=50)
     company_level = fields.Integer(string='Company Level')
-    address = fields.Text(string='Address')
+    company_logo = fields.Binary(string='Company Logo')
 
     parent_code_company = fields.Char(
         string='Parent Code',
@@ -26,6 +26,9 @@ class MasterCompany(models.Model):
         string='Parent Company',
         domain="[('company_level', '=', company_level - 1)]"
     )
+    
+    address = fields.Text(string='Address')
+    
 
     @api.depends('company_code', 'company_name', 'company_level', 'parent_company_id')
     def _compute_parent_code(self):

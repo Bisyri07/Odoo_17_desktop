@@ -21,6 +21,7 @@ class MasterCustomer(models.Model):
     fax = fields.Char(string='Fax')
     acc_code = fields.Char(string='Acc Code', size=10)
     npwp = fields.Char(string='NPWP', size=40)
+    lang = fields.Many2one('res.lang', string='Language')
     status = fields.Selection(
         selection=[
             ('active','Active'),
@@ -39,10 +40,4 @@ class MasterCustomer(models.Model):
                 record['customer_id'] = self.env['ir.sequence'].next_by_code('customer.id.sequence') or _('New')
             
         return super(MasterCustomer, self).create(vals_list)
-
-
-
-
-
-
 

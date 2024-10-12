@@ -29,11 +29,13 @@
     </record>
 
     <!-- action -->
+    <!-- sales order manu action -->
     <record id='sales_order_action' model='ir.actions.act_window'>
       <field name='name'>Sales Order</field>
       <field name='res_model'>sales.order</field>
       <field name='view_mode'>tree,form,kanban</field>
     </record>
+    <!-- order cancellation -->
     <record id="action_cancel_sales_order_wizard" model="ir.actions.act_window">
       <field name="name">Cancel Sales Order</field>
       <field name="res_model">cancel.sales.order.wizard</field>
@@ -50,6 +52,7 @@
   
           <header>
             <!-- button -->
+            <!-- Confirm  -->
             <button 
             name="action_confirmed"
             type="object"
@@ -57,15 +60,16 @@
             invisible="status=='confirmed'"
             class="btn-primary"
             />
-  
+            
+            <!-- Cancel -->
             <button 
             name="action_canceled"
             type="object"
             string="Cancel"
             invisible="status=='canceled'"
             class="btn-secondary"
-            />  
-  
+            />
+
             <!-- status bar -->
             <field 
             name="status"

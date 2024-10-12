@@ -34,7 +34,7 @@
               <group>
                 <field name='company_code' />
                 <field name='company_level' />
-                <field name='address' />
+                <field name='company_logo' />
               </group>
               <group>
                 <field name='company_name' />
@@ -42,6 +42,9 @@
                 <field name='parent_company_id' readonly='company_level==1 or company_level==0' />
                 <!-- Computed Parent Code (read-only) -->
                 <field name='parent_code_company' />
+              </group>
+              <group>
+                <field name='address' />
               </group>
             </group>
           </sheet>

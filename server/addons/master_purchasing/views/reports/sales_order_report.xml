@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+  <!-- report action -->
+  <record id='sales_order_template_action' model='ir.actions.report'>
+    <field name='name'>Sales Order Report</field>
+    <field name='model'>sales.order</field>
+    <field name='report_type'>qweb-pdf</field>
+    <field name='report_name'>master_purchasing.sales_order_report</field>
+    <field name='report_file'>master_purchasing.sales_order_report</field>
+    <field name='print_report_name'>
+      "Sales Order Report - %s" % (object.so_no)
+    </field>
+    <field name='binding_model_id' ref='master_purchasing.model_sales_order'/>
+    <field name='binding_type'>report</field>
+  </record>
+  
+  <!-- Main templates -->
+  <template id='sales_order_report'>
+    <t t-call='web.html_container'>
+      <t t-foreach='docs' t-as='doc'>
+        <t t-call='master_purchasing.sales_order_report_document' 
+           t-lang="doc.customer.lang.code or 'id_ID'"/>
+      </t>
+    </t>
+  </template> 
+  
+  <!-- Detail templates -->
+  <template id='sales_order_report_document'>
+    <t t-call='web.html_container'>
+      <t t-foreach='docs' t-as='o'>
+        <!-- report header -->
+        <div class='page'>
+          <div class='row'>
+            <div class='col-6'>
+              <h3>Sales Order</h3>
+              <p><strong>Order Number:</strong> <span t-esc='o.so_no'/></p>
+              <p><strong>Order Date:</strong> <span t-esc='o.so_date'/></p>
+              <p><strong>Customer:</strong> <span t-esc='o.customer'/></p>
+            </div>
+            <div class='col-6' style='text-align: right;'>
+              <img 
+              t-if='o.company.company_logo' 
+              t-att-src="'data:image/png;base64,%s' % (o.company.company_logo)" 
+              width='100' />
+              <p><strong>Company:</strong><span t-esc='o.company.company_name'/></p>
+              <p><strong>To:</strong><span t-esc='o.to_' /></p>
+            </div>
+          </div>
+
+          <!-- report body -->
+          <div class='row-mt-4' >
+            <table class='table table-sm'>
+              <thead>
+                <tr>
+                  <th>Item Code</th>
+                  <th>Item Name</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                  <th>Subtotal</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span t-esc="o.item_code"/></td>
+                  <td><span t-esc="o.item"/></td>
+                  <td><span t-esc="o.qty"/></td>
+                  <td><span t-esc="o.item_cost"/></td>
+                  <td><span t-esc="o.subtotal"/></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Report Footer -->
+          <div class='row'>
+            <div class='col-6'>
+              <p><strong>Discount:</strong> <span t-esc="o.discount"/></p>
+              <p><strong>PPN:</strong> <span t-esc="o.ppn"/></p>
+              <p><strong>Total:</strong> <span t-esc="o.total"/></p>
+            </div>
+            <div class="col-6" style="text-align: right;">
+              <p><strong>Contact Person:</strong> <span t-esc="o.contact_person"/></p>
+              <p><strong>Address:</strong> <span t-esc="o.address"/></p>
+            </div>
+          </div> 
+        </div>
+      </t>
+    </t>
+  </template>
+  </data>
+</odoo>

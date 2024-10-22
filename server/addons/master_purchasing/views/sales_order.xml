@@ -129,7 +129,8 @@
                 <page string='Additional Information'>
                   <group>
                     <group>
-                      <field name='contact_person' />
+                      <field name='salesperson_id' />
+                      <field name='npwp' />
                     </group>
                     <group>
                       <field name='tag_id' 

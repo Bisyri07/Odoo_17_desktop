@@ -17,7 +17,7 @@ class SalesOrder(models.Model):
     expired_date = fields.Date(string='Expired Date', default=fields.Datetime.now, required=True)
     customer = fields.Many2one(comodel_name='master.customer', string='Customer', required=True)
     customer_code = fields.Char(related='customer.customer_id', string='Customer Id', store=True)
-    contact_person = fields.Char(string='Contact Person')
+    salesperson_id = fields.Many2one('res.users', string="Salesperson")
     term_of_payment = fields.Char(string='Term of Payment (days)')
     currency = fields.Many2one('res.currency', string='Currency')  # Currency field
     currency_rate = fields.Float(string='Currency Rate')
@@ -35,6 +35,7 @@ class SalesOrder(models.Model):
     tag_id = fields.Many2many(comodel_name='purchasing.tag')
     unit_weight = fields.Float(string='Unit Weight')
     ppn_pct = fields.Float(string='PPN percentage (%)') 
+    npwp = fields.Char(related='customer.npwp', string='NPWP')
     status = fields.Selection(
         selection=[
             ('draft', 'Draft'), 

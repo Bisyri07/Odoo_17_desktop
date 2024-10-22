@@ -1,0 +1,30 @@
+/* Style for the label cells in the table */
+.table-bordered td:first-child {
+    background-color: #875A7B; /* Odoo's default purple color */
+    color: white; /* White font color for the label */
+    font-weight: bold;
+    padding: 8px;
+}
+
+/* Style for the data cells in the table */
+.table-bordered td:last-child {
+    background-color: #F5F5F5; /* Light grey background for data */
+    color: #333333; /* Darker font color for readability */
+    padding: 8px;
+}
+
+/* Ensure the table borders are well-defined */
+.table-bordered {
+    border: 1px solid #ddd;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Define the borders for the table cells */
+.table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.currency-row {
+    display: none;
+}

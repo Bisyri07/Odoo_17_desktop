@@ -27,66 +27,63 @@
   
   <!-- Detail templates -->
   <template id='sales_order_report_document'>
-    <t t-call='web.html_container'>
+    <t t-call='web.external_layout'>
       <t t-foreach='docs' t-as='o'>
-        <!-- report header -->
+        <!-- Report Header -->
         <div class='page'>
+
           <div class='row'>
-            <div class='col-6'>
-              <h3>Sales Order</h3>
-              <p><strong>Order Number:</strong> <span t-esc='o.so_no'/></p>
-              <p><strong>Order Date:</strong> <span t-esc='o.so_date'/></p>
-              <p><strong>Customer:</strong> <span t-esc='o.customer'/></p>
-            </div>
-            <div class='col-6' style='text-align: right;'>
-              <img 
-              t-if='o.company.company_logo' 
-              t-att-src="'data:image/png;base64,%s' % (o.company.company_logo)" 
-              width='100' />
-              <p><strong>Company:</strong><span t-esc='o.company.company_name'/></p>
-              <p><strong>To:</strong><span t-esc='o.to_' /></p>
+            <div class='col-6' style="margin-bottom: 10px;">
+              <h3>Order # <span t-esc='o.so_no'/></h3>
+              <p><strong>Order Date: </strong> <span t-esc='o.so_date'/></p>
+              <p><strong>Sales person:</strong> <span t-esc='o.salesperson_id.name'/></p>
             </div>
           </div>
 
-          <!-- report body -->
-          <div class='row-mt-4' >
-            <table class='table table-sm'>
-              <thead>
-                <tr>
-                  <th>Item Code</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Unit Price</th>
-                  <th>Subtotal</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span t-esc="o.item_code"/></td>
-                  <td><span t-esc="o.item"/></td>
-                  <td><span t-esc="o.qty"/></td>
-                  <td><span t-esc="o.item_cost"/></td>
-                  <td><span t-esc="o.subtotal"/></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <!-- Report Body -->
+          <table class='table table-bordered'>
+            <link rel="stylesheet" href="master_purchasing/static/src/css/sales_order.css" />
+            <tr>
+              <td>Item:</td>
+              <td><span t-field="o.item.item" /></td>
+            </tr>
+            <tr>
+              <td>Quantity:</td>
+              <td><span t-field="o.qty" /></td>
+            </tr>
+            <tr class="currency-row">
+              <td>Currency:</td>
+              <td><span t-field="o.currency.symbol" /></td>
+            </tr>
+            <tr>
+              <td>Unit Price:</td>
+              <td><span t-field="o.item_cost" /></td>
+            </tr>
+            <tr>
+              <td>PPN:</td>
+              <td><span t-field="o.ppn" /></td>
+            </tr>
+            <tr>
+              <td>Subtotal:</td>
+              <td><span t-field="o.subtotal" /></td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td><span t-field="o.total" /></td>
+            </tr>
+            <tr>
+              <td>Description:</td>
+              <td><span t-field="o.description" /></td>
+            </tr>
+
+          </table>
           
           <!-- Report Footer -->
-          <div class='row'>
-            <div class='col-6'>
-              <p><strong>Discount:</strong> <span t-esc="o.discount"/></p>
-              <p><strong>PPN:</strong> <span t-esc="o.ppn"/></p>
-              <p><strong>Total:</strong> <span t-esc="o.total"/></p>
-            </div>
-            <div class="col-6" style="text-align: right;">
-              <p><strong>Contact Person:</strong> <span t-esc="o.contact_person"/></p>
-              <p><strong>Address:</strong> <span t-esc="o.address"/></p>
-            </div>
-          </div> 
+
         </div>
       </t>
     </t>
   </template>
+
   </data>
 </odoo>

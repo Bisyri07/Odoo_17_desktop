@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id='PythonTemplate' name='Python Template'>
+
+    <t t-call='website.layout'>
+      <div class='container'>
+        <div class='row py-5'>
+          <div class='col'>
+            <h1>QWEB tutorial</h1>
+
+            <br/>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" 
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Basics</button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <h3 class='py-3'>Data Output</h3>
+
+                <table class='table table-striped table-sm border'>
+                  <tbody>
+                    <tr>
+                      <th>String</th>
+                      <td> <span t-out="string"/> </td>
+                    </tr>
+                    <tr>
+                      <th>Integer</th>
+                      <td> <span t-out="integer"/> </td>
+                    </tr>
+                    <tr>
+                      <th>Float</th>
+                      <td> <span t-out="some_float"/> </td>
+                    </tr>
+                    <tr>
+                      <th>List</th>
+                      <td> <span t-out="some_list"/> </td>
+                    </tr>
+                    <tr>
+                      <th>List Item</th>
+                      <td> <span t-out="some_list[0]"/> </td>
+                    </tr>
+                    <tr>
+                      <th>Dictionary</th>
+                      <td> <span t-out="some_dict"/> </td>
+                    </tr>
+                    <tr>
+                      <th>Dictionary Item</th>
+                      <td> this is the key: <span t-out="some_dict['any_key']"/> </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </t>
+
+  </template>
+</odoo>

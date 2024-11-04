@@ -36,3 +36,19 @@ class SalesorderApi(http.Controller):
 
         # output += '</ul>'
         # return output
+
+
+class PythonTemplate(http.Controller):
+    @http.route('/python_template', type='http', auth='public', website=True)
+    def display_qweb(self, **kw):
+
+        data = {
+            'string': 'QWEB Tutorials',
+            'integer': 1000,
+            'some_float': 12.54,
+            'boolean': True,
+            'some_list': [1,2,3,4,5],
+            'some_dict': {'any_key':'any_value'},
+        }
+
+        return request.render('master_purchasing.PythonTemplate', data)

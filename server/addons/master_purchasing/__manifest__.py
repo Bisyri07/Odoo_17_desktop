@@ -30,7 +30,9 @@
         'security/ir.model.access.csv',
 
         # email template for purchase order
-        'views/templates/po_email_template.xml',  
+        'views/template/po_email_template.xml',  
+        # qweb template
+        'views/template/py_template.xml',
 
         # wizard
         'views/wizards/canceled_SO.xml',
@@ -57,6 +59,13 @@
         'views/schedulers/purchase_order_scheduler.xml',
 
     ],
+
+    'assets': {
+        'web.report_assets_common': [
+            'master_purchasing/static/src/*'
+        ],
+    },
+
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

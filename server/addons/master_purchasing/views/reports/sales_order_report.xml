@@ -28,7 +28,7 @@
   <!-- Detail templates -->
   <template id='sales_order_report_document'>
     <t t-call='web.external_layout'>
-      <t t-foreach='docs' t-as='o'>
+      <t t-foreach='docs' t-as='doc'>
         <!-- Report Header -->
         <div class='page'>
 
@@ -45,35 +45,35 @@
             <link rel="stylesheet" href="master_purchasing/static/src/css/sales_order.css" />
             <tr>
               <td>Item:</td>
-              <td><span t-field="o.item.item" /></td>
+              <td><span t-field="doc.item.item" /></td>
             </tr>
             <tr>
               <td>Quantity:</td>
-              <td><span t-field="o.qty" /></td>
+              <td><span t-field="doc.qty" /></td>
             </tr>
             <tr class="currency-row">
               <td>Currency:</td>
-              <td><span t-field="o.currency.symbol" /></td>
+              <td><span t-field="doc.currency.symbol" /></td>
             </tr>
             <tr>
               <td>Unit Price:</td>
-              <td><span t-field="o.item_cost" /></td>
+              <td><span t-field="doc.item_cost" /></td>
             </tr>
             <tr>
               <td>PPN:</td>
-              <td><span t-field="o.ppn" /></td>
+              <td><span t-field="doc.ppn" /></td>
             </tr>
             <tr>
               <td>Subtotal:</td>
-              <td><span t-field="o.subtotal" /></td>
+              <td><span t-field="doc.subtotal" /></td>
             </tr>
             <tr>
               <td>Total:</td>
-              <td><span t-field="o.total" /></td>
+              <td><span t-field="doc.total" /></td>
             </tr>
             <tr>
               <td>Description:</td>
-              <td><span t-field="o.description" /></td>
+              <td><span t-field="doc.description" /></td>
             </tr>
 
           </table>

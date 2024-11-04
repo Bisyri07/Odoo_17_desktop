@@ -19,7 +19,7 @@
       />
     </menuitem>
 
-    <menuitem id='purchase_order_relationship' name='Additional Information'>
+    <menuitem id='purchase_order_relationship' name='Configuration'>
       <menuitem 
         id='tag_relationship_menu_action'
         action='tag_relationship_action'

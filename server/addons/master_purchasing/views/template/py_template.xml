@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <template id='PythonTemplate' name='Python Template'>
-
     <t t-call='website.layout'>
       <div class='container'>
         <div class='row py-5'>
@@ -126,13 +125,91 @@
                   </tbody>
                 </table>
 
+                <h3 class="py-3" >Conditional</h3>
+                <table class="table table-striped table-sm border">
+                  <tbody>
+                    <tr>
+                      <th>Is logged-in?</th>
+                      <td>
+                        <span t-if="request.session.uid">Yes</span>
+                        <span t-else="">No</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Multiple Conditions</th>
+                      <td>
+                        <span t-if="user_id.login == 'public'">Public User</span>
+                        <span t-elif="user_id.login == 'admin'">Admin User</span>
+                        <span t-elif="user_id.login == 'portal'">Portal User</span>
+                        <span t-else="" > Other User </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3 class="py-3">Looping</h3>
+                <table class="table table-striped table-sm border">
+                  <tbody>
+
+                    <tr>
+                      <th>Static</th>
+                      <td>
+                        <ul>
+                          <li t-foreach="[1,2,3]" t-as="number">
+                            <span t-out="number"/>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>Function</th>
+                      <td>
+                        <ul>
+                          <li t-foreach="range(3)" t-as="number">
+                            <span t-out="number"/>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>More Functions</th>
+                      <td>
+                        <ul>
+                          <t t-set="list_length" t-value="0"/>
+                          <li t-foreach="range(10)" t-as="number">
+                            <span t-out="number_index + 1"/>
+                            <span class="text-success" t-if="number_first">First Element</span>
+                            <span class="text-success" t-if="number_last">Last Element</span>
+                            <span t-if="number_odd">Odd Element</span>
+                            <span class="text-muted" t-if="number_even">Even Element</span>
+                            <t t-set="list_length" t-value="number_size"/>
+                          </li>
+                        </ul>
+                        <p>List Length: <span t-out="list_length"/></p>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>Model</th>
+                      <td>
+                        <ul>
+                          <li t-foreach="model" t-as="field">
+                            <span t-out="field.item.item"/>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </t>
-
   </template>
 </odoo>

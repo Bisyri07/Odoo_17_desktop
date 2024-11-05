@@ -45,7 +45,7 @@ class PythonTemplate(http.Controller):
         def some_function():
             return "returning string from function"
         
-        some_model = http.request.env['sales.order'].search([])
+        some_model = http.request.env['sales.order'].sudo().search([])
 
         data = {
             'string': 'QWEB Tutorials',

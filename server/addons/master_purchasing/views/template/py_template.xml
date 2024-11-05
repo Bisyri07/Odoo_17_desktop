@@ -85,6 +85,47 @@
                   </tbody>
                 </table>
 
+                <h3 class="py-3">Setting variable</h3>
+                <t t-set="string_value" t-value="'Some Variable'" />
+                <t t-set="string_literals_value" t-valuef="Some Literal Variable - {{ string }} " />
+                <t t-set="expression_value" t-value="1+1" />
+                <t t-set="python_object_value" t-value="datetime.datetime.now()"/>
+                <t t-set="from_controller_value" t-value="model"/>
+                <t t-set="html_value">
+                  <div class="alert alert-info">
+                    <h3>This is an HTML Value</h3>
+                    <p>Add any text here...</p>
+                  </div>
+                </t>
+                <table class='table table-striped table-sm border'>
+                  <tbody>
+                    <tr>
+                      <th>String</th>
+                      <td><span t-esc="string_value"/></td>
+                    </tr>
+                    <tr>
+                      <th>String Literals</th>
+                      <td><span t-esc="string_literals_value"/></td>
+                    </tr>
+                    <tr>
+                      <th>Expression</th>
+                      <td><span t-esc="expression_value"/></td>
+                    </tr>
+                    <tr>
+                      <th>Python Object</th>
+                      <td><span t-esc="python_object_value"/></td>
+                    </tr>
+                    <tr>
+                      <th>From Controller</th>
+                      <td><span t-esc="from_controller_value"/></td>
+                    </tr>
+                    <tr>
+                      <th>HTML</th>
+                      <td><span t-esc="html_value"/></td>
+                    </tr>
+                  </tbody>
+                </table>
+
               </div>
             </div>
 

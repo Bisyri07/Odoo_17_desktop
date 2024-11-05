@@ -51,6 +51,37 @@
                       <th>Dictionary Item</th>
                       <td> this is the key: <span t-out="some_dict['any_key']"/> </td>
                     </tr>
+                    <tr>
+                      <th>Function</th>
+                      <td> <span t-out="some_function" /> </td>
+                    </tr>
+                    <tr>
+                      <th>Python Object eg. Datetime</th>
+                      <td> <span t-out="datetime.datetime.now()" /> </td>
+                    </tr>
+                    <tr>
+                      <th>Model</th>
+                      <td> <span t-out="model" /> </td>
+                    </tr>
+                    <tr>
+                      <th>Model Fields</th>
+                      <td>
+                        <t t-foreach="model" t-as="order">
+                          <t t-esc="order.item.item"/>, 
+                        </t>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Editable Model Field</th>
+                      <td> <span t-field="model[0].item" /> </td>
+                    </tr>
+                    <tr>
+                      <th>Model Field with Option</th>
+                      <td> <span 
+                              t-field="model[0].status"
+                              t-option="{'draft':'Draft', 'confirmed':'Confirmed', 'canceled':'Canceled'}"/>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
 

@@ -8,6 +8,7 @@ class MasterItem(models.Model):
 
 
     item = fields.Char(string='Item Name')
+    name = fields.Char(related='item', store=True, readonly=True)
     item_code = fields.Char(string="Item Code", size=50)
     company_id = fields.Many2one(comodel_name='master.company', string='Company')
     company_code = fields.Char(related='company_id.company_code', 

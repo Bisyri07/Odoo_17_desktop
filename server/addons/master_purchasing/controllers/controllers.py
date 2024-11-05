@@ -42,6 +42,11 @@ class PythonTemplate(http.Controller):
     @http.route('/python_template', type='http', auth='public', website=True)
     def display_qweb(self, **kw):
 
+        def some_function():
+            return "returning string from function"
+        
+        some_model = http.request.env['sales.order'].search([])
+
         data = {
             'string': 'QWEB Tutorials',
             'integer': 1000,
@@ -49,6 +54,8 @@ class PythonTemplate(http.Controller):
             'boolean': True,
             'some_list': [1,2,3,4,5],
             'some_dict': {'any_key':'any_value'},
+            'some_function': some_function(),
+            'model': some_model,
         }
 
         return request.render('master_purchasing.PythonTemplate', data)

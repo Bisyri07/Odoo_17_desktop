@@ -221,7 +221,6 @@
 
               </div>
 
-
               <!-- Attributes -->
               <div class="tab-pane fade show" id="attribute-tab-pane" role="tabpanel" 
                    aria-labelledby="attribute-tab" tabindex="0">
@@ -302,7 +301,6 @@
                 </table>
               </div>
 
-
               <!-- Sub-template -->
                <div class="tab-pane fade show" id="subtemplates-tab-pane" role="tabpanel"
                aria-labelledby="basic-tab" tabindex="0">
@@ -345,6 +343,32 @@
                       </td>
                     </tr>
 
+                    <tr>
+                      <th>Mimic Owl Slots</th>
+                      <td>
+                        <t t-call="master_purchasing.slot_template">
+
+                          <t t-set="article_body">
+                            <p>
+                              This is a content as a children elements.<br/>
+                              <small>Date: November 2024</small>
+                            </p>
+                            <t t-call="master_purchasing.static_template"/><br/>
+                          </t>
+
+                          <t t-set="article_button">
+                            <button class="btn btn-sm btn-primary">Learn More</button>
+                            <button class="btn btn-sm btn-secondary">Learn More</button>
+                          </t>
+
+                          <t t-set="article_title" t-valuef="Scoped Variabe"/>
+
+                          <p class="text-warning">Any default content</p>
+                          <br/>
+                        </t>  
+                      </td>
+                    </tr>
+
                   </tbody>
                 </table>
                </div>
@@ -355,11 +379,13 @@
       </div>
     </t>
   </template>
+
   <template id="static_template" name="Static Template">
     <div class="alert alert-info">
       This is a static template.
     </div>
   </template>
+
   <template id="dynamic_template" name="Dynamic Template">
     <article class="bg-light p-3 border shadow">
       <h3 t-out="article_title"/>
@@ -368,4 +394,14 @@
       <button class="btn btn-sm btn-primary">Learn More</button>
     </article>
   </template>
+
+  <template id="slot_template" name="Slot Template">
+    <article class="bg-light p-3 border shadow">
+      <t t-out="article_title"/>
+      <t t-out="article_body" />
+      <t t-out="0"/>
+      <t t-out="article_button"/>
+    </article>
+  </template>
+
 </odoo>

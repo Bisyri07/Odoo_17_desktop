@@ -20,6 +20,12 @@
                         type="button" role="tab" aria-controls="attribute-tab-pane" aria-selected="true">Attribute
                 </button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="subtemplates-tab" data-bs-toggle="tab" 
+                        data-bs-target="#subtemplates-tab-pane" 
+                        type="button" role="tab" aria-controls="subtemplates-tab-pane" aria-selected="true">Subtemplates
+                </button>
+              </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -215,12 +221,13 @@
 
               </div>
 
+
               <!-- Attributes -->
               <div class="tab-pane fade show" id="attribute-tab-pane" role="tabpanel" 
                    aria-labelledby="attribute-tab" tabindex="0">
 
                 <h3 class="py-3">Attributes</h3>  
-                <table class='table table-striped table-sm border'>
+                <table class="table table-striped table-sm border">
                   <tbody>
 
                     <tr>
@@ -294,10 +301,71 @@
                   </tbody>
                 </table>
               </div>
+
+
+              <!-- Sub-template -->
+               <div class="tab-pane fade show" id="subtemplates-tab-pane" role="tabpanel"
+               aria-labelledby="basic-tab" tabindex="0">
+
+                <h3 class="py-3">Subtemplate</h3>
+                <table class="table table-striped table-sm border">
+                  <tbody>
+
+                    <tr>
+                      <th>Static Template</th>
+                      <td>
+                        <t t-call="master_purchasing.static_template"/>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>Dynamic Template</th>
+                      <td>
+                        <t t-set="article_title" t-valuef="Global variable"/>
+                        <t t-call="master_purchasing.dynamic_template"/>
+                        <br/>
+                        <t t-call="master_purchasing.dynamic_template">
+                          <t t-set="article_title" t-valuef="Scoped Variable"/>
+                        </t>  
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>passing Children Elements</th>
+                      <td>
+                        <t t-call="master_purchasing.dynamic_template">
+                          <t t-set="article_title" t-valuef="Scoped Variable"/>
+                          <p>
+                            This is a content as a children elements.<br/>
+                            <small>Date: November 2024</small>
+                          </p>
+                          <t t-call="master_purchasing.static_template"/>
+                          <br/>
+                        </t>  
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+               </div>
+
             </div>
           </div>
         </div>
       </div>
     </t>
+  </template>
+  <template id="static_template" name="Static Template">
+    <div class="alert alert-info">
+      This is a static template.
+    </div>
+  </template>
+  <template id="dynamic_template" name="Dynamic Template">
+    <article class="bg-light p-3 border shadow">
+      <h3 t-out="article_title"/>
+      <p class="text-muted"><small>This is a dynamic template</small></p>
+      <t t-out="0"/>
+      <button class="btn btn-sm btn-primary">Learn More</button>
+    </article>
   </template>
 </odoo>

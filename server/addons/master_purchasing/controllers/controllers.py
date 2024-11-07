@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from odoo.tools import html_escape, html_sanitize
 from .token_based_auth import authenticate
 from odoo.http import request, Response
+from markupsafe import Markup
 from odoo import http
 import json
 
@@ -56,6 +58,10 @@ class PythonTemplate(http.Controller):
             'some_dict': {'any_key':'any_value'},
             'some_function': some_function(),
             'model': some_model,
+            'html': '<h3>This is an HTML value!</h3>',
+            'html_escape': '<h3>This is an HTML value!</h3> %s' % html_escape('Added by attacker <script>alert("Fix your page or I will hack it!s")</script>'),
+            'html_sanitize': '<h3>This is an HTML value!</h3> %s' % html_sanitize('Added by attacker <script>alert("Fix your page or I will hack it!s")</script>'),
+            'markup': Markup('<h3>This is an HTML value!</h3> %s') % 'Added by attacker <script>alert("Fix your page or I will hack it!s")</script>',
         }
 
         return request.render('master_purchasing.PythonTemplate', data)

@@ -26,6 +26,12 @@
                         type="button" role="tab" aria-controls="subtemplates-tab-pane" aria-selected="true">Subtemplates
                 </button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="security-tab" data-bs-toggle="tab" 
+                        data-bs-target="#security-tab-pane" 
+                        type="button" role="tab" aria-controls="security-tab-pane" aria-selected="true">security
+                </button>
+              </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -223,88 +229,86 @@
 
               <!-- Attributes -->
               <div class="tab-pane fade show" id="attribute-tab-pane" role="tabpanel" 
-                   aria-labelledby="attribute-tab" tabindex="0">
+              aria-labelledby="attribute-tab" tabindex="0">
+              <h3 class="py-3">Attributes</h3>  
+              <table class="table table-striped table-sm border">
+                <tbody>
 
-                <h3 class="py-3">Attributes</h3>  
-                <table class="table table-striped table-sm border">
-                  <tbody>
+                  <tr>
+                    <th>Expression</th>
+                    <td>
+                      <p>Website:
+                        <a t-att-href="user_id.partner_id.website">
+                          <span t-esc="user_id.partner_id.website"/>
+                        </a>
+                      </p>
+                      <p>Email:
+                        <a t-att-href="'mailto:%s' % user_id.partner_id.email">
+                          <span t-esc="user_id.partner_id.email"/>
+                        </a>
+                      </p>
+                    </td>
+                  </tr>
 
-                    <tr>
-                      <th>Expression</th>
-                      <td>
-                        <p>Website:
-                          <a t-att-href="user_id.partner_id.website">
-                            <span t-esc="user_id.partner_id.website"/>
-                          </a>
-                        </p>
-                        <p>Email:
-                          <a t-att-href="'mailto:%s' % user_id.partner_id.email">
-                            <span t-esc="user_id.partner_id.email"/>
-                          </a>
-                        </p>
-                      </td>
-                    </tr>
+                  <tr>
+                    <th>Literals</th>
+                    <td>
+                      <p>Email:
+                        <a t-attf-href="mailto:{{ user_id.partner_id.email }}">
+                          <span t-esc="user_id.partner_id.email"/>
+                        </a>
+                      </p>
+                      <p>Email:
+                        <a t-attf-href="mailto:#{ user_id.partner_id.email }">
+                          <span t-esc="user_id.partner_id.email"/>
+                        </a>
+                      </p>
+                      <button t-attf-class="btn {{ 'btn-info' if request.session.uid else 'btn-danger' }}">
+                        Status
+                      </button>                
+                    </td>
+                  </tr>
 
-                    <tr>
-                      <th>Literals</th>
-                      <td>
-                        <p>Email:
-                          <a t-attf-href="mailto:{{ user_id.partner_id.email }}">
-                            <span t-esc="user_id.partner_id.email"/>
-                          </a>
-                        </p>
-                        <p>Email:
-                          <a t-attf-href="mailto:#{ user_id.partner_id.email }">
-                            <span t-esc="user_id.partner_id.email"/>
-                          </a>
-                        </p>
-                        <button t-attf-class="btn {{ 'btn-info' if request.session.uid else 'btn-danger' }}">
-                          Status
-                        </button>                
-                      </td>
-                    </tr>
+                  <tr>
+                    <th>Mapping</th>
+                    <td>
+                      <p>
+                        Website:
+                        <a t-att="{
+                          'href': user_id.partner_id.website,
+                          'title': '%s Website' % user_id.partner_id.name
+                        }" >
+                          <span t-out="user_id.partner_id.website"/>
+                        </a>
+                      </p>
+                    </td>
+                  </tr>
 
-                    <tr>
-                      <th>Mapping</th>
-                      <td>
-                        <p>
-                          Website:
-                          <a t-att="{
-                            'href': user_id.partner_id.website,
-                            'title': '%s Website' % user_id.partner_id.name
-                          }" >
-                            <span t-out="user_id.partner_id.website"/>
-                          </a>
-                        </p>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th>Pairing</th>
-                      <td>
-                        <div class="form-check">
-                          <input 
-                           class="form-check-input" 
-                           type="checkbox" 
-                           value="" 
-                           id="flexCheckDefault" 
-                           disabled="disabled" 
-                           t-att="[('checked' if request.session.uid else ''), 'checked']"/>
-                          <label class="form-check-label" for="flexCheckDefault">
-                            Is logged-in?
-                          </label>
-                        </div>
-                      </td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
+                  <tr>
+                    <th>Pairing</th>
+                    <td>
+                      <div class="form-check">
+                        <input 
+                          class="form-check-input" 
+                          type="checkbox" 
+                          value="" 
+                          id="flexCheckDefault" 
+                          disabled="disabled" 
+                          t-att="[('checked' if request.session.uid else ''), 'checked']"/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Is logged-in?
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
               </div>
 
               <!-- Sub-template -->
               <div class="tab-pane fade show" id="subtemplates-tab-pane" role="tabpanel"
-              aria-labelledby="basic-tab" tabindex="0">
-
+              aria-labelledby="subtemplates-tab" tabindex="0">
               <h3 class="py-3">Subtemplate</h3>
               <table class="table table-striped table-sm border">
                 <tbody>
@@ -373,7 +377,64 @@
               </table>
               </div>
 
-               <!--  -->
+              <!-- Security -->
+              <div class="tab-pane fade show" id="security-tab-pane" role="tabpanel"
+              aria-labelledby="security-tab" tabindex="0">
+              <h3 class="py-3">Security</h3>
+              <table class="table table-striped table-sm border">
+                <tbody>
+
+                  <tr>
+                    <th>Using Group</th>
+                    <td>
+                      <div t-groups="base.group_system" class="alert alert-danger">
+                        <h4>For Administrator Only</h4>
+                      </div>
+                      <div>
+                        For Public User
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Using Escape</th>
+                    <td>
+                      <t t-out="html"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Not Using Escape</th>
+                    <td>
+                      <t t-raw="html"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>html_escape</th>
+                    <td>
+                      <t t-raw="html_escape"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>html_sanitize</th>
+                    <td>
+                      <t t-raw="html_sanitize"/>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Markup</th>
+                    <td>
+                      <t t-out="markup"/>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              </div> 
 
             </div>
           </div>

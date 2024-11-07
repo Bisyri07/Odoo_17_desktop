@@ -32,6 +32,12 @@
                         type="button" role="tab" aria-controls="security-tab-pane" aria-selected="true">security
                 </button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="cache-tab" data-bs-toggle="tab" 
+                        data-bs-target="#cache-tab-pane" 
+                        type="button" role="tab" aria-controls="cache-tab-pane" aria-selected="true">Cache / No Cache
+                </button>
+              </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -39,7 +45,6 @@
               <div class="tab-pane fade show" id="basic-tab-pane" role="tabpanel" 
                    aria-labelledby="basic-tab" tabindex="0">
                 <h3 class='py-3'>Data Output</h3>
-
                 <table class='table table-striped table-sm border'>
                   <tbody>
                     <tr>
@@ -435,8 +440,54 @@
 
                 </tbody>
               </table>
-
               </div> 
+
+              <!-- Cache/No Cache -->
+              <div class="tab-pane fade show" id="cache-tab-pane" role="tabpanel"
+              aria-labelledby="cache-tab" tabindex="0">
+              <h3 class="table table-striped table-sm border">Cache/No Cache</h3>
+              <table class="table table-striped table-sm border">
+                <tbody>
+
+                  <tr>
+                    <th>Models</th>
+                    <td>
+                      <h4>Sales Order</h4>
+                      <ul>
+                        <t t-foreach="model" t-as="order">
+                          <li t-cache="order">
+                            <strong t-out="order.item.item"/>
+                            <small t-out="order.item_code"/>
+                            <span class="badge bg-secondary" t-out="order.status"/>
+                          </li>
+                        </t>
+                      </ul>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Boolean</th>
+                    <td t-cache="'cache the element' if not request.session.uid else False">
+                      <h4>
+                        Sales Order Count <span class="badge bg-success" t-out="len(model)"/>
+                      </h4>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>No cache</th>
+                    <td>
+                      <div t-cache="any_value">
+                        <h4> Sales Order Count
+                          <span t-nocache="add any text" class="badge bg-success" t-out="len(model)"/>
+                        </h4>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+              </div>
 
             </div>
           </div>

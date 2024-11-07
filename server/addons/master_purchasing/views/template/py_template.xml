@@ -427,7 +427,9 @@
                   <tr>
                     <th>Markup</th>
                     <td>
-                      <t t-out="markup"/>
+                      <t t-out="markup"/> 
+                      <br/>
+                      <t t-out="str(markup)"/>
                     </td>
                   </tr>
 

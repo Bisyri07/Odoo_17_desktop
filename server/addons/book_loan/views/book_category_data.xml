@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='book_category_tree' model='ir.ui.view'>
+      <field name='name'>Book Category</field>
+      <field name='model'>book.category</field>
+      <field name='arch' type='xml'>
+        <tree>
+          <field name='category'/>
+          <field name='category_code'/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- action for item type menu -->
+    <record id='book_category_action' model='ir.actions.act_window'>
+      <field name='name'>Book Category</field>
+      <field name='res_model'>book.category</field>
+      <field name='view_mode'>tree,form</field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Menu navbar -->
+  <menuitem id='book_loan_root' name='Book Loan' sequence='4'>
+    <menuitem id='book_loan_menu' name='Book Loan Menu'>
+      <menuitem 
+        id='book_loan_menu_action'
+        action='book_loan_action'
+      />    
+      <menuitem 
+        id='book_menu_action'
+        action='library_book_action'
+      />    
+      <menuitem 
+        id='book_category_menu_action'
+        action='book_category_action'
+      />    
+    </menuitem>
+  </menuitem>
+</odoo>

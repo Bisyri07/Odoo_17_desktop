@@ -1,0 +1,6 @@
+id,name,author,isbn,published_date,category,total_copies
+book_1,To Kill a Mockingbird,Harper Lee,9780061120084,1960-07-11,Fiction,15
+book_2,Brief History of Time,Stephen Hawking,9780553380163,1988-04-01,Science,13
+book_3,1984,George Orwell,9780451524935,1949-06-08,Fiction,24
+book_4,Sapiens,Yuval Noah Harari,9780062316097,2011-09-04,History,17
+book_5,Python Crash Course,Eric Matthes,9781593276034,2015-11-01,Technology,20

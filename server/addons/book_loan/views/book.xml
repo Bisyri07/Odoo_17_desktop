@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- view tree -->
+    <record id='library_book_tree' model='ir.ui.view'>
+      <field name='name'>Library Book</field>
+      <field name='model'>library.book</field>
+      <field name='arch' type='xml'>
+        <tree string='Library Book Tree'>
+          <field name='name' optional="show"/>
+          <field name='author' optional="show"/>
+          <field name='isbn' optional="show"/>
+          <field name='published_date' optional="show"/>
+          <field name='category' optional="show"/>
+          <field name='total_copies' optional="hide"/>
+          <field name='amount' optional="hide"/>
+          <field name='available_copies' optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- action for item type menu -->
+    <record id='library_book_action' model='ir.actions.act_window'>
+      <field name='name'>Library Book</field>
+      <field name='res_model'>library.book</field>
+      <field name='view_mode'>tree,form</field>
+    </record>
+
+    <!-- form -->
+    <record id='library_book_form' model='ir.ui.view'>
+      <field name='name'>Library Book</field>
+      <field name='model'>library.book</field>
+      <field name='arch' type='xml'>
+        <form>
+          <sheet>
+            <group>
+
+              <group>
+                <field name='name'/>
+                <field name='isbn'/>
+                <field name='category'/>
+                <field name='amount'/>
+              </group>
+
+              <group>
+                <field name='author'/>
+                <field name='published_date'/>
+                <field name='total_copies'/>
+                <field name='available_copies'/>
+              </group>
+
+            </group>
+          </sheet>    
+        </form>
+      </field>
+    </record> 
+
+  </data>
+</odoo>

@@ -13,7 +13,6 @@
           <field name='published_date' optional="show"/>
           <field name='category' optional="show"/>
           <field name='total_copies' optional="hide"/>
-          <field name='amount' optional="hide"/>
           <field name='available_copies' optional="hide"/>
         </tree>
       </field>
@@ -39,7 +38,6 @@
                 <field name='name'/>
                 <field name='isbn'/>
                 <field name='category'/>
-                <field name='amount'/>
               </group>
 
               <group>

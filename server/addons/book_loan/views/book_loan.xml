@@ -44,25 +44,8 @@
             widget="statusbar"
             statusbar_visible="dipinjam,dikembalikan,hilang"
             />
-          </header>
-          <sheet>
-            <group>
-              <group>
-                <field name='name'/>
-                <field name='book_id'/>
-                <field name='loan_date'/>
-                <field name='amount'/>
-              </group>
-              <group>
-                <field name='contact_name'/>
-                <field name='loan_term'/>
-                <field name='return_date'/>
-                <field name='state'/>
-              </group>
-            </group>
 
-            <footer>
-              <button
+            <button
               name="action_return"
               type="object"
               string="Dikembalikan"
@@ -88,7 +71,23 @@
               class="oe_link" 
               special="cancel"
               />
-            </footer>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name='name'/>
+                <field name='book_id'/>
+                <field name='loan_date'/>
+                <field name='amount'/>
+              </group>
+              <group>
+                <field name='contact_name'/>
+                <field name='loan_term'/>
+                <field name='return_date'/>
+                <field name='state'/>
+              </group>
+            </group>
+
           </sheet>
         </form>
       </field>

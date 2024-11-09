@@ -13,13 +13,16 @@ class Book(models.Model):
     published_date = fields.Date(string='Tanggal Terbit')
     category =  fields.Many2one(comodel_name='book.category', string='Kategori')
     total_copies = fields.Integer(string='Jumlah Salinan', required=True)
-    available_copies = fields.Integer(string='Salinan yang Tersedia', compute='_compute_available_copies')
-    amount = fields.Integer(string='Jumlah yang dipinjam', store=True)
+    available_copies = fields.Integer(
+        string='Salinan yang Tersedia', compute='_compute_available_copies', store=True
+    )
+    book_loan_id = fields.One2many(comodel_name='book.loan',inverse_name='book_id', string='Loans')
 
-
-    # Computed field total (ppn + subtotal)
-    @api.depends('amount')
+    @api.depends('total_copies', 'book_loan_id.amount', 'book_loan_id.state')
     def _compute_available_copies(self):
-        for a in self:
-            a.available_copies = a.total_copies - a.amount
+        for record in self:
+            loaned_copies = sum(
+                loan.amount  for loan in record.book_loan_id if loan.state == 'dipinjam'
+            )
+            record.available_copies = record.total_copies - loaned_copies
 

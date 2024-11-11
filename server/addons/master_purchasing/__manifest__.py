@@ -62,8 +62,8 @@
     ],
 
     'assets': {
-        'web.report_assets_common': [
-            'master_purchasing/static/src/*'
+        'web.assets_frontend': [
+            'master_purchasing/static/src/js/*',
         ],
     },
 

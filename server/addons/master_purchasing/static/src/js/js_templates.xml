@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="master_purchasing.jsTemplate">
+    <div class="alert alert-primary">
+      <h3>Rendered from public widget.</h3>
+    </div>
+  </t>
+</templates>

@@ -3,6 +3,7 @@
     'name': "Master Purchasing",
     'version':'1.0',
     'summary': "purchasing data center",
+    'sequence':2,
 
     'description': """
     This module contains all the common menus related to purchasing like:

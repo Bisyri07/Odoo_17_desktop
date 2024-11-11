@@ -2,6 +2,7 @@
     'name': "Master Data",
     'version':'1.0',
     'summary': "Master data center",
+    'sequence':1,
 
     'description': """
     This module contains all the common menus related to Master data like:

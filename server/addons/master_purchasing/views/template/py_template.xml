@@ -477,11 +477,20 @@
                   <tr>
                     <th>No cache</th>
                     <td>
+                      <t t-set="template_variable" t-value="10"/>
                       <div t-cache="any_value">
                         <h4> Sales Order Count
                           <span t-nocache="add any text" class="badge bg-success" t-out="len(model)"/>
                         </h4>
+                        <p t-nocache="">Template Variable<span t-out="template_variable"/></p>
+                        <t t-set="template_variable" t-value="1000"/>
+                        <p t-nocache="" t-nocache-cached_template_variable="template_variable">
+                          <span t-out="cached_template_variable"/>
+                          <strong t-out="cached_template_variable + 5"/>
+                        </p>
                       </div>
+
+                      <p><b>Template Variable <span t-out="template_variable"/></b></p>
                     </td>
                   </tr>
 

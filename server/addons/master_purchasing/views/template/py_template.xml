@@ -548,13 +548,17 @@
               <h3 class="py-3">Javascript</h3>
               <table class="table table-striped table-sm border">
                 <tbody>
+
                   <tr>
-                    <th>Javascript</th>
-                    <td>
-                      <div class="js_template"/>
-                      <div class="js_template"/>
-                    </td>
+                    <th>Render template from public widget</th>
+                    <td><div class="js_template"/></td>
                   </tr>
+
+                  <tr>
+                    <th>Date Output, Variable, Looping</th>
+                    <td><div class="js_tmp_with_variables"/></td>
+                  </tr>
+
                 </tbody>
               </table>
               </div>

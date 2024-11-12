@@ -31,3 +31,14 @@ publicWidget.registry.templateWithVariables = publicWidget.Widget.extend({
         this.$target.html(content)
     }
 })
+
+publicWidget.registry.mainTemplate = publicWidget.Widget.extend({
+    selector: '.js_template_extension',
+    template: 'master_purchasing.mainTemplate',
+    start(){
+        this.renderElement();
+
+        const templatePrimary = document.querySelector('.js_template_primary')
+        templatePrimary.innerHTML = renderToElement('master_purchasing.mainTemplatePrimary').outerHTML
+    }
+})

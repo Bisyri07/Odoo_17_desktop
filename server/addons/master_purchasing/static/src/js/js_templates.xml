@@ -37,4 +37,25 @@
     </div>
   </t>
 
+  <!-- template inheritance -->
+  <t t-name="master_purchasing.mainTemplate">
+    <div class="alert alert-primary">
+      <h3>This is the main template.</h3>
+    </div>
+  </t>
+
+  <t t-inherit="master_purchasing.mainTemplate" t-inherit-mode="extension">
+    <xpath expr="div" postion="inside">
+      <button class="btn btn-info">Submit</button>
+    </xpath>
+  </t>
+  <t 
+    t-name="master_purchasing.mainTemplatePrimary" 
+    t-inherit="master_purchasing.mainTemplate" 
+    t-inherit-mode="primary">
+    <xpath expr="div" postion="inside">
+      <button class="btn btn-info ms-2">Close</button>
+    </xpath>
+  </t>
+
 </templates>

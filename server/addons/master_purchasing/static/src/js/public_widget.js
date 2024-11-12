@@ -42,3 +42,11 @@ publicWidget.registry.mainTemplate = publicWidget.Widget.extend({
         templatePrimary.innerHTML = renderToElement('master_purchasing.mainTemplatePrimary').outerHTML
     }
 })
+
+publicWidget.registry.subTemplate = publicWidget.Widget.extend({
+    selector: '.js_sub_template',
+    template: 'master_purchasing.subTemplate',
+    start(){
+        this.renderElement();
+    }
+})

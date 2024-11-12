@@ -49,6 +49,7 @@
       <button class="btn btn-info">Submit</button>
     </xpath>
   </t>
+
   <t 
     t-name="master_purchasing.mainTemplatePrimary" 
     t-inherit="master_purchasing.mainTemplate" 
@@ -56,6 +57,20 @@
     <xpath expr="div" postion="inside">
       <button class="btn btn-info ms-2">Close</button>
     </xpath>
+  </t>
+
+  <t t-name="master_purchasing.subTemplate">
+    <div id="wrapper">
+      <header>
+        <div class="alert alert-info">Header</div>
+      </header>
+      <main>
+        <t t-call="master_purchasing.mainTemplate" />
+      </main>
+      <footer>
+        <div class="alert alert-info">Footer</div>
+      </footer>
+    </div>
   </t>
 
 </templates>

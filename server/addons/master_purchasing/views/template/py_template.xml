@@ -569,6 +569,11 @@
                     </td>
                   </tr>
 
+                  <tr>
+                    <th>Sub-Template</th>
+                    <td><div class="js_sub_template" /></td>
+                  </tr>
+
                 </tbody>
               </table>
               </div>

@@ -22,13 +22,13 @@
           </ul>
         </li>
 
-        <!-- <li>Models:
+        <li>Models:
           <ul>
             <li t-foreach="model" t-as="el" t-key="el.id">
-                <span t-out="el.name"/>
+                <span t-esc="el.item"/>
             </li>
           </ul>
-        </li> -->
+        </li>
 
         <li>Attributes:
           <a t-attf-href="mailto:{{ email }}"><span t-out="email"/></a>

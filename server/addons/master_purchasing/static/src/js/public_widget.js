@@ -15,11 +15,18 @@ publicWidget.registry.jsTemplate = publicWidget.Widget.extend({
 publicWidget.registry.templateWithVariables = publicWidget.Widget.extend({
     selector: '.js_tmp_with_variables',
     template: 'master_purchasing.templateWithVariables',
-    start(){
+
+    init(){
+        this._super(...arguments);
+        this.orm = this.bindService("orm");
+    },
+
+    async start(){
         const content = renderToElement(this.template, {
             string: "QWEB Tutorial using Javascript",
             array: [1,2,3,4,5],
             email: 'mbisyri33@gmail.com',
+            model: await this.orm.searchRead("sales.order", [], ["item"]),
         })
         this.$target.html(content)
     }

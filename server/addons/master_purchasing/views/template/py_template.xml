@@ -574,6 +574,19 @@
                     <td><div class="js_sub_template" /></td>
                   </tr>
 
+                  <tr>
+                    <th>Template with events</th>
+                    <td>
+                      <div class="js_template_with_events"/>
+
+                      <div class="alert alert-primary" id="betterForSeo">
+                        <h3>Template with Events</h3>
+                        <p>Counter <span id="counter">0</span></p>
+                        <button class="btn btn-info">Increase Counter</button>
+                      </div>
+                    </td>
+                  </tr>
+
                 </tbody>
               </table>
               </div>

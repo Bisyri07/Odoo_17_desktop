@@ -73,4 +73,12 @@
     </div>
   </t>
 
+  <t t-name="master_purchasing.templateWithEvents">
+    <div class="alert alert-primary">
+      <h3>Template with Events</h3>
+      <p>Counter <span id="counter">0</span></p>
+      <button class="btn btn-info">Increase Counter</button>
+    </div>
+  </t>
+
 </templates>

@@ -50,3 +50,37 @@ publicWidget.registry.subTemplate = publicWidget.Widget.extend({
         this.renderElement();
     }
 })
+
+publicWidget.registry.templateWithEvents = publicWidget.Widget.extend({
+    selector: '.js_template_with_events',
+    template: 'master_purchasing.templateWithEvents',
+    events: {
+        'click button': 'onClick',
+    },
+    init(){
+        this._super(...arguments)
+        this.counter = 0
+    },
+    start(){
+        this.renderElement();
+    },
+    onClick(){
+        this.counter++
+        this.$el.find('#counter').text(this.counter)
+    }
+})
+
+publicWidget.registry.betterForSeo = publicWidget.Widget.extend({
+    selector: '#betterForSeo',
+    events: {
+        'click button': 'onClick',
+    },
+    init(){
+        this._super(...arguments)
+        this.counter = 0
+    },
+    onClick(){
+        this.counter++
+        this.$el.find('#counter').text(this.counter)
+    }
+})

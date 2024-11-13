@@ -53,3 +53,8 @@ Lihat folder modules/ untuk memahami cara membuat modul Odoo dari awal. Modul in
 
 2. 🗂️ Pembuatan Model
 Di dalam folder models/, terdapat contoh model dengan penjelasan setiap field dan metode utama yang digunakan. Contoh model ini dapat digunakan sebagai referensi untuk operasi CRUD (Create, Read, Update, Delete) di Odoo.
+
+-----------------------------------------------------------------------------------------------------
+
+📄 Lisensi
+Repositori ini menggunakan lisensi MIT License.

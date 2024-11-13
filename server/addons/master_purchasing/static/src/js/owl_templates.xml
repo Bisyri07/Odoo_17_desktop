@@ -21,14 +21,33 @@
 
       <hr/>
 
-      <OwlSubComponent/>
-      
+      <OwlSubComponent>
+        <t t-slot="title">
+          <h2>Rendered using slot</h2>
+        </t>
+        <t t-slot="date_author">
+          <div>
+            <t t-set="article_date" t-value="new Date()"/>
+            <small t-out="article_date.toLocaleString()"/> |
+            <small>Bisyri Mustofa</small>
+          </div>
+        </t>
+        <hr/>
+        <p>Add nay content here.</p>
+        <button class="btn btn-primary">Learn More</button>
+      </OwlSubComponent>
+
     </div>
   </t>
 
   <t t-name="master_purchasing.owl_sub_component">
     <div>
       <h4>This is an Owl Sub-component template.</h4>
+      <article class="alert alert-info">
+        <t t-set-slot="title"/>
+        <t t-set-slot="date_author"/>
+        <t t-slot="default"/>
+      </article>
     </div>
   </t>
 

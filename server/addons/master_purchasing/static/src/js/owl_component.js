@@ -8,10 +8,17 @@ class OwlMainComponent extends Component {
         this.state = useState({
             counter: 0,
         })
+
+        this.date = new Date().toLocaleString()
+        
     }
 
     increaseCounter(){
         this.state.counter++
+    }
+
+    get someList(){
+        return [1,2,3,4,5]
     }
 
 }

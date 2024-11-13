@@ -6,6 +6,15 @@
       <button class="btn btn-primary" t-on-click="increaseCounter">
         Counter: <span t-out="state.counter"/>
       </button>
+      <hr/>
+      <p>Date: <span t-out="date"/></p>
+      <hr/>
+      <ul>
+        <li t-foreach="someList" t-as="l" t-key="l">
+          <span t-out="l" />
+        </li>
+      </ul>
+      
     </div>
   </t>
 </templates>

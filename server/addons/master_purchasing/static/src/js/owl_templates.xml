@@ -6,15 +6,30 @@
       <button class="btn btn-primary" t-on-click="increaseCounter">
         Counter: <span t-out="state.counter"/>
       </button>
+
       <hr/>
+
       <p>Date: <span t-out="date"/></p>
+
       <hr/>
+
       <ul>
         <li t-foreach="someList" t-as="l" t-key="l">
           <span t-out="l" />
         </li>
       </ul>
+
+      <hr/>
+
+      <OwlSubComponent/>
       
     </div>
   </t>
+
+  <t t-name="master_purchasing.owl_sub_component">
+    <div>
+      <h4>This is an Owl Sub-component template.</h4>
+    </div>
+  </t>
+
 </templates>

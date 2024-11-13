@@ -2,6 +2,9 @@
 import { Component, xml, mount, whenReady, useState } from "@odoo/owl"
 import { templates } from "@web/core/assets"
 
+class OwlSubComponent extends Component {
+    static template = "master_purchasing.owl_sub_component"
+}
 
 class OwlMainComponent extends Component {
     setup(){
@@ -10,7 +13,7 @@ class OwlMainComponent extends Component {
         })
 
         this.date = new Date().toLocaleString()
-        
+
     }
 
     increaseCounter(){
@@ -31,6 +34,7 @@ class OwlMainComponent extends Component {
 // `
 
 OwlMainComponent.template = "master_purchasing.owl_main_component";
+OwlMainComponent.components = { OwlSubComponent }
 
 whenReady(
     ()=>{

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
-  
+  <t t-name="master_purchasing.owl_main_component">
+    <div class="p-4 border">
+      <h3>This is rendered using OWL</h3>
+      <button class="btn btn-primary" t-on-click="increaseCounter">
+        Counter: <span t-out="state.counter"/>
+      </button>
+    </div>
+  </t>
 </templates>

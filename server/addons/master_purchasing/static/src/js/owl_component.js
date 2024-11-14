@@ -6,6 +6,10 @@ class OwlSubComponent extends Component {
     static template = "master_purchasing.owl_sub_component"
 }
 
+class OwlSubComponentChild extends Component {
+    static template = "master_purchasing.owl_sub_component_child"
+}
+
 class OwlMainComponent extends Component {
     setup(){
         this.state = useState({
@@ -26,22 +30,21 @@ class OwlMainComponent extends Component {
 
 }
 
-// template
-// OwlMainComponent.template = xml`
-// <div class="p-4 border">
-//     <h3>This is rendered using OWL</h3>
-// </div>
-// `
 
 OwlMainComponent.template = "master_purchasing.owl_main_component";
-OwlMainComponent.components = { OwlSubComponent }
+OwlMainComponent.components = { OwlSubComponent, OwlSubComponentChild }
 
 whenReady(
     ()=>{
-        const element = document.querySelector('.js_template_owl')
-        if (element){
-        // mount is used to attach a component to a specific DOM element
-        mount(OwlMainComponent, element, { templates })
+        // const element = document.querySelector('.js_template_owl')
+        // if (element){
+        // // mount is used to attach a component to a specific DOM element
+        // mount(OwlMainComponent, element, { templates })
+        // }
+
+        const element = document.querySelectorAll('.js_template_owl')
+        if (element.length > 0){
+            element.forEach(el => mount(OwlMainComponent, el, {templates}))
         }
     }
 )

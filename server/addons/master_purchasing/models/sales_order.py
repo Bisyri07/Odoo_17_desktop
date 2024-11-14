@@ -9,6 +9,7 @@ class SalesOrder(models.Model):
 
 
     item = fields.Many2one(comodel_name='master.item', string="Item Name")
+    name = fields.Char(related='item.item', store=True, readonly=True)
     item_code = fields.Char(related='item.item_code', string="Item Code", store=True)
     qty = fields.Integer(string="Quantity", required=True)
     so_no = fields.Char(string='SO No', readonly=True, copy=False, default='New')

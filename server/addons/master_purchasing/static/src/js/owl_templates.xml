@@ -83,4 +83,18 @@
     </xpath>
   </t>
 
+  <t t-name="master_purchasing.with_backend_data">
+    <div class="p-4 border">
+      <h2>Sales Order</h2>
+      <hr/>
+      <ul>
+        <li t-foreach="state.orders" t-as="order" t-key="order.id">
+          <strong t-out="order.name"/> - <span t-out="order.item_code"/> <br/>
+          <strong t-out="order.so_no"/> - <span t-out="order.so_date"/> <br/>
+          <strong t-out="order.qty"/> - <span t-out="order.total"/> <br/>
+        </li>
+      </ul>
+    </div>
+  </t>
+
 </templates>

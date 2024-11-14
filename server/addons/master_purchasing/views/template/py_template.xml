@@ -608,7 +608,13 @@
                     <th>Template Using Owl</th>
                     <td>
                       <div class="js_template_owl"/>
-                      <div class="js_template_owl"/>
+                      <!-- <div class="js_template_owl"/> -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Owl template with data</th>
+                    <td>
+                      <div class="owl_template_data" />
                     </td>
                   </tr>
                 </tbody>

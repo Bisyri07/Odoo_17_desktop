@@ -34,9 +34,9 @@
 
           <div class='row'>
             <div class='col-6' style="margin-bottom: 10px;">
-              <h3>Order # <span t-esc='o.so_no'/></h3>
-              <p><strong>Order Date: </strong> <span t-esc='o.so_date'/></p>
-              <p><strong>Sales person:</strong> <span t-esc='o.salesperson_id.name'/></p>
+              <h3>Order # <span t-esc='doc.so_no'/></h3>
+              <p><strong>Order Date: </strong> <span t-esc='doc.so_date'/></p>
+              <p><strong>Sales person:</strong> <span t-esc='doc.salesperson_id.name'/></p>
             </div>
           </div>
 

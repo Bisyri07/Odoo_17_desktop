@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Odoo 17",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "console": "integratedTerminal",
+            "pythonPath": "C:/Odoo/.venv/Scripts/python.exe",
+            "program": "C:/Odoo/server/odoo-bin",
+            "args": [
+                "--config=C:\\Odoo\\server\\odoo.conf",
+                "--log-level=info"
+            ]
+        }
+    ]
+}

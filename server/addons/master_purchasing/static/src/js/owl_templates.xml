@@ -87,6 +87,7 @@
     <div class="p-4 border">
       <h2>Sales Order</h2>
       <hr/>
+
       <ul>
         <li t-foreach="state.orders" t-as="order" t-key="order.id">
           <strong t-out="order.name"/> - <span t-out="order.item_code"/> <br/>
@@ -94,6 +95,16 @@
           <strong t-out="order.qty"/> - <span t-out="order.total"/> <br/>
         </li>
       </ul>
+
+      <!-- Form Submission -->
+      <div class="alert alert-info">
+        <h3>Form Submission</h3>
+        <form t-on-submit="(e)=>this.submitForm(e)" >
+          <input type="text" class="form-control mb-3" t-model="state.txtInput"/>
+          <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
     </div>
   </t>
 

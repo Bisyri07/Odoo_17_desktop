@@ -65,3 +65,11 @@ class PythonTemplate(http.Controller):
         }
 
         return request.render('master_purchasing.PythonTemplate', data)
+    
+
+    @http.route('/python_template/form', type="json", auth="public")
+    def qweb_form(self, **kw):
+        print(kw)
+
+        return {"status" : 1}
+    

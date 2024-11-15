@@ -51,7 +51,16 @@ class OwlWithBackEndData extends Component {
                 }
             })
             this.state.orders = data;
-        });
+        })
+    }
+    
+    async submitForm(e){
+        e.preventDefault()
+        const data = await jsonrpc("/python_template/form", {
+            txtInput: this.state.txtInput,
+            otherValue: 'other value'
+        })
+        console.log(data)
     }
 
 }

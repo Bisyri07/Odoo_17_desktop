@@ -7,4 +7,5 @@ Uninstall.exe
 note.txt
 Odoo/server/odoo.log
 .venv
+.idea
 vcredist

@@ -3,6 +3,23 @@
   <t t-name="master_purchasing.MyOwlApp">
     <div class="container py-5">
       <h2>Owl App</h2>
+      <br/>
+      <table class="table table-striped border">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <t t-foreach="state.partners" t-as="partner" t-key="partner.id">
+            <tr>
+              <td><span t-out="partner.id" /></td>
+              <td><span t-out="partner.name" /></td>
+            </tr>
+          </t>
+        </tbody>
+      </table>
     </div>
   </t>
 </templates>

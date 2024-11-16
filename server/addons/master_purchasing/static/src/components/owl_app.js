@@ -12,11 +12,18 @@ class MyOwlApp extends Component {
 
     // method
     setup(){
+        this.state = useState({
+            partners : [],
+        })
         this.orm = useService("orm")
 
         onWillStart(async ()=>{
-            const data = await this.orm.searchRead("res.partner", [], ["name"])
-            console.log(data)
+            const data = await this.orm.searchRead("res.partner", [], ["name"], {
+                limit: 10,
+                order: "id desc",
+            })
+            // console.log(data)
+            this.state.partners = data
         })
     }
 }

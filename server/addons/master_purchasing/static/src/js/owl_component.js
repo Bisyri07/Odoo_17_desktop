@@ -3,6 +3,7 @@ import { Component, xml, mount, whenReady, useState, onWillStart } from "@odoo/o
 import { templates } from "@web/core/assets"
 import { jsonrpc } from "@web/core/network/rpc_service"
 
+
 class OwlSubComponent extends Component {
     static template = "master_purchasing.owl_sub_component"
 }

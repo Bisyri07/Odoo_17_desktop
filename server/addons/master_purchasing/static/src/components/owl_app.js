@@ -31,6 +31,13 @@ class MyOwlApp extends Component {
 
     async newPartner(){
         await this.orm.create("res.partner", [{"name": this.state.name}])
+        
+        this.state.partners = await this.orm.searchRead("res.partner", [], ["name"], {
+            limit: 10,
+            order: "id desc",
+        })
+
+        this.state.name = ""
     }
 }
 

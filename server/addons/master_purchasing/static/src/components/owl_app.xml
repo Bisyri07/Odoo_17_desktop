@@ -4,6 +4,16 @@
     <div class="container py-5">
       <h2>Owl App</h2>
       <br/>
+      <div class="d-flex align-item-center justify-content-between">
+        <h4>Partners</h4>
+
+        <form class="d-flex align-item-center" t-on-submit.prevent="newPartner">
+          <input class="form-control me-2" type="text" t-model="state.name"/>
+          <button class="btn btn-success">Submit</button>
+        </form>
+        
+      </div>
+      <br/>
       <table class="table table-striped border">
         <thead>
           <tr>

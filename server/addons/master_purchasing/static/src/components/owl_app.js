@@ -14,7 +14,9 @@ class MyOwlApp extends Component {
     setup(){
         this.state = useState({
             partners : [],
+            name : "",
         })
+
         this.orm = useService("orm")
 
         onWillStart(async ()=>{
@@ -25,6 +27,10 @@ class MyOwlApp extends Component {
             // console.log(data)
             this.state.partners = data
         })
+    }
+
+    async newPartner(){
+        await this.orm.create("res.partner", [{"name": this.state.name}])
     }
 }
 

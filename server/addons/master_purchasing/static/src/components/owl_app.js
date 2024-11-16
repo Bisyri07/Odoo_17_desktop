@@ -2,13 +2,14 @@
 import { templates } from "@web/core/assets"
 import { makeEnv, startServices } from "@web/env"
 import { useService } from "@web/core/utils/hooks"
-
+import { MainComponentsContainer } from "@web/core/main_components_container"
 
 const { Component, whenReady, App, useState, onWillStart } = owl
 
 
 class MyOwlApp extends Component {
     static template = "master_purchasing.MyOwlApp"
+    static components = { MainComponentsContainer }
 
     // method
     setup(){
@@ -38,6 +39,7 @@ class MyOwlApp extends Component {
         })
 
         this.state.name = ""
+        this.env.services.notification.add("New Partner added successfully!", {type: "success"})
     }
 }
 

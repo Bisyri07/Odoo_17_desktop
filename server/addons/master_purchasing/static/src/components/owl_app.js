@@ -1,21 +1,38 @@
 /* @odoo-module */
 import { templates } from "@web/core/assets"
+import { makeEnv, startServices } from "@web/env"
+import { useService } from "@web/core/utils/hooks"
 
-const { Component, whenReady, App} = owl
+
+const { Component, whenReady, App, useState, onWillStart } = owl
 
 
 class MyOwlApp extends Component {
     static template = "master_purchasing.MyOwlApp"
+
+    // method
+    setup(){
+        this.orm = useService("orm")
+
+        onWillStart(async ()=>{
+            const data = await this.orm.searchRead("res.partner", [], ["name"])
+            console.log(data)
+        })
+    }
 }
 
+
 whenReady(
-    ()=>{
-       const owl_app = new App(MyOwlApp, { templates })
-       
-       const owl_app_selector = document.querySelector('#owl_wrap')
-       if (owl_app_selector){
-           owl_app.mount(owl_app_selector)      
-       }
+    async()=>{
+        const env = makeEnv()
+        await startServices(env)
+        
+        const owl_app = new App(MyOwlApp, { templates, env })
+        
+        const owl_app_selector = document.querySelector('#owl_wrap')
+        if (owl_app_selector){
+            owl_app.mount(owl_app_selector)      
+        }
     }
 )
 

@@ -73,3 +73,7 @@ class PythonTemplate(http.Controller):
 
         return {"status" : 1}
     
+
+    @http.route('/python_template/owl', type="http", auth="public")
+    def qweb_tutorial_owl(self, **kw):
+        return http.request.render("master_purchasing.my_owl_app")

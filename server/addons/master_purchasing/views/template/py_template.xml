@@ -685,4 +685,18 @@
     </xpath>
   </template>
 
+  <template id="my_owl_app" name="Owl App">
+    <html>
+      <head>
+        <h1>Ini adalah odoo owl</h1>
+      </head>
+      <body>
+        <div>
+          <h2>Selamat Datang di Halaman Baru!</h2>
+          <p>Ini adalah contoh halaman yang dibuat dengan OWL di Odoo.</p>
+        </div>
+      </body>
+    </html>
+  </template>
+
 </odoo>

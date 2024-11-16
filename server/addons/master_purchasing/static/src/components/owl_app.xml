@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-name="master_purchasing.MyOwlApp">
+    <div class="container py-5">
+      <h2>Owl App</h2>
+    </div>
+  </t>
+</templates>

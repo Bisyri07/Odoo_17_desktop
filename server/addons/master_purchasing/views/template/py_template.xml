@@ -688,12 +688,17 @@
   <template id="my_owl_app" name="Owl App">
     <html>
       <head>
-        <h1>Ini adalah odoo owl</h1>
+        <t t-call-assets="my_owl_app.assets"/>
       </head>
       <body>
         <div>
           <h2>Selamat Datang di Halaman Baru!</h2>
-          <p>Ini adalah contoh halaman yang dibuat dengan OWL di Odoo.</p>
+          <p>Ini adalah contoh halaman yang dibuat dengan OWL di Odoo.</p><br/>
+
+          <div id="owl_wrap" class="container">
+            
+          </div>  
+
         </div>
       </body>
     </html>

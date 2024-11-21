@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xml:space="preserve">
+  <t t-name="master_dashboard.ChartRenderer">
+		<canvas t-ref="chart"/>
+  </t>
+</template>

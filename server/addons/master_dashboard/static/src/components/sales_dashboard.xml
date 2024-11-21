@@ -48,6 +48,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
+                <ChartRenderer/>
               </div>
             </div>
           </div>

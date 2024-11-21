@@ -53,9 +53,19 @@ package.json
 /share/
 /src/
 
-# folder dan file yg ga penting di push ke github
+# folder yg ga penting di push ke github
 .github
 debian
 doc
 setup
 odoo
+
+# file yg ga penting di push ke github
+CONTRIBUTING.md
+COPYRIGHT
+LICENSE
+MANIFEST.in
+odoo-bin
+SECURITY.md
+setup.cfg
+setup.py

@@ -9,3 +9,13 @@ Odoo/server/odoo.log
 .venv
 .idea
 vcredist
+
+# file yg ga penting di push ke github
+Odoo/server/CONTRIBUTING.md
+Odoo/server/COPYRIGHT
+Odoo/server/LICENSE
+Odoo/server/MANIFEST.in
+Odoo/server/odoo-bin
+Odoo/server/SECURITY.md
+Odoo/server/setup.cfg
+Odoo/server/setup.py

@@ -37,6 +37,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
+                <canvas t-ref="chart"/>
               </div>
             </div>
             <div class="col-lg-6 m-0 p-0">

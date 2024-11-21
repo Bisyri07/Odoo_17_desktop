@@ -22,6 +22,9 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <KpiCard/>
+          </div>
         </div>
         <div class="col-lg-5">
           

@@ -19,7 +19,7 @@ export class ChartRenderer extends Component {
         new Chart(
         this.chartRef.el,
         {
-          type: 'doughnut',
+          type: this.props.type,
           data: {
               labels: [
                 'Red',
@@ -29,22 +29,12 @@ export class ChartRenderer extends Component {
               datasets: [{
                 label: 'My First Dataset',
                 data: [300, 50, 100],
-                backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
+                hoverOffset: 4,
               },
               {
                 label: 'My Second Dataset',
                 data: [100, 70, 150],
-                backgroundColor: [
-                  'red',
-                  'green',
-                  'orange'
-                ],
-                hoverOffset: 4
+                hoverOffset: 4,
               }
               ]
           },
@@ -56,7 +46,7 @@ export class ChartRenderer extends Component {
               },
               title: {
                 display: true,
-                text: 'Doughnut Chart',
+                text: this.props.title,
                 position: 'bottom',
               },
             },

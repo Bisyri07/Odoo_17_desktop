@@ -12,7 +12,7 @@
 
     'website': "https://www.yourcompany.com",
     'category': 'dashboard',
-    
+
     'application': True,
     # 'installable': True,
 
@@ -22,22 +22,25 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
         'views/templates.xml',
+
+        # menus
+        'views/sales_dashboard.xml',
+        'views/main_menu.xml',
     ],
+
+    # static assets
+    'assets': {
+        'web.assets_backend': [
+            'master_dashboard/static/src/components/**/*.js',
+            'master_dashboard/static/src/components/**/*.xml',
+            # 'master_dashboard/static/src/components/**/*.scss',
+        ],
+    },
 
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
-
-    # static assets
-    # 'assets': {
-    #     'web.assets_backend': [
-    #         'master_dashboard/static/src/components/**/*.js',
-    #         'master_dashboard/static/src/components/**/*.xml',
-    #         'master_dashboard/static/src/components/**/*.scss',
-    #     ]
-    # }
 }
 

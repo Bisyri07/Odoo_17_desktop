@@ -1,0 +1,9 @@
+<odoo>
+  <data>
+    <menuitem id='master_dashboard_root' name='Master Dashboard' sequence='3'>
+      <menuitem id='master_dashboard_menu' name='Dashboard Menu'>
+        <menuitem id='master_dashboard_menu_action' action='master_dashboard_action'/>
+      </menuitem>
+    </menuitem>
+  </data>
+</odoo>

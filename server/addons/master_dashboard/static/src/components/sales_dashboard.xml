@@ -23,7 +23,10 @@
             </div>
           </div>
           <div class="row">
-            <KpiCard/>
+            <KpiCard name="'Quotation'"/>
+            <KpiCard name="'Orders'"/>
+            <KpiCard name="'Revenues'"/>
+            <KpiCard name="'Average Order'"/>
           </div>
         </div>
         <div class="col-lg-5">

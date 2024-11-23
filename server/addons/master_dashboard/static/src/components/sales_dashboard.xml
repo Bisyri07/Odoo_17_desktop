@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="row">
-            <KpiCard name="'Quotation'" value="10" percentage="6"/>
+            <KpiCard name="'Quotation'" value="state.quotations.value" percentage="state.quotations.percentage"/>
             <KpiCard name="'Orders'" value="20" percentage="20"/>
             <KpiCard name="'Revenues'" value="'30.50K'" percentage="-3"/>
             <KpiCard name="'Average Order'" value="'2.5K'" percentage="-10"/>

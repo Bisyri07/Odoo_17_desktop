@@ -17,7 +17,6 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 
 // export: Membuat kelas ini dapat diimpor di file lain
 export class OwlSalesDashboard extends Component {
-
     // 1. Inisialisasi properti dan hook dalam komponen Owl.
     setup(){
         this.state = useState({
@@ -37,10 +36,8 @@ export class OwlSalesDashboard extends Component {
         onWillStart(async ()=> {
             // memanggil pustaka manipulasi tanggal dari moment.min.js
             await loadJS("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js")
-
             // memanggil data tanggal sebelum dirender ke halaman
             await this.getDates()
-
             // memanggil data quotation sebelum dirender ke halaman
             await this.getQuotations()
 
@@ -49,16 +46,29 @@ export class OwlSalesDashboard extends Component {
 
     // 3. digunakan untuk mengambil data dari server menggunakan ORM
     async getQuotations(){
+        // Memfilter pesanan dengan status sent atau draft.
         let domain = [['state', 'in', ['sent', 'draft']]]
-
         // jika semua state.period tidak lebih dari 0 maka akan menghitung semua record sale.order
         if (this.state.period > 0) {
-            domain.push(['date_order', '>', this.state.date])
+            // filter tanggal
+            domain.push(['date_order', '>', this.state.current_date])
         }
-
         const data = await this.orm.searchCount("sale.order", domain)
+        this.state.quotations.value = data
 
-        this.state.quotations.value = data 
+        // Previous period
+        let prev_domain = [['state', 'in', ['sent', 'draft']]]
+        if (this.state.period > 0) {
+            prev_domain.push(['date_order', '>', this.state.previous_date], ['date_order', '<=', this.state.current_date])
+        }
+        // menghitung previous quotation
+        const prev_data = await this.orm.searchCount("sale.order", prev_domain)
+        // menghitung persentase quotation dari sebelumnya
+        const percentage = ((data - prev_data)/prev_data) * 100
+        // menyimpan hasil persentase ke dalam state dengan 2 angka di belakang koma
+        this.state.quotations.percentage = percentage.toFixed(2)
+        // cek tanggal
+        console.log(this.state.previous_date, this.state.current_date)
     }
 
     // 5. digunakan untuk mendapatkan quotation dengan cara merubah tanggalnya terlebih dahulu
@@ -69,9 +79,11 @@ export class OwlSalesDashboard extends Component {
 
     // 6. digunakan untuk mendapatkan data tanggal hari ini yang dikurangi tanggal period
     async getDates(){
-        this.state.date = moment().subtract(this.state.period, 'days').format('L')
+        // Jika this.state.period = 90, maka tanggal dihitung menjadi 90 hari sebelum hari ini.
+        this.state.current_date = moment().subtract(this.state.period, 'days').format('L')
+        // Jika this.state.period = 90, maka tanggal dihitung menjadi 180 hari sebelum hari ini.
+        this.state.previous_date = moment().subtract(this.state.period * 2, 'days').format('L')
     }
-
 }
 
 // Baris ini menghubungkan komponen OwlSalesDashboard dengan template XML-nya.

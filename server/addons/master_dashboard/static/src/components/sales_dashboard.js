@@ -40,6 +40,8 @@ export class OwlSalesDashboard extends Component {
             await this.getDates()
             // memanggil data quotation sebelum dirender ke halaman
             await this.getQuotations()
+            //
+            await this.getOrders()
 
         })
     }
@@ -68,16 +70,42 @@ export class OwlSalesDashboard extends Component {
         // menyimpan hasil persentase ke dalam state dengan 2 angka di belakang koma
         this.state.quotations.percentage = percentage.toFixed(2)
         // cek tanggal
-        console.log(this.state.previous_date, this.state.current_date)
+        //console.log(this.state.previous_date, this.state.current_date)
+    }
+
+    // 7. menghitung jumlah order sama seperti quotation
+    async getOrders(){
+        let domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date_order', '>', this.state.current_date])
+        }
+        const data = await this.orm.searchCount("sale.order", domain)
+        //this.state.quotations.value = data
+
+        // Previous period
+        let prev_domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            prev_domain.push(['date_order', '>', this.state.previous_date], ['date_order', '<=', this.state.current_date])
+        }
+
+        const prev_data = await this.orm.searchCount("sale.order", prev_domain)
+        const percentage = ((data - prev_data)/prev_data) * 100
+        //this.state.quotations.percentage = percentage.toFixed(2)
+
+        this.state.orders = {
+            value: data,
+            percentage: percentage.toFixed(2)
+        }
     }
 
     // 5. digunakan untuk mendapatkan quotation dengan cara merubah tanggalnya terlebih dahulu
     async onChangePeriod(){
         await this.getDates()
         await this.getQuotations()
+        await this.getOrders()
     } 
 
-    // 6. digunakan untuk mendapatkan data tanggal hari ini yang dikurangi tanggal period
+    // 6. digunakan untuk mendapatkan data tanggal dikurangi tanggal period
     async getDates(){
         // Jika this.state.period = 90, maka tanggal dihitung menjadi 90 hari sebelum hari ini.
         this.state.current_date = moment().subtract(this.state.period, 'days').format('L')

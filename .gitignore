@@ -19,3 +19,5 @@ Odoo/server/odoo-bin
 Odoo/server/SECURITY.md
 Odoo/server/setup.cfg
 Odoo/server/setup.py
+package-lock.json
+package.json

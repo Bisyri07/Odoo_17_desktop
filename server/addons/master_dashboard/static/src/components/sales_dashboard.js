@@ -40,11 +40,11 @@ export class OwlSalesDashboard extends Component {
             await this.getDates()
             // memanggil data quotation sebelum dirender ke halaman
             await this.getQuotations()
-            //
+            // memanggil data orders sebelum dirender ke halaman
             await this.getOrders()
-
         })
     }
+
 
     // 3. digunakan untuk mengambil data dari server menggunakan ORM
     async getQuotations(){
@@ -73,6 +73,7 @@ export class OwlSalesDashboard extends Component {
         //console.log(this.state.previous_date, this.state.current_date)
     }
 
+
     // 7. menghitung jumlah order sama seperti quotation
     async getOrders(){
         let domain = [['state', 'in', ['sale', 'done']]]
@@ -80,7 +81,6 @@ export class OwlSalesDashboard extends Component {
             domain.push(['date_order', '>', this.state.current_date])
         }
         const data = await this.orm.searchCount("sale.order", domain)
-        //this.state.quotations.value = data
 
         // Previous period
         let prev_domain = [['state', 'in', ['sale', 'done']]]
@@ -88,15 +88,30 @@ export class OwlSalesDashboard extends Component {
             prev_domain.push(['date_order', '>', this.state.previous_date], ['date_order', '<=', this.state.current_date])
         }
 
+        // menghitung order
         const prev_data = await this.orm.searchCount("sale.order", prev_domain)
         const percentage = ((data - prev_data)/prev_data) * 100
-        //this.state.quotations.percentage = percentage.toFixed(2)
+
+        // 8. menghitung revenue
+        const current_revenue = await this.orm.readGroup("sale.order", domain, ["amount_total:sum"], [])
+        const prev_revenue = await this.orm.readGroup("sale.order", prev_domain, ["amount_total:sum"], [])
+        const revenue_percentage = ((current_revenue[0].amount_total - prev_revenue[0].amount_total)/prev_revenue[0].amount_total)*100
+
+        // 9. menghitung average order
+        const current_avg = await this.orm.readGroup("sale.order", domain, ["amount_total:avg"], [])
+        const prev_avg = await this.orm.readGroup("sale.order", prev_domain, ["amount_total:avg"], [])
+        const avg_percentage = ((current_avg[0].amount_total - prev_avg[0].amount_total)/prev_avg[0].amount_total)*100
 
         this.state.orders = {
             value: data,
-            percentage: percentage.toFixed(2)
+            percentage: percentage.toFixed(2),
+            revenue: `Rp.${(current_revenue[0].amount_total/1000).toFixed(0)}K`,
+            revenue_percentage: revenue_percentage.toFixed(2),
+            average: `Rp.${(current_avg[0].amount_total/1000).toFixed(0)}K`,
+            average_percentage: avg_percentage.toFixed(2),
         }
     }
+
 
     // 5. digunakan untuk mendapatkan quotation dengan cara merubah tanggalnya terlebih dahulu
     async onChangePeriod(){

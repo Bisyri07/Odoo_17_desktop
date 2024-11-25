@@ -25,8 +25,8 @@
           <div class="row">
             <KpiCard name="'Quotation'" value="state.quotations.value" percentage="state.quotations.percentage"/>
             <KpiCard name="'Orders'" value="state.orders.value" percentage="state.orders.percentage"/>
-            <KpiCard name="'Revenues'" value="'30.50K'" percentage="-3"/>
-            <KpiCard name="'Average Order'" value="'2.5K'" percentage="-10"/>
+            <KpiCard name="'Revenues'" value="state.orders.revenue" percentage="state.orders.revenue_percentage"/>
+            <KpiCard name="'Average Order'" value="state.orders.average" percentage="state.orders.average_percentage"/>
           </div>
           <div class="row">
             <div class="col-lg-6 m-0 p-0">

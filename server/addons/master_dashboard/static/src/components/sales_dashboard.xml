@@ -31,10 +31,12 @@
                      name="'Orders'"
                      value="state.orders.value"
                      percentage="state.orders.percentage"/>
-            <KpiCard name="'Revenues'"
+            <KpiCard onClick.bind="viewRevenues"
+                     name="'Revenues'"
                      value="state.orders.revenue"
                      percentage="state.orders.revenue_percentage"/>
-            <KpiCard name="'Average Order'"
+            <KpiCard onClick.bind="viewRevenues"
+                     name="'Average Order'"
                      value="state.orders.average"
                      percentage="state.orders.average_percentage"/>
           </div>

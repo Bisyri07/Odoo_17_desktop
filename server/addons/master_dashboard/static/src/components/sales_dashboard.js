@@ -155,7 +155,7 @@ export class OwlSalesDashboard extends Component {
         })
     }
 
-    // 12. mereferensikan tampilan untuk orders KPI apabila diklik ke halaman yg ditentukan
+    // 12. mereferensikan tampilan untuk order KPI apabila diklik ke halaman yg ditentukan
     viewOrders(){
         let domain = [['state', 'in', ['sale', 'done']]]
         if (this.state.period > 0) {
@@ -174,6 +174,27 @@ export class OwlSalesDashboard extends Component {
             ]
         })
     }
+
+    // 13. mereferensikan tampilan untuk revenue KPI & rata2nya apabila diklik ke halaman yg ditentukan
+    viewRevenues(){
+        let domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date_order', '>', this.state.current_date])
+        }
+
+        this.actionService.doAction({
+            type: 'ir.actions.act_window',
+            name: 'Quotations',
+            res_model: 'sale.order',
+            domain: domain,
+            context: {group_by: ['date_order']},
+            views: [
+                [false, 'graph'],
+                [false, 'form'],
+            ]
+        })
+    }
+
 }
 
 // Baris ini menghubungkan komponen OwlSalesDashboard dengan template XML-nya.

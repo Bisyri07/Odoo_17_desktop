@@ -28,9 +28,10 @@ export class OwlSalesDashboard extends Component {
 
         })
         
-        // 2. fungsi hook owl untuk mengakses ORM service dan disimpan `this.orm` 
-        // agar bisa digunakan di fungsi lain 
-        this.orm = useService("orm")
+        // 2. fungsi hook owl untuk mengakses ORM service dan disimpan `this.orm` agar bisa digunakan di fungsi lain
+        this.orm = useService("orm");
+        // 10. gunakan action service yg tersedia dari bawaan hook owl odoo
+        this.actionService = useService("action");
 
         // 4. Memanggil fungsi getQuotations sebelum komponen ditampilkan di layar.
         onWillStart(async ()=> {
@@ -105,9 +106,9 @@ export class OwlSalesDashboard extends Component {
         this.state.orders = {
             value: data,
             percentage: percentage.toFixed(2),
-            revenue: `Rp.${(current_revenue[0].amount_total/1000).toFixed(0)}K`,
+            revenue: `Rp${(current_revenue[0].amount_total/1000).toFixed(0)}K`,
             revenue_percentage: revenue_percentage.toFixed(2),
-            average: `Rp.${(current_avg[0].amount_total/1000).toFixed(0)}K`,
+            average: `Rp${(current_avg[0].amount_total/1000).toFixed(0)}K`,
             average_percentage: avg_percentage.toFixed(2),
         }
     }
@@ -126,6 +127,32 @@ export class OwlSalesDashboard extends Component {
         this.state.current_date = moment().subtract(this.state.period, 'days').format('L')
         // Jika this.state.period = 90, maka tanggal dihitung menjadi 180 hari sebelum hari ini.
         this.state.previous_date = moment().subtract(this.state.period * 2, 'days').format('L')
+    }
+
+    // 11. mereferensikan tampilan untuk quotation KPI apabila diklik ke halaman yg ditentukan
+    async viewQuotation(){
+        let domain = [['state', 'in', ['sent', 'draft']]]
+        if (this.state.period > 0) {
+            domain.push(['date_order', '>', this.state.current_date])
+        }
+
+        // referensi view atau halaman yang dituju
+        let list_view = await this.orm.searchRead(
+            "ir.model.data",
+            [['name', '=', 'view_quotation_tree_with_onboarding']],
+            ['res_id']
+        )
+
+        this.actionService.doAction({
+            type: 'ir.actions.act_window',
+            name: 'Quotations',
+            res_model: 'sale.order',
+            domain: domain,
+            views: [
+                [list_view.length > 0 ? list_view[0].res_id : false, 'list'],
+                [false, 'form'],
+            ]
+        })
     }
 }
 

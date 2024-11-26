@@ -23,11 +23,12 @@
             </div>
           </div>
           <div class="row">
-            <KpiCard onClick.bind="viewQuotation"
+            <KpiCard onClick.bind="viewQuotations"
                      name="'Quotation'"
                      value="state.quotations.value"
                      percentage="state.quotations.percentage"/>
-            <KpiCard name="'Orders'"
+            <KpiCard onClick.bind="viewOrders"
+                     name="'Orders'"
                      value="state.orders.value"
                      percentage="state.orders.percentage"/>
             <KpiCard name="'Revenues'"

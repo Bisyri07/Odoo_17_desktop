@@ -130,7 +130,7 @@ export class OwlSalesDashboard extends Component {
     }
 
     // 11. mereferensikan tampilan untuk quotation KPI apabila diklik ke halaman yg ditentukan
-    async viewQuotation(){
+    async viewQuotations(){
         let domain = [['state', 'in', ['sent', 'draft']]]
         if (this.state.period > 0) {
             domain.push(['date_order', '>', this.state.current_date])
@@ -150,6 +150,26 @@ export class OwlSalesDashboard extends Component {
             domain: domain,
             views: [
                 [list_view.length > 0 ? list_view[0].res_id : false, 'list'],
+                [false, 'form'],
+            ]
+        })
+    }
+
+    // 12. mereferensikan tampilan untuk orders KPI apabila diklik ke halaman yg ditentukan
+    viewOrders(){
+        let domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date_order', '>', this.state.current_date])
+        }
+
+        this.actionService.doAction({
+            type: 'ir.actions.act_window',
+            name: 'Quotations',
+            res_model: 'sale.order',
+            domain: domain,
+            context: {group_by: ['date_order']},
+            views: [
+                [false, 'list'],
                 [false, 'form'],
             ]
         })

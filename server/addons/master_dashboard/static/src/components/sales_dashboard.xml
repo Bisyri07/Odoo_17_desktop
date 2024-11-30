@@ -49,7 +49,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'doughnut'" title="'Doughnut Chart'"/>
+                <ChartRenderer type="'doughnut'" title="'Doughnut Chart'" config="state.topProducts"/>
               </div>
             </div>
             <div class="col-lg-6 m-0 p-0">
@@ -60,7 +60,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'pie'" title="'Pie Chart'"/>
+                <ChartRenderer type="'pie'" title="'Pie Chart'" config="state.topSalesPeople"/>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'line'" title="'Line Chart'"/>
+                <ChartRenderer type="'line'" title="'Line Chart'" config="state.monthlySales"/>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'bar'" title="'Bar Chart'"/>
+                <ChartRenderer type="'bar'" title="'Bar Chart'" config="state.partnerOrders"/>
               </div>
             </div>
           </div>

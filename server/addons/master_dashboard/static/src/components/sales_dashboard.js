@@ -17,6 +17,51 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 
 // export: Membuat kelas ini dapat diimpor di file lain
 export class OwlSalesDashboard extends Component {
+    // 14. Membuat chart interaktif mengambil data dari database
+    // top products
+    getTopProducts(){
+        this.state.topProducts = {
+            data: {
+                labels: [
+                    'Red',
+                    'Blue',
+                    'Yellow'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100],
+                    hoverOffset: 4,
+                },
+                {
+                    label: 'My Second Dataset',
+                    data: [100, 70, 150],
+                    hoverOffset: 4,
+                }]
+            },
+        }
+    }
+
+    // top sales people
+    getTopSalesPeople(){
+        this.state.topSalesPeople = {
+
+        }
+    }
+
+    // monthly sales
+    getMonthlySales(){
+        this.state.monthlySales = {
+
+        }
+    }
+
+    // partner orders
+    getPartnerOrders(){
+        this.state.partnerOrders = {
+
+        }
+    }
+
     // 1. Inisialisasi properti dan hook dalam komponen Owl.
     setup(){
         this.state = useState({
@@ -43,6 +88,12 @@ export class OwlSalesDashboard extends Component {
             await this.getQuotations()
             // memanggil data orders sebelum dirender ke halaman
             await this.getOrders()
+
+            // memanggil chart
+            this.getTopProducts()
+            this.getTopSalesPeople()
+            this.getMonthlySales()
+            this.getPartnerOrders()
         })
     }
 

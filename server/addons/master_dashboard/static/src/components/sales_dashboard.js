@@ -19,22 +19,26 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 export class OwlSalesDashboard extends Component {
     // 14. Membuat chart interaktif mengambil data dari database
     // top products
-    getTopProducts(){
+    async getTopProducts(){
+
+        const data = await this.orm.readGroup(
+            "sale.report",
+            [],
+            ["product_id", "price_total"],
+            ["product_id"]
+        )
+
         this.state.topProducts = {
             data: {
-                labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow'
-                ],
+                labels: data.map(d => d.product_id[1]),
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    label: 'total',
+                    data: data.map(d => d.price_total),
                     hoverOffset: 4,
                 },
                 {
-                    label: 'My Second Dataset',
-                    data: [100, 70, 150],
+                    label: 'Count',
+                    data: data.map(d => d.product_id_count),
                     hoverOffset: 4,
                 }]
             },
@@ -89,8 +93,8 @@ export class OwlSalesDashboard extends Component {
             // memanggil data orders sebelum dirender ke halaman
             await this.getOrders()
 
-            // memanggil chart
-            this.getTopProducts()
+            // 15. memanggil chart
+            await this.getTopProducts()
             this.getTopSalesPeople()
             this.getMonthlySales()
             this.getPartnerOrders()

@@ -41,8 +41,8 @@ Folder yang digunakan hanya folder addons di dalam folder server!
 4. kalau muncul tinggal install modulenya. contoh: master_data dan master_purchasing
 
 CAUTION!!!
-hanya pindahkan atau download module yang kalian ingin gunakan tidak usah mengclone semua resource di repository ini
-clone hanya dari folder addons nya saja
+hanya pindahkan atau download module yang kalian ingin gunakan tidak usah mengclone resource di repository ini
+download hanya dari folder `addons` nya saja.
 
 -----------------------------------------------------------------------------------------------------
 

@@ -66,14 +66,14 @@ export class OwlSalesDashboard extends Component {
         const data = await this.orm.readGroup(
             "sale.report",
             domain,
-            ["partner_id", "price_total"],
-            ["partner_id"],
+            ["user_id", "price_total"],
+            ["user_id"],
             { limit: 5, orderby: "price_total desc" }
         )
 
         this.state.topSalesPeople = {
             data: {
-                labels: data.map(d => d.partner_id[1]),
+                labels: data.map(d => d.user_id[1]),
                 datasets: [{
                     label: 'total',
                     data: data.map(d => d.price_total),
@@ -86,8 +86,36 @@ export class OwlSalesDashboard extends Component {
 
     // monthly sales
     async getMonthlySales(){
-        this.state.monthlySales = {
+        let domain = [['state', 'in', ['draft', 'sent','sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date', '>', this.state.current_date])
+        }
 
+        const data = await this.orm.readGroup(
+            "sale.report",
+            domain,
+            ["date", "state", "price_total"],
+            ["date", "state"],
+            { orderby: "date desc" , lazy: false}
+        )
+        console.log(data)
+        this.state.monthlySales = {
+            data: {
+                // yang akan diambil hanya data unique saja dgn menggunakan new Set()
+                labels: [... new Set(data.map(d => d.date))],
+                datasets: [{
+                    label: 'Quotations',
+                    data: data.filter(d => d.state == 'draft' || d.state == 'sent').map(d => d.price_total),
+                    hoverOffset: 4,
+                    backgroundColor: "red",
+                },
+                {
+                    label: 'Count',
+                    data: data.filter(d => ['sale', 'done'].includes(d.state)).map(d => d.price_total),
+                    hoverOffset: 4,
+                    backgroundColor: "#067dd1",
+                }]
+            },
         }
     }
 

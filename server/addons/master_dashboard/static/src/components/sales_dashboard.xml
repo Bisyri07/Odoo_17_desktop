@@ -55,7 +55,7 @@
             <div class="col-lg-6 m-0 p-0">
               <div class="shadow-sm border m-2 p-4 bg-white">
                 <div class="d-flex align-items-center justify-content-between">
-                  <h3 class="text-primary fw-bold">Top Sales People</h3>
+                  <h3 class="text-primary fw-bold">Top Sales by SalesPerson</h3>
                   <div class="px-3 py-1 bg-primary cursor-pointer">
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
@@ -76,7 +76,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'line'" title="'Line Chart'" config="state.monthlySales"/>
+                <ChartRenderer type="'bar'" title="'Bar Chart'" config="state.monthlySales"/>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'bar'" title="'Bar Chart'" config="state.partnerOrders"/>
+                <ChartRenderer type="'line'" title="'Line Chart'" config="state.partnerOrders"/>
               </div>
             </div>
           </div>

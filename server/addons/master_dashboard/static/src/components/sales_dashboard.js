@@ -28,7 +28,7 @@ export class OwlSalesDashboard extends Component {
         if (this.state.period > 0) {
             domain.push(['date', '>', this.state.current_date])
         }
-
+        // 16. lakukan agregasi dng menggunakan readGroup
         const data = await this.orm.readGroup(
             "sale.report",
             domain,
@@ -36,7 +36,7 @@ export class OwlSalesDashboard extends Component {
             ["product_id"],
             { limit: 5, orderby: "price_total desc" }
         )
-
+        // 17. configurasi data dan chart yg akan ditampilkan di halaman
         this.state.topProducts = {
             data: {
                 labels: data.map(d => d.product_id[1]),
@@ -57,21 +57,42 @@ export class OwlSalesDashboard extends Component {
     }
 
     // top sales people
-    getTopSalesPeople(){
-        this.state.topSalesPeople = {
+    async getTopSalesPeople(){
+        let domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date', '>', this.state.current_date])
+        }
 
+        const data = await this.orm.readGroup(
+            "sale.report",
+            domain,
+            ["partner_id", "price_total"],
+            ["partner_id"],
+            { limit: 5, orderby: "price_total desc" }
+        )
+
+        this.state.topSalesPeople = {
+            data: {
+                labels: data.map(d => d.partner_id[1]),
+                datasets: [{
+                    label: 'total',
+                    data: data.map(d => d.price_total),
+                    hoverOffset: 4,
+                    backgroundColor: data.map((_, index) => getColor(index)),
+                }]
+            },
         }
     }
 
     // monthly sales
-    getMonthlySales(){
+    async getMonthlySales(){
         this.state.monthlySales = {
 
         }
     }
 
     // partner orders
-    getPartnerOrders(){
+    async getPartnerOrders(){
         this.state.partnerOrders = {
 
         }
@@ -106,9 +127,9 @@ export class OwlSalesDashboard extends Component {
 
             // 15. memanggil function / method chart
             await this.getTopProducts()
-            this.getTopSalesPeople()
-            this.getMonthlySales()
-            this.getPartnerOrders()
+            await this.getTopSalesPeople()
+            await this.getMonthlySales()
+            await this.getPartnerOrders()
         })
     }
 

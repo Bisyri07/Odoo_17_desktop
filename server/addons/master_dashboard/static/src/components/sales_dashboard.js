@@ -11,21 +11,30 @@ import { loadJS } from "@web/core/assets"
 import { ChartRenderer } from "./chart_renderer/chart_renderer"
 // digunakan untuk mendapatkan referensi ke suatu service dalam komponen Owl
 import { useService } from "@web/core/utils/hooks"
+// digunakan untuk pengambilan warna dari skema warna default Odoo
+import { getColor } from "@web/core/colors/colors"
 
 // Component adalah library frontend untuk pembuatan UI di OWL 
 const { Component, onWillStart, useRef, onMounted, useState } = owl
 
 // export: Membuat kelas ini dapat diimpor di file lain
 export class OwlSalesDashboard extends Component {
+
     // 14. Membuat chart interaktif mengambil data dari database
     // top products
     async getTopProducts(){
+        // 15. tambahkan domain yg sama dari getOrders
+        let domain = [['state', 'in', ['sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date', '>', this.state.current_date])
+        }
 
         const data = await this.orm.readGroup(
             "sale.report",
-            [],
-            ["product_id", "price_total"],
-            ["product_id"]
+            domain,
+            ["product_tmpl_id", "price_total"],
+            ["product_id"],
+            { limit: 5, orderby: "price_total desc" }
         )
 
         this.state.topProducts = {
@@ -35,11 +44,13 @@ export class OwlSalesDashboard extends Component {
                     label: 'total',
                     data: data.map(d => d.price_total),
                     hoverOffset: 4,
+                    backgroundColor: data.map((_, index) => getColor(index)),
                 },
                 {
                     label: 'Count',
                     data: data.map(d => d.product_id_count),
                     hoverOffset: 4,
+                    backgroundColor: data.map((_, index) => getColor(index)),
                 }]
             },
         }
@@ -93,7 +104,7 @@ export class OwlSalesDashboard extends Component {
             // memanggil data orders sebelum dirender ke halaman
             await this.getOrders()
 
-            // 15. memanggil chart
+            // 15. memanggil function / method chart
             await this.getTopProducts()
             this.getTopSalesPeople()
             this.getMonthlySales()

@@ -33,6 +33,7 @@ export class ChartRenderer extends Component {
                 position: 'bottom',
               },
             },
+            scales: 'scales' in this.props.config ? this.props.config.scales : {},
           },
         }
         );
@@ -40,4 +41,3 @@ export class ChartRenderer extends Component {
 }
 
 ChartRenderer.template = "master_dashboard.ChartRenderer"
-

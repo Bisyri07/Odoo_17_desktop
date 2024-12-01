@@ -98,7 +98,7 @@ export class OwlSalesDashboard extends Component {
             ["date", "state"],
             { orderby: "date desc" , lazy: false}
         )
-        console.log(data)
+
         this.state.monthlySales = {
             data: {
                 // yang akan diambil hanya data unique saja dgn menggunakan new Set()
@@ -121,8 +121,50 @@ export class OwlSalesDashboard extends Component {
 
     // partner orders
     async getPartnerOrders(){
-        this.state.partnerOrders = {
+        let domain = [['state', 'in', ['draft', 'sent','sale', 'done']]]
+        if (this.state.period > 0) {
+            domain.push(['date', '>', this.state.current_date])
+        }
 
+        const data = await this.orm.readGroup(
+            "sale.report",
+            domain,
+            ["partner_id", "price_total", "product_uom_qty"],
+            ["partner_id"],
+            { orderby: "partner_id"}
+        )
+
+        this.state.partnerOrders = {
+            data: {
+                labels: data.map(d => d.partner_id[1]),
+                datasets: [{
+                    label: 'Total Amount',
+                    data: data.map(d => d.price_total),
+                    hoverOffset: 4,
+                    backgroundColor: "#4bbfc9",
+                    // Mengatur Sumbu Y untuk Data yang Berbeda
+                    yAxisID: "Total",
+                    // digunakan untuk menentukan urutan di mana dataset tersebut akan digambar.
+                    // disini nilainya 1 yg berarti digambar setelah product_uom_qty dataset
+                    order: 1,
+                },
+                {
+                    label: 'ordered Qty',
+                    data: data.map(d => d.product_uom_qty),
+                    hoverOffset: 4,
+                    backgroundColor: "#3238a8",
+                    type: "line",
+                    borderColor: "#3238a8",
+                    yAxisID: "Qty",
+                    order: 0,
+                }]
+            },
+            // digunakan untuk menentukan pengaturan terkait sumbu (axis) pada grafik Anda
+            scales:{
+                Qty: {
+                    position: 'right',
+                }
+            },
         }
     }
 

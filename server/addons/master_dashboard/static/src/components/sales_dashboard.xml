@@ -89,7 +89,7 @@
                     <span class="fa fa-arrow-right text-white"/>
                   </div>
                 </div>
-                <ChartRenderer type="'line'" title="'Line Chart'" config="state.partnerOrders"/>
+                <ChartRenderer type="'bar'" title="'Bar &amp; Line Chart'" config="state.partnerOrders"/>
               </div>
             </div>
           </div>

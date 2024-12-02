@@ -54,6 +54,7 @@ export class OwlSalesDashboard extends Component {
                 }]
             },
             domain,
+            label_field: 'product_id',
         }
     }
 
@@ -82,6 +83,8 @@ export class OwlSalesDashboard extends Component {
                     backgroundColor: data.map((_, index) => getColor(index)),
                 }]
             },
+            domain,
+            label_field: 'user_id',
         }
     }
 
@@ -117,6 +120,8 @@ export class OwlSalesDashboard extends Component {
                     backgroundColor: "#067dd1",
                 }]
             },
+            domain,
+            label_field: 'date',
         }
     }
 
@@ -160,6 +165,8 @@ export class OwlSalesDashboard extends Component {
                     order: 0,
                 }]
             },
+            domain,
+            label_field: 'partner_id',
             // digunakan untuk menentukan pengaturan terkait sumbu (axis) pada grafik Anda
             scales:{
                 Qty: {

@@ -53,6 +53,7 @@ export class OwlSalesDashboard extends Component {
                     backgroundColor: data.map((_, index) => getColor(index)),
                 }]
             },
+            domain,
         }
     }
 

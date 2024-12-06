@@ -290,6 +290,12 @@ export class OwlSalesDashboard extends Component {
         await this.getDates()
         await this.getQuotations()
         await this.getOrders()
+
+        // 20. saat onChangePeriod() diubah maka chart ini juga akan berubah
+        await this.getTopProducts()
+        await this.getTopSalesPeople()
+        await this.getMonthlySales()
+        await this.getPartnerOrders()
     } 
 
     // 6. digunakan untuk mendapatkan data tanggal dikurangi tanggal period

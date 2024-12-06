@@ -3,7 +3,7 @@
 import { useService } from "@web/core/utils/hooks"
 import { registry } from "@web/core/registry"
 import { loadJS } from "@web/core/assets"
-const { Component, onWillStart, useRef, onMounted } = owl
+const { Component, onWillStart, useRef, onMounted, useEffect, onWillUnmount } = owl
 
 
 export class ChartRenderer extends Component {
@@ -15,11 +15,29 @@ export class ChartRenderer extends Component {
             await loadJS("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js")
         });
 
+        // 21. merubah chart saat state diubah
+        // useEffect() adalah hook OWL yang dipanggil setiap kali terjadi perubahan pada state atau props dalam komponen
+        useEffect(()=>{
+            // creating a new chart
+            this.renderChart()
+        }, ()=>[this.props.config])  // memastikan renderChart hanya dipanggil ketika nilai config berubah
+
         onMounted(()=>this.renderChart())
+
+        // 23. Hook ini sangat berguna untuk membersihkan sumber daya, seperti event listeners, interval, atau data lain yang perlu dilepaskan ketika komponen tidak lagi diperlukan.
+        onWillUnmount(()=>{
+            if (this.chart){
+                this.chart.destroy()
+            }
+        })
     }
 
     renderChart(){
-        new Chart(
+        // 22. sebelum membuat chart baru maka chart lama harus dihapus terlebih dahulu
+        if (this.chart){
+            this.chart.destroy()
+        }
+        this.chart = new Chart(
         this.chartRef.el,
             {
                 type: this.props.type,
@@ -86,7 +104,7 @@ export class ChartRenderer extends Component {
                     scales: 'scales' in this.props.config ? this.props.config.scales : {},
                 },
             },
-        );
+        )
     }
 }
 

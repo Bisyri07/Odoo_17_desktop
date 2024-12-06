@@ -164,16 +164,18 @@ export class OwlSalesDashboard extends Component {
                     label: 'ordered Qty',
                     data: data.map(d => d.product_uom_qty),
                     hoverOffset: 4,
-                    backgroundColor: "#3238a8",
+                    backgroundColor: "rgba(216, 217, 243, 0.5)", // alpha=0.5 adalah tingkat tranparansi
                     type: "line",
                     borderColor: "#3238a8",
                     yAxisID: "Qty",
                     order: 0,
+                    tension: 0.4, // tingkat kelengkungan garis lurus
+                    fill: true,
                 }]
             },
             domain,
             label_field: 'partner_id',
-            // digunakan untuk menentukan pengaturan terkait sumbu (axis) pada grafik Anda
+            // digunakan untuk menentukan pengaturan terkait sumbu y pada grafik
             scales:{
                 Qty: {
                     position: 'right',

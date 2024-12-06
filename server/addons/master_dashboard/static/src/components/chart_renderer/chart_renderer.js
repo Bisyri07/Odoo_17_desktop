@@ -28,9 +28,13 @@ export class ChartRenderer extends Component {
                     // 18. configurasi onClick event
                     onClick: (e)=>{
                         const active = e.chart.getActiveElements()
-                        if (active) {
+                        // Pastikan ada elemen aktif, ketika mouse diklik di luar chart
+                        // maka akan menghasilkan object kosong atau tidak terjadi apa2
+                        if (active.length > 0) {
                             const label = e.chart.data.labels[active[0].index]
+                            const dataset = e.chart.data.labels[active[0].datasetIndex].label
                             const { label_field, domain } = this.props.config
+
                             let new_domain = domain ? domain : []
 
                             // 19. jika diklik dengan label yg sama dengan active element
@@ -46,6 +50,13 @@ export class ChartRenderer extends Component {
                                 else {
                                     new_domain.push([label_field, '=', label])
                                 }
+                            }
+
+                            if (dataset === 'Quotations'){
+                                new_domain.push(['state', 'in', ['draft', 'sent']])
+                            }
+                            if (dataset === 'Orders'){
+                                new_domain.push(['state', 'in', ['sale']])
                             }
 
                             this.actionService.doAction({
@@ -71,9 +82,10 @@ export class ChartRenderer extends Component {
                             position: 'bottom',
                         },
                     },
+                    // memindahkan skala kedua ke kanan. (partner orders chart)
                     scales: 'scales' in this.props.config ? this.props.config.scales : {},
                 },
-            }
+            },
         );
     }
 }

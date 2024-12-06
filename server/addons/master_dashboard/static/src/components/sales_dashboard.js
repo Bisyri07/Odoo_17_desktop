@@ -94,7 +94,6 @@ export class OwlSalesDashboard extends Component {
         if (this.state.period > 0) {
             domain.push(['date', '>', this.state.current_date])
         }
-
         const data = await this.orm.readGroup(
             "sale.report",
             domain,
@@ -103,19 +102,26 @@ export class OwlSalesDashboard extends Component {
             { orderby: "date desc" , lazy: false}
         )
 
+        // untuk mengubah Set kembali menjadi array, kita menggunakan spread operator (...)
+        const labels_ = [... new Set(data.map(d => d.date))]
+        const quotations_ = data.filter(d => d.state == 'draft' || d.state == 'sent')
+        const orders_ = data.filter(d => ['sale'].includes(d.state)).map(d => d.price_total)
+
         this.state.monthlySales = {
             data: {
                 // yang akan diambil hanya data unique saja dgn menggunakan new Set()
-                labels: [... new Set(data.map(d => d.date))],
+                labels: labels_,
                 datasets: [{
                     label: 'Quotations',
-                    data: data.filter(d => d.state == 'draft' || d.state == 'sent').map(d => d.price_total),
+                    data: labels_.map(
+                        l=>quotations_.filter(q=>l==q.date).map(j=>j.price_total).reduce((a,c)=>a+c,0)
+                    ),
                     hoverOffset: 4,
                     backgroundColor: "red",
                 },
                 {
-                    label: 'Count',
-                    data: data.filter(d => ['sale', 'done'].includes(d.state)).map(d => d.price_total),
+                    label: 'Orders',
+                    data: orders_,
                     hoverOffset: 4,
                     backgroundColor: "#067dd1",
                 }]

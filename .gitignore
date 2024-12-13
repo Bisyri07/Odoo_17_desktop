@@ -8,6 +8,7 @@ note.txt
 Odoo/server/odoo.log
 .venv
 .idea
+.vscode
 vcredist
 
 # file yg ga penting di push ke github

@@ -36,22 +36,33 @@ export class OwlSalesDashboard extends Component {
             ["product_id"],
             { limit: 5, orderby: "price_total desc" }
         )
+        const topProductsColors = ["#54bebe", "#d7658b", "#df979e",
+                                   "#badbdb", "#dedad2", "#e4bcad",
+                                   "#98d1d1", "#76c8c8", "#c80064"]
         // 17. configurasi data dan chart yg akan ditampilkan di halaman
         this.state.topProducts = {
             data: {
                 labels: data.map(d => d.product_id[1]),
                 datasets: [{
-                    label: 'total',
+                    label: ['total'],
                     data: data.map(d => d.price_total),
                     hoverOffset: 4,
-                    backgroundColor: data.map((_, index) => getColor(index)),
+                    backgroundColor: data.map(
+                        (_, index) => topProductsColors[index % topProductsColors.length]
+                    ),
                 },
                 {
                     label: 'Count',
                     data: data.map(d => d.product_id_count),
                     hoverOffset: 4,
-                    backgroundColor: data.map((_, index) => getColor(index)),
+                    backgroundColor: data.map(
+                        (_, index) => topProductsColors[index % topProductsColors.length]
+                    ),
+                    type: "polarArea",
                 }]
+            },
+            scales: {
+                r:{display:false}
             },
             domain,
             label_field: 'product_id',
@@ -72,6 +83,9 @@ export class OwlSalesDashboard extends Component {
             ["user_id"],
             { limit: 5, orderby: "price_total desc" }
         )
+        const topSalesColors = ["#54bebe", "#d7658b", "#df979e",
+                               "#badbdb", "#dedad2", "#e4bcad",
+                               "#98d1d1", "#76c8c8", "#c80064"]
 
         this.state.topSalesPeople = {
             data: {
@@ -80,7 +94,7 @@ export class OwlSalesDashboard extends Component {
                     label: 'total',
                     data: data.map(d => d.price_total),
                     hoverOffset: 4,
-                    backgroundColor: data.map((_, index) => getColor(index)),
+                    backgroundColor: data.map((_, index) => topSalesColors[index % topSalesColors.length]),
                 }]
             },
             domain,
@@ -106,6 +120,9 @@ export class OwlSalesDashboard extends Component {
         const labels_ = [... new Set(data.map(d => d.date))]
         const quotations_ = data.filter(d => d.state == 'draft' || d.state == 'sent')
         const orders_ = data.filter(d => ['sale'].includes(d.state)).map(d => d.price_total)
+        const monthlySalesColors = ["#54bebe", "#d7658b", "#df979e",
+                                   "#badbdb", "#dedad2", "#e4bcad",
+                                   "#98d1d1", "#76c8c8", "#c80064"]
 
         this.state.monthlySales = {
             data: {
@@ -117,13 +134,13 @@ export class OwlSalesDashboard extends Component {
                         l=>quotations_.filter(q=>l==q.date).map(j=>j.price_total).reduce((a,c)=>a+c,0)
                     ),
                     hoverOffset: 4,
-                    backgroundColor: "red",
+                    backgroundColor: "#54bebe",
                 },
                 {
                     label: 'Orders',
                     data: orders_,
                     hoverOffset: 4,
-                    backgroundColor: "#067dd1",
+                    backgroundColor: "#d7658b",
                 }]
             },
             domain,
@@ -171,6 +188,8 @@ export class OwlSalesDashboard extends Component {
                     order: 0,
                     tension: 0.4, // tingkat kelengkungan garis lurus
                     fill: true,
+                    radius: 5,   // radius titik
+                    pointBackgroundColor: "#3238a8",  // warna fill untuk titik
                 }]
             },
             domain,

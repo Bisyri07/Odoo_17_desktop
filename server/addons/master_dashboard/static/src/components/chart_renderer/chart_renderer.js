@@ -11,8 +11,8 @@ export class ChartRenderer extends Component {
         this.chartRef = useRef("chart")
         this.actionService = useService("action")
         onWillStart(async ()=>{
-            //await loadJS("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js")
-            await loadJS("web/static/lib/Chart/Chart.js")
+            await loadJS("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js")
+            //await loadJS("web/static/lib/Chart/Chart.js")
             await loadJS("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js")
         });
 
@@ -46,26 +46,13 @@ export class ChartRenderer extends Component {
                 options: {
                     // 18. configurasi onClick event
                     onClick: (e)=>{
-                        const [activeElement] = this.chart.getElementsAtEventForMode(
-                            e,
-                            "nearest",
-                            { intersect: true },
-                            false
-                        );
-                        if (!activeElement) {
-                            return;
-                        }
-                        const { datasetIndex, index } = activeElement;
 
-                        //const active = e.chart.getActiveElements()
+                        const active = e.chart.getActiveElements()
                         // Pastikan ada elemen aktif, ketika mouse diklik di luar chart
                         // maka akan menghasilkan object kosong atau tidak terjadi apa2
-                        //if (active.length > 0) {
-                            //const label = e.chart.data.labels[active[0].index]
-                            //const dataset = e.chart.data.labels[active[0].datasetIndex].label
-
-                            const label = this.chart.data.labels[index]
-                            const dataset = this.chart.data.labels[datasetIndex].label
+                        if (active.length > 0) {
+                            const label = e.chart.data.labels[active[0].index]
+                            const dataset = e.chart.data.labels[active[0].datasetIndex].label
 
                             const { label_field, domain } = this.props.config
 
@@ -103,7 +90,7 @@ export class ChartRenderer extends Component {
                                     [false, "form"],
                                 ]
                             })
-                        //}
+                        }
                     },
                     responsive: true,
                     plugins: {

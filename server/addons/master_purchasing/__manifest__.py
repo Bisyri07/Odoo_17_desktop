@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Master Purchasing",
-    'version':'1.0',
     'summary': "purchasing data center",
     'sequence':2,
 

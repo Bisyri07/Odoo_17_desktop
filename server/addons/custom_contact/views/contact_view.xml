@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- action -->
+  <record id="custom_contact_action" model="ir.actions.act_window">
+    <field name="name">Custom Contact</field>
+    <field name="res_model">custom.contact</field>
+    <field name="view_mode">tree,form,kanban</field>
+  </record>
+
+  <!-- menu -->
+  <menuitem id="custom_contact_root" name="Custom Contact">
+    <menuitem name="Custom Contact Menu" id="custom_contact_menu" action="custom_contact_action"/>
+  </menuitem>
+
+  <!-- view tree -->
+  <record id="custom_contact_view" model="ir.ui.view">
+    <field name="name">custom.contact.view</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="age"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- form -->
+  <record id="custom_contact_form" model="ir.ui.view">
+    <field name="name">custom.contact.form</field>
+    <field name="model">custom.contact</field>
+    <!-- <field name="domain">[]</field> -->
+    <field name="context">{}</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="age"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+</odoo>

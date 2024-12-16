@@ -2,11 +2,24 @@
 
 import { registry } from "@web/core/registry"
 import { Component, xml } from "@odoo/owl"
+import { standardViewProps } from "@web/views/standard_view_props"
 
 
 // 1. membuat sebuah kelas
 class LeafletMapController extends Component {
-    static template = xml`<div>Leaflet Map View</div>`
+    static template = xml`
+    <div><h1>Leaflet Map View</h1></div>
+    `
+    // 5. Mendefinisikan properti (atau data) yang dapat diterima oleh komponen dari induknya.
+    static props = {
+        ...standardViewProps,
+
+    }
+
+    // 4. untuk memuat state (data awal) ke dalam DOM
+    setup(){
+        console.log(this)
+    }
 }
 
 

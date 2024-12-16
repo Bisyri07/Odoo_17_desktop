@@ -9,7 +9,7 @@
 
   <!-- menu -->
   <menuitem id="custom_contact_root" name="Custom Contact">
-    <menuitem name="Custom Contact Menu" id="custom_contact_menu" action="custom_contact_action"/>
+    <menuitem name="Contact Menu" id="custom_contact_menu" action="custom_contact_action"/>
   </menuitem>
 
   <!-- view tree -->
@@ -29,7 +29,7 @@
     <field name="name">custom.contact.lmap</field>
     <field name="model">custom.contact</field>
     <field name="arch" type="xml">
-      <lmap/>
+      <lmap test="custom_contact"/>
     </field>
   </record>
 

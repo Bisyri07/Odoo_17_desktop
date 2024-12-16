@@ -13,12 +13,18 @@
     'category':"Hidden",
     'application':True,
     'installable':True,
-    'depends': ['base'],
+    'depends': ['base', 'web'],
     'data': [
         # security
         
         # views
 
-    ]
+    ],
+
+    'assets': {
+        'web.assets_backend':[
+            'map/static/src/*'
+        ]
+    }
 
 }

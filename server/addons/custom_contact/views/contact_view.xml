@@ -4,7 +4,7 @@
   <record id="custom_contact_action" model="ir.actions.act_window">
     <field name="name">Custom Contact</field>
     <field name="res_model">custom.contact</field>
-    <field name="view_mode">tree,form,kanban</field>
+    <field name="view_mode">tree,form,kanban,lmap</field>
   </record>
 
   <!-- menu -->
@@ -21,6 +21,15 @@
         <field name="name"/>
         <field name="age"/>
       </tree>
+    </field>
+  </record>
+
+  <!-- view lmap -->
+  <record id="custom_contact_view_lmap" model="ir.ui.view">
+    <field name="name">custom.contact.lmap</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <lmap/>
     </field>
   </record>
 

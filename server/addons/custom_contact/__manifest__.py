@@ -10,8 +10,10 @@
     'author':"Bisyri",
     'license':"LGPL-3",
     'website':"https://github.com/Bisyri07/Odoo_17_desktop/tree/owl_javascript_framework",
-    "application":True,
     
+    "application":True,
+    'depends':['map'],
+
 	"data": {
         # security access
         "security/ir.model.access.csv",
